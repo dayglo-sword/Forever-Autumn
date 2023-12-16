@@ -4,17 +4,17 @@
 	traits = { }
 	
 	male_common_first_names={
-		ak ack ark ak_ark ack_ak ark_ack akak ak_ack
+		ak ack ark ak_ark ack_ak ark_ack akak ak_ack ack_ka akka
 	}
 	female_common_first_names = {
-		ak ack ark ak_ark ack_ak ark_ack akak ak_ack
+		ak ack ark ak_ark ack_ak ark_ack akak ak_ack ack_ka akka
 	}
 	common_last_names={
-		ak ack ark ak_ark ack_ak ark_ack akak ak_ack 
+		ak ack ark ak_ark ack_ak ark_ack akak ak_ack ack_ka akka 
 	}
 
 	noble_last_names = {
-		ak ack ark ak_ark ack_ak ark_ack akak ak_ack 
+		ak ack ark ak_ark ack_ak ark_ack akak ak_ack ack_ka akka 
 	}
 	
 	male_regal_first_names = {

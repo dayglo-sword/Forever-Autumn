@@ -24,11 +24,14 @@ nda_effect_martian_setup = {
 	activate_law = law_type:law_closed_borders
 
 	# activate tech
-	add_era_researched = era_3
+	add_era_researched = era_4
 
 	# Stop NDA Cult Spread before it can start
 	set_variable = nda_cult_spread_failed
 
+	# set flag to not use 'Colonial Admin' to split empire
+	set_variable = nda_anti_colonial_admin
+	
 	ig:ig_devout = {
 		set_interest_group_name = ig_devout
 	}
@@ -71,4 +74,6 @@ nda_effect_martian_setup = {
 	set_strategy = ai_strategy_nda_ares_administrative_agenda
 	set_strategy = ai_strategy_nda_ares_diplomatic_agenda
 	set_strategy = ai_strategy_nda_ares_political_agenda
+
+
 }

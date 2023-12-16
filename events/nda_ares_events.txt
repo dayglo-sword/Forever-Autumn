@@ -1,5 +1,63 @@
 ﻿namespace = nda_ares # Ares
 
+nda_ares.1 = { # The chances of an Invasion from Mars
+	type = country_event
+	placement = ROOT
+	title = nda_ares.1.t
+	desc = nda_ares.1.d
+	flavor =  nda_ares.1.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+		
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+
+	icon = "gfx/interface/icons/event_icons/tutorial_icon.dds"
+
+	# is called from Global
+
+	# trigger = {
+	# 	exists = c:NDA_ARES
+	# 	c:NDA_ARES = { is_at_war = no } # need to try and provoke
+	# }
+
+	immediate = {
+		#set_variable = nda_nameless_cults_decision # don't set immediate as causes follow on event to trigger simultaniously	
+		#debug_log = "Imprint of Nameless Cults : [THIS.GetCountry.GetNameNoFormatting]" 
+	}	
+
+	option = {
+		name = nda_ares.1.a
+		default_option = yes
+		set_global_variable = nda_ares_early_invasion
+	}
+
+	option = { 
+		name = nda_ares.1.b
+
+		set_global_variable = nda_ares_wells_hg_invasion
+		ai_chance = { # will -ve effect conversion rate
+			base = 25
+		}
+
+	}
+
+	option = { 
+		name = nda_ares.1.c
+
+		set_global_variable = nda_ares_wells_orson_invasion
+		ai_chance = { # will -ve effect conversion rate
+			base = 25
+		}
+
+	}
+}
+
 nda_ares.10 = { # Early Landing
 	type = country_event
 	placement = p:x60A040 #East Anglia
@@ -24,7 +82,13 @@ nda_ares.10 = { # Early Landing
 		game_date < 1843
 		p:x60A040 = { state = { owner = ROOT } }
 		NOT = { has_global_variable = nda_ares_invasion }
-
+		OR = { 
+			has_global_variable = nda_ares_early_invasion
+			NOT = {
+				has_global_variable = nda_ares_wells_hg_invasion
+				has_global_variable = nda_ares_wells_orson_invasion
+			}
+		}
 	}
 
 	cooldown = { months = 12 }
@@ -48,17 +112,21 @@ nda_ares.10 = { # Early Landing
 			province = p:x60E0C0
 			province = p:x19CECD
 			province = p:x58D3AE
+			province = p:x800020
+			province = p:xA0A0C0
 
 			on_created = {
 				nda_effect_martian_setup = yes
 
 				every_scope_state = {
-					kill_population_percent_in_state = { percent = 0.20 }
+					kill_population_percent_in_state = { percent = 0.10 }
+
 					# convert large chunk of remaining to give them a start
-					convert_population = { target = rel:atheist value = 0.6  }
+					convert_population = { target = rel:atheist value = 0.90  }
 
 					every_scope_pop = {
-						change_pop_culture = { target = cu:nda_cul_aresian value = 0.6 }		
+						limit = { religion = rel:atheist }
+						change_pop_culture = { target = cu:nda_cul_aresian value = 1 }		
 					}
 
 					# add generator building - should be landing sites then upgrade to generators?
@@ -67,7 +135,7 @@ nda_ares.10 = { # Early Landing
 					}	
 
 					state_region = {
-						add_homeland = nda_cul_aresian						
+						add_homeland = cu:nda_cul_aresian						
 					}
 
 					add_modifier = { name = nda_ares_state_red_lands_modifier }
@@ -77,10 +145,10 @@ nda_ares.10 = { # Early Landing
 				every_neighbouring_state = {
 					limit = { NOT = { owner = c:NDA_ARES } }
 					state_region = {
-						add_homeland = nda_cul_aresian		
+						add_homeland = cu:nda_cul_aresian		
 						add_claim = c:NDA_ARES
 					}
-					add_radicals = { value = 0.5 } # Panic in the streets of London...
+					add_radicals_in_state = { value = 0.5 } # Panic in the streets of London...
 
 					add_modifier = {
 						name = nda_ares_state_martian_terror_modifier
@@ -133,6 +201,16 @@ nda_ares.10 = { # Early Landing
 				NOT = { c:NDA_ARES ?= THIS }
 			}
 			change_relations = { country = c:NDA_ARES value = -150 } # is this too much ?
+
+			# notify the world
+
+			# panic stations
+			add_radicals = { 
+				value = 0.1 
+			}
+			add_loyalists = {
+				value = -0.1
+			}
 		}
 
 		#go to war
@@ -189,8 +267,8 @@ nda_ares.20 = { # Mars Attacks
 	}
 	
 	immediate = {
-		set_variable = nda_nameless_cults_decision # don't set immediate as causes follow on event to trigger simultaniously	
-		debug_log = "Imprint of Nameless Cults : [THIS.GetCountry.GetNameNoFormatting]" 
+		#set_variable = nda_nameless_cults_decision # don't set immediate as causes follow on event to trigger simultaniously	
+		#debug_log = "Imprint of Nameless Cults : [THIS.GetCountry.GetNameNoFormatting]" 
 	}	
 	
 	option = {

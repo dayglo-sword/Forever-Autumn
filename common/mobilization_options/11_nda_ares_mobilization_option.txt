@@ -20,7 +20,10 @@ mobilization_option_nda_ares_black_smoke = {
 		unit_recovery_rate_add = -0.2
 		unit_morale_damage_mult = 0.5
 	}
-	ai_value = 3
+
+	ai_weight = {
+		value = 5 # have high as restricted
+	}
 
     group = special_weapons
 }
@@ -44,7 +47,10 @@ mobilization_option_nda_ares_death_ray = {
 		unit_devastation_mult = 2
 		unit_morale_damage_mult = 0.5
 	}
-	ai_value = 3
+
+	ai_weight = {
+		value = 5 # have high as restricted
+	}
 
     group = special_weapons
 }

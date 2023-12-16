@@ -11,19 +11,28 @@ combat_unit_type_martian_infantry = {
 	group = combat_unit_group_infantry
 
 	battle_modifier = {
-        unit_offense_add = 320
-        unit_defense_add = 320
-		unit_morale_loss_add = 0.5
-        unit_devastation_mult = 3
-        unit_morale_damage_mult = 3   
-        unit_kill_rate_add = 6 
-        unit_occupation_mult = 0.5    
+        unit_offense_add = 400
+        unit_defense_add = 360
+		#unit_morale_loss_add = 0.5
+        unit_devastation_mult = 4
+        unit_morale_damage_mult = 6   
+        unit_kill_rate_add = 10 
+        unit_occupation_mult = 0.6    
+
+        #unit_recovery_rate_add = 0.5
+        #unit_morale_loss_mult = -0.5
 	}
 
-    unit_modifier = {
-		unit_recovery_rate_add = 0.5
-		unit_morale_loss_mult = -0.5		
-	}
+    # unit_modifier = {
+	# 	unit_recovery_rate_add = 0.5
+	# 	unit_morale_loss_mult = -0.5		
+	# }
+
+    formation_modifier = {
+        military_formation_mobilization_speed_mult = 2
+        military_formation_movement_speed_mult = 2
+    }
+
 
     upkeep_modifier = {
     	goods_input_small_arms_add = 0.3

@@ -37,7 +37,7 @@ nda_ares_monthly_on_action = {
 						state_region = { NOT = { is_homeland = cu:nda_cul_aresian } }
 					}
 					state_region = {
-						add_homeland = nda_cul_aresian						
+						add_homeland = cu:nda_cul_aresian						
 					}					
 				}
 
@@ -83,7 +83,7 @@ nda_ares_monthly_on_action = {
 					NOT = { has_claim_by = c:NDA_ARES }
 				}
 				state_region = {
-					add_homeland = nda_cul_aresian		
+					add_homeland = cu:nda_cul_aresian		
 					add_claim = c:NDA_ARES
 				}
 				# annoy them
@@ -107,7 +107,7 @@ nda_ares_monthly_on_action = {
 				# remove generator building 
 				remove_building = "building_nda_ares_generators" 	
 
-				remove_modifer = nda_ares_state_red_lands_modifier
+				remove_modifier = nda_ares_state_red_lands_modifier
 			}	
 		}
 	}
@@ -115,6 +115,7 @@ nda_ares_monthly_on_action = {
 
 on_monthly_pulse_state = {
 	on_actions = {
+		nda_ares_monthly_plague_on_action
 		nda_ares_monthly_state_conversion_on_action	
 	}
 }
@@ -162,6 +163,23 @@ nda_ares_monthly_state_conversion_on_action = {
 	}
 }
 
+nda_ares_monthly_plague_on_action = {
+	# bad things should happen to Martians if 'Spanish Flu' or NDA 'Red Death' around - in addition to the usual
+	effect = {
+		if = {
+			limit = { 
+				c:NDA_ARES ?= owner				
+				has_modifier = plague_modifier
+			}
+
+			kill_population_percent_in_state = {
+				culture = cu:nda_cul_aresian
+				percent = 0.10 	
+			}
+		}
+	}
+}
+
 on_half_yearly_pulse_country = {
 	on_actions = {
 		nda_ares_half_yearly_on_action	
@@ -180,19 +198,19 @@ nda_ares_half_yearly_on_action = {
 			}
 			debug_log = "nda_ares_half_yearly_on_action"
 			random_country = {
-				limit = { 
-					
+				limit = { 					
 					has_strategic_land_adjacency = c:NDA_ARES 
-					country_rank >= rank_value:unrecognized_regional_power	
+					country_rank >= rank_value:recognized_regional_power	
 				}
-				# need weighting to take out power countries?
-				weight = { 
-					base = country_rank
-					modifier = {	
-						is_adjacent = c:NDA_ARES
-						add = 3
-					}
-				}
+				# # need weighting to take out power countries?
+				# weight = { 
+				# 	value = 100
+				# 	subtract = global_country_ranking 
+				# 	IF = {	
+				# 		limit = { is_adjacent_to_country = c:NDA_ARES }
+				# 		add = 5
+				# 	}
+				# }
 				save_scope_as = nda_ares_victim
 			}
 
@@ -240,7 +258,7 @@ nda_ares_character_creation_on_action = {
 		}
 
 		# remove as investigator if auto generated
-		remove_trait = nda_investigator 
+		remove_trait = nda_investigator # does cause 'post validate' error in logs if NDA not loaded
 	}
 }
 # check that characters such as those in exile have appropriate ideology - does it work on agitators and generals?? renders conversion events obsolete?
@@ -263,6 +281,9 @@ nda_ares_half_yearly_pulse_character_on_action = {
 	}	
 }
 
+# following 'defenses' based on https://github.com/1230james/vic3-forts-and-engineers/blob/master/common/on_actions/FAE_on_actions.txt
+# but vastly simplified to be non dynamic
+
 # Root = attacker or defender country
 # scope:battle = battle
 # scope:attacker = attacking commander
@@ -270,36 +291,90 @@ nda_ares_half_yearly_pulse_character_on_action = {
 # scope:state = location state
 on_battle_started = {
     on_actions = {
-        #nda_ares_on_battle_started
+        nda_ares_on_battle_started
     }
 }
 
-#nda_ares_on_battle_started = {
-#    effect = {
-#        if = {
-#			limit = {
-#				exists = scope:state
-#                scope:state = {
-#					has_building = building_nda_ares_generators
-#                    
-#                    OR = {
-#                        owner = scope:defender.owner
-#                        owner = {
-#                            is_in_war_together = scope:defender.owner
-#                        }
-#                    }
-#                }
-#				
-#				scope:defender = {
-#					NOT = {
-#						has_modifier = nda_lostcity_defense_modifier
-#					}
-#				}
-#			}
-#			debug_log = "City Boost to Defenders"			
-#			scope:defender = {
-#				add_modifier = { name = nda_lostcity_defense_modifier }
-#			}
-#		}
-#	}
-#}
+nda_ares_on_battle_started = {
+   effect = {
+       if = {
+			limit = {
+               scope:state ?= {
+					has_building = building_nda_ares_generators
+                   
+                   OR = {
+                       owner = scope:defender.owner
+					   c:NDA_ARES ?= owner # captured/bugged genrators don't count
+                   }
+               }
+				
+				scope:defender = {
+					NOT = {
+						has_modifier = nda_ares_generator_defense_modifier
+					}
+				}
+			}
+
+			debug_log = "Generator Boost to Defenders"			
+			scope:defender = {
+				add_modifier = { name = nda_ares_generator_defense_modifier }
+			}
+
+			scope:attacker ?= {
+				if = {
+					limit = {
+						NOT = { has_modifier = nda_ares_generator_occupation_speed }
+					}
+					add_modifier = {
+						name       = nda_ares_generator_occupation_speed
+					}
+				}
+			}			
+		}
+	}
+}
+
+# Root = attacker or defender country
+# scope:battle = battle
+# scope:attacker = attacking commander
+# scope:defender = defending commander
+# scope:state = location state
+on_battle_ended = {
+    on_actions = {
+        nda_ares_on_battle_ended
+		delay = { days = 1 } # lets see if this works rather than event delay	
+		nda_ares_on_battle_aftermath
+    }
+}
+
+nda_ares_on_battle_ended = {
+    effect = {        
+        scope:defender ?= {
+            if = {
+                limit = {
+                    has_modifier = nda_ares_generator_defense_modifier
+                }
+                remove_modifier = nda_ares_generator_defense_modifier
+            }
+        }
+    }
+}
+
+nda_ares_on_battle_aftermath = {
+    effect = {
+		scope:attacker ?= {
+            if = {
+                limit = {
+                    is_in_battle = no
+                }
+                
+                if = {
+                    limit = {
+                        has_modifier = nda_ares_generator_occupation_speed
+                    }
+                    remove_modifier = nda_ares_generator_occupation_speed
+                }
+            }
+        }
+    }
+}

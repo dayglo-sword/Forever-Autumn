@@ -23,6 +23,9 @@ ack_ak:0 "Ack ak"
 ark_ack:0 "Ark ack"
 akak:0 "Ak-ak"
 ak_ack:0 "Ak ack" 
+ack_ka:0 "Ack ka"
+akka:0 "Ak-ka"
+
 # units
 combat_unit_type_martian_infantry:0 "Tripods"
 
@@ -46,3 +49,5 @@ nda_ares_dp_martian_invasion:0 "Martian Invasion"
 nda_ares_ig_martian_unity_modifier:0 "Martian Unity"
 nda_ares_state_martian_terror_modifier:0 "Martian Terror"
 nda_ares_state_red_lands_modifier:0 "Red Lands"
+nda_ares_generator_defense_modifier:0 "Generator Defenses"
+nda_ares_generator_occupation_speed:0 "Generator Defenses"

@@ -19,3 +19,14 @@ pmg_nda_ares_generator_goods = {
 		pm_nda_ares_generator_goods
 	}
 }
+
+# override lighting to allow for Martian lights
+pmg_street_lighting = {
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_base.dds"
+	production_methods = {
+		pm_no_street_lighting
+		pm_gas_streetlights
+		pm_electric_streetlights
+		pm_nda_ares_streetlights
+	}
+}
