@@ -1,125 +1,17 @@
 ﻿#notification_example = {													#notification key
 #	type = country 															#include notification type
-#	texture = "gfx/interface/icons/notification_icons/technology.dds" 		#notification texture picture
+#   group = "some_group"                                                    # group for "Current Situation". Also adds this notification to the Message Settings list.
+#	texture = "gfx/interface/icons/notification_icons/technology.dds" 		#texture icon. Mandatory if notification has a group. Otherwise, you'll get a pink face placeholder in feed notifications.
 #
 #	notification_type = feed/toast/popup									#how the notification will be presented
-#	popup_name = acquired_technology_popup 										#gui specification for popups, must be in gui/popups.gui
-#	days = 21 																#amount of days for notification to last
+#	popup_name = acquired_technology_popup 									#gui specification for popups, must be in gui/popups.gui
 #
 #	on_created_soundeffect = "event:/SFX/UI/Notifications/notification" 	#notification on creationg sound
 #}
 
-nda_first_open_cult = {
+nda_ares_country_freedom = {
 	type = country
-
-	texture = "gfx/interface/icons/notification_icons/interest_group_bad.dds"
-
-	notification_type = toast
- 
-}
-
-nda_first_yig_cult = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/interest_group_bad.dds"
-
-	notification_type = feed #toast
- 
-}
-
-nda_first_dagon_cult = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/interest_group_bad.dds"
-
-	notification_type = toast
- 
-}
-
-nda_elditch_realm_proclaimed = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/interest_group_bad.dds"
-
-	notification_type = toast
- 
-}
-
-nda_yigian_lands_proclaimed = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/interest_group_bad.dds"
-
-	notification_type = toast
- 
-}
-
-nda_yigian_lands_expand = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/interest_group_bad.dds"
-
-	notification_type = toast
- 
-}
-
-nda_dagonic_shores_proclaimed = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/interest_group_bad.dds"
-
-	notification_type = toast
- 
-}
-
-nda_dagonic_shores_expand = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/interest_group_bad.dds"
-
-	notification_type = toast
- 
-}
-
-nda_dagon_attacks = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/military.dds"
-
-	notification_type = toast
- 
-}
-
-### notifications from ritual
-nda_ritual_cthulhu_returns = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/military.dds"
-
-	notification_type = toast
- 
-}
-
-nda_ritual_cthulhu_leaves = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/influence.dds"
-
-	notification_type = toast
- 
-}
-
-nda_ritual_country_surrenders = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/peace.dds"
-
-	notification_type = toast
- 
-}
-
-nda_ritual_post_cthulhu_split = {
-	type = country
+	group = "nda_ares_notifications"
 
 	texture = "gfx/interface/icons/notification_icons/secession.dds"
 
@@ -127,146 +19,12 @@ nda_ritual_post_cthulhu_split = {
  
 }
 
-nda_ritual_post_cthulhu_strife = {
+
+
+### Generator Built
+nda_ares_generator_built = {
 	type = country
-
-	texture = "gfx/interface/icons/notification_icons/secession.dds"
-
-	notification_type = toast
- 
-}
-
-nda_ritual_assist_notice = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/influence.dds"
-
-	notification_type = feed # potentially too many for toast
- 
-}
-
-nda_ritual_halt_notice = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/secession.dds"
-
-	notification_type = feed # potentially too many for toast
- 
-}
-
-### notifications from WHH events
-nda_house_on_borderlands = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/buildings.dds"
-
-	notification_type = toast
- 
-}
-
-nda_carnacki_parties = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/character.dds"
-
-	notification_type = toast
- 
-}
-
-nda_carnacki_exile = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/character.dds"
-
-	notification_type = toast
- 
-}
-
-nda_carnacki_death = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/character.dds"
-
-	notification_type = toast
- 
-}
-
-### Hasturian
-nda_hastur_coronation = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/character.dds"
-
-	notification_type = toast
- 
-}
-
-### Lost Cities
-nda_lostcity_knyan_reveal = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/buildings.dds"
-
-	notification_type = toast
- 
-}
-
-nda_lostcity_knyan_hidden = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/buildings.dds"
-
-	notification_type = toast
- 
-}
-
-nda_lostcity_yhanthlei_reveal = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/buildings.dds"
-
-	notification_type = toast
- 
-}
-
-nda_lostcity_yhanthlei_hidden = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/buildings.dds"
-
-	notification_type = toast
- 
-}
-
-nda_lostcity_shamballa_reveal = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/buildings.dds"
-
-	notification_type = toast
- 
-}
-
-nda_lostcity_shamballa_hidden = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/buildings.dds"
-
-	notification_type = toast
- 
-}
-
-nda_lostcity_nameless_city_reveal = {
-	type = country
-
-	texture = "gfx/interface/icons/notification_icons/buildings.dds"
-
-	notification_type = toast
- 
-}
-
-nda_lostcity_nameless_city_hidden = {
-	type = country
+	group = "nda_ares_notifications"
 
 	texture = "gfx/interface/icons/notification_icons/buildings.dds"
 

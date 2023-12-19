@@ -5,6 +5,7 @@
 on_monthly_pulse_country = {
 	on_actions = {
 		nda_ares_monthly_on_action	
+		nda_ares_monthly_hostile_on_action 
 	}
 }
 
@@ -21,10 +22,18 @@ nda_ares_monthly_on_action = {
 			limit = {
 				c:NDA_ARES ?= THIS			
 			}
-			
+
+			# add generator - do before 'convert state' to slow things down a bit
 			random_scope_state = {
 				limit = {
 					NOT = { has_building = building_nda_ares_generators }
+					has_modifier = 	nda_ares_state_red_lands_modifier	
+					total_urbanization > 150 # urbanised only - must be city to show generator model?
+					is_incorporated = yes
+					culture_percent_state = {  
+						target = cu:nda_cul_aresian  
+						value >= 0.5 # at least 50% Martains  
+					  }  
 				}
 
 				# add generator building 
@@ -32,6 +41,27 @@ nda_ares_monthly_on_action = {
 					building = "building_nda_ares_generators" 
 				}	
 				
+				debug_log = "New Generator"
+				save_scope_as = nda_ares_generator_location
+
+			}
+
+			if = {
+				limit = { exists = scope:nda_ares_generator_location }
+
+				debug_log = "New Generator Notification"
+				every_country = {
+					post_notification = nda_ares_generator_built
+				}				
+			}
+
+			# convert state
+			random_scope_state = {
+				limit = {
+					NOT = { has_building = building_nda_ares_generators }
+					NOT = { has_modifier = nda_ares_state_red_lands_modifier }
+				}
+
 				if = {
 					limit = {
 						state_region = { NOT = { is_homeland = cu:nda_cul_aresian } }
@@ -43,15 +73,15 @@ nda_ares_monthly_on_action = {
 
 				add_modifier = { name = nda_ares_state_red_lands_modifier }
 				remove_modifier = nda_ares_state_martian_terror_modifier
-			}
-			
+			}			
+
 			# reduce infamy as can balloon - always pariah so wars can never be for territory
-			change_infamy = -5
+			change_infamy = -10
 			add_radicals = { value = -0.4 } # dampen radicals
 			add_loyalists = { value = 0.2 }
 
 			# money problems? 
-			add_treasury = 10000
+			add_treasury = 50000
 			add_investment_pool = 10000
 
 			# release puppets or just add lots of radicals? - can be loyal due to strategy?
@@ -59,14 +89,20 @@ nda_ares_monthly_on_action = {
 				limit = { 					
 					is_subject_of = ROOT
 					is_player = no
+					is_at_war = no
 				}
 				# breakaway
 				make_independent = yes
 				change_relations = { country = c:NDA_ARES value = -100 }
-				# c:NDA_ARES = {
 
-				# }
-				#add_radicals = { value = 0.2 } # make angry - this just keeps doing annoying revolts.
+				debug_log = "Country Freedom"
+
+				save_scope_as = nda_ares_freedom
+				# send notification
+				every_country = {
+					post_notification = nda_ares_country_freedom
+				}
+
 			}
 
 			random_country = {
@@ -117,6 +153,7 @@ on_monthly_pulse_state = {
 	on_actions = {
 		nda_ares_monthly_plague_on_action
 		nda_ares_monthly_state_conversion_on_action	
+		nda_ares_monthly_cull_on_action
 	}
 }
 
@@ -176,17 +213,43 @@ nda_ares_monthly_plague_on_action = {
 				culture = cu:nda_cul_aresian
 				percent = 0.10 	
 			}
+
+			state_region = {
+				add_devastation = 10
+			}
 		}
 	}
 }
 
-on_half_yearly_pulse_country = {
-	on_actions = {
-		nda_ares_half_yearly_on_action	
+nda_ares_monthly_cull_on_action = {
+	effect = {
+		if = {
+			limit = {
+				c:NDA_ARES ?= controller
+				NOT = { c:NDA_ARES ?= owner }
+			}
+
+			kill_population_percent_in_state = {  percent = 0.20 }
+
+			state_region = {
+					add_devastation = 20
+			}
+		
+			if = {
+				limit = { devastation > 0.80 } # is a % !!
+				set_state_owner = c:NDA_ARES				
+			}
+
+		}
 	}
 }
+# on_half_yearly_pulse_country = {
+# 	on_actions = {
+# 		nda_ares_half_yearly_on_action	
+# 	}
+# }
 
-nda_ares_half_yearly_on_action = {
+nda_ares_monthly_hostile_on_action = {
 	effect = {
 		if = {
 			limit = { 
@@ -196,45 +259,47 @@ nda_ares_half_yearly_on_action = {
 				# should have healthy finances?				
 				has_healthy_economy = yes
 			}
-			debug_log = "nda_ares_half_yearly_on_action"
-			random_country = {
-				limit = { 					
-					has_strategic_land_adjacency = c:NDA_ARES 
-					country_rank >= rank_value:recognized_regional_power	
-				}
-				# # need weighting to take out power countries?
-				# weight = { 
-				# 	value = 100
-				# 	subtract = global_country_ranking 
-				# 	IF = {	
-				# 		limit = { is_adjacent_to_country = c:NDA_ARES }
-				# 		add = 5
-				# 	}
-				# }
-				save_scope_as = nda_ares_victim
-			}
 
-			if = {
-				limit = { exists = scope:nda_ares_victim }
-				create_diplomatic_play = {
-					name = nda_ares_dp_martian_invasion
-				
-					target_country = scope:nda_ares_victim
-					
-					type = dp_annex_war # dp_conquer_state - can't be done ??
+			random = {
+				chance = 20
 
-					# add_war_goal = {
-					# 	holder = c:NDA_ARES
-					# 	type = conquer_state
-					# 	target_state = p:x7543C8.state #  London
+				debug_log = "nda_ares_monthly_hostile_on_action"
+				random_country = {
+					limit = { 					
+						has_strategic_land_adjacency = c:NDA_ARES 
+						country_rank >= rank_value:unrecognized_regional_power
+						NOT = { c:NDA_ARES ?= THIS }	
+					}
+					# # need weighting to take out power countries?
+					# weight = { 
+					# 	value = 100
+					# 	subtract = global_country_ranking 
+					# 	IF = {	
+					# 		limit = { is_adjacent_to_country = c:NDA_ARES }
+					# 		add = 5
+					# 	}
 					# }
-				} 
-				
-				debug_log = "nda_ares_half_yearly_on_action - WAR!"
-				# it's what Martians like to do
-				add_radicals = { value = -0.3 } 
-				add_loyalists = { value = 0.3 } 
+					save_scope_as = nda_ares_victim
+				}
+
+				if = {
+					limit = { exists = scope:nda_ares_victim }
+					create_diplomatic_play = {
+						name = nda_ares_dp_martian_invasion
+					
+						target_country = scope:nda_ares_victim
+						
+						type = dp_annex_war # dp_conquer_state - can't be done ??
+
+					} 
+					
+					debug_log = "nda_ares_monthly_hostile_on_action - WAR!"
+					# it's what Martians like to do
+					add_radicals = { value = -0.3 } 
+					add_loyalists = { value = 0.3 } 
+				}				
 			}
+
 	
 		}
 	}
@@ -301,17 +366,18 @@ nda_ares_on_battle_started = {
 			limit = {
                scope:state ?= {
 					has_building = building_nda_ares_generators
-                   
-                   OR = {
-                       owner = scope:defender.owner
-					   c:NDA_ARES ?= owner # captured/bugged genrators don't count
-                   }
+					c:NDA_ARES ?= owner 
+                #    OR = {
+                #        owner = scope:defender.owner
+				# 	   c:NDA_ARES ?= owner # captured/bugged genrators don't count
+                #    }
                }
 				
 				scope:defender = {
 					NOT = {
 						has_modifier = nda_ares_generator_defense_modifier
 					}
+					c:NDA_ARES ?= owner 
 				}
 			}
 
@@ -324,6 +390,7 @@ nda_ares_on_battle_started = {
 				if = {
 					limit = {
 						NOT = { has_modifier = nda_ares_generator_occupation_speed }
+						NOT = { c:NDA_ARES ?= owner }
 					}
 					add_modifier = {
 						name       = nda_ares_generator_occupation_speed

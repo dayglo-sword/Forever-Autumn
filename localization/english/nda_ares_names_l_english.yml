@@ -14,6 +14,8 @@ pmg_nda_ares_generator_goods:0 "Martian Goods"
 pm_nda_ares_generator:0 "Martian Generator"
 pm_nda_ares_generator_goods:0 "Martian Goods"
 
+pm_nda_ares_streetlights:0 "Vril Powered Lights"
+
 # character names
 ak:0 "Ak" 
 ack:0 "Ack" 
@@ -27,7 +29,8 @@ ack_ka:0 "Ack ka"
 akka:0 "Ak-ka"
 
 # units
-combat_unit_type_martian_infantry:0 "Tripods"
+combat_unit_type_nda_ares_war_machine:0 "War Machines"
+combat_unit_type_nda_ares_war_machine_desc:0 "Martian War Machines"
 
 mobilization_option_nda_ares_black_smoke:0 "Martian Black Smoke"
 mobilization_option_nda_ares_death_ray:0 "Martian Heat Ray"

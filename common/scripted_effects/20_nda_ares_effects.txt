@@ -75,5 +75,8 @@ nda_effect_martian_setup = {
 	set_strategy = ai_strategy_nda_ares_diplomatic_agenda
 	set_strategy = ai_strategy_nda_ares_political_agenda
 
+	# Initial fund boost
+	add_treasury = 2000000
 
+	# add generals as shortage at start?
 }

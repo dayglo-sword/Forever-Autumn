@@ -21,3 +21,15 @@ nda_ares.20.a:0 "!"
 nda_ares.20.b:0 "!"
 nda_ares.20.c:0 "!"
 
+# Notification types
+nda_ares_notifications:0 "Martian Activity"
+
+# Notifications
+ notification_nda_ares_country_freedom_tooltip:0 "#header $notification_nda_ares_country_freedom_name$#!\n$TOOLTIP_DELIMITER$\n$notification_nda_ares_country_freedom_desc$"
+ notification_nda_ares_country_freedom_name:0 "Freedom for [SCOPE.sC('nda_ares_freedom').GetName ]"
+ notification_nda_ares_country_freedom_desc:0 "They have declared independance from their Martian Overlords!"
+
+ notification_nda_ares_generator_built_tooltip:0 "#header $notification_nda_ares_generator_built_name$#!\n$TOOLTIP_DELIMITER$\n$notification_nda_ares_generator_built_desc$"
+ notification_nda_ares_generator_built_name:0 "Generator Constructed in [SCOPE.sState('nda_ares_generator_location').GetName]"
+ notification_nda_ares_generator_built_desc:0 "The Martians have completed construction of another Generator Complex."
+

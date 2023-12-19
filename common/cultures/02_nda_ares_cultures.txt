@@ -28,8 +28,9 @@
 	}	
 	
 	ethnicities = { # have a bit of a mix
-		1 = dagonic_hybrid
-		1 = yigian_hybrid
+		2 = aresian_standard
+		#1 = dagonic_hybrid
+		#1 = yigian_hybrid
 	}
 	graphics = european
 }
