@@ -236,7 +236,7 @@ nda_ares_monthly_cull_on_action = {
 			}
 		
 			if = {
-				limit = { devastation > 0.80 } # is a % !!
+				limit = { devastation > 0.70 } # is a % !!
 				set_state_owner = c:NDA_ARES				
 			}
 
@@ -267,7 +267,7 @@ nda_ares_monthly_hostile_on_action = {
 				random_country = {
 					limit = { 					
 						has_strategic_land_adjacency = c:NDA_ARES 
-						country_rank >= rank_value:unrecognized_regional_power
+						country_rank >= rank_value:unrecognized_major_power
 						NOT = { c:NDA_ARES ?= THIS }	
 					}
 					# # need weighting to take out power countries?

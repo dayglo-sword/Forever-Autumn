@@ -69,6 +69,6 @@ pm_nda_ares_streetlights = {
 			state_pollution_generation_add = 50
 		}
 	}
-
-	required_input_goods = vril
+	# not needed as not state based
+	#required_input_goods = vril
 }

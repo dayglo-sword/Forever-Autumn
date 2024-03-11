@@ -12,3 +12,34 @@ has_non_aresian_ideology = {
 		has_ideology = ideology:ideology_positivist	
 	}
 }
+
+# Override of NDA base?? Or accept error from NDA usage
+is_ares_full_cult_country = {
+
+	AND = {
+		has_global_variable = nda_loaded
+		OR ={
+			AND = {
+				exists = c:ELD
+				owner = { c:ELD = $COUNTRY$ }				
+			}
+			AND = {
+				exists = c:YIG
+				owner = { c:YIG = $COUNTRY$ }				
+			}
+			AND = {
+				exists = c:DGN
+				owner = { c:DGN = $COUNTRY$ }				
+			}	
+			AND = {
+				exists = c:LEN
+				owner = { c:LEN = $COUNTRY$ }				
+			}
+			AND = {
+				exists = c:STY
+				owner = { c:STY = $COUNTRY$ }				
+			}		
+		}	
+	}
+
+}

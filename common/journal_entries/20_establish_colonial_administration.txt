@@ -69,7 +69,8 @@
 		
     invalid = {
 		# needs to close if country converts to full cult country - re-enable after CTH leaves - invalid stops it repeating??
-		is_full_cult_country = { COUNTRY="ROOT" }	
+		has_variable = nda_anti_colonial_admin
+		#is_full_cult_country = { COUNTRY="ROOT" }	
 
 	}
 	

@@ -1,4 +1,5 @@
-﻿goods_output_vril_add = {
+﻿# Duplicates in part NDAs '10_nda_building_modifier_types' 
+goods_output_vril_add = {
 	good = yes
 	percent = no
 }
@@ -18,8 +19,8 @@ goods_input_black_lotus_add = {
 	percent = no
 }
 
-interest_group_ig_nda_cult_worshippers_pol_str_mult = {
-	neutral = yes
-	percent = yes
-	num_decimals = 0
-}
+# interest_group_ig_nda_cult_worshippers_pol_str_mult = {
+# 	neutral = yes
+# 	percent = yes
+# 	num_decimals = 0
+# }

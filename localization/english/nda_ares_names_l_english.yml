@@ -33,7 +33,9 @@ combat_unit_type_nda_ares_war_machine:0 "War Machines"
 combat_unit_type_nda_ares_war_machine_desc:0 "Martian War Machines"
 
 mobilization_option_nda_ares_black_smoke:0 "Martian Black Smoke"
+mobilization_option_nda_ares_black_smoke_desc:0 "Martian Black Smoke"
 mobilization_option_nda_ares_death_ray:0 "Martian Heat Ray"
+mobilization_option_nda_ares_death_ray_desc:0 "Martian Heat Ray"
 
 # IGs
 ig_ares_landowners:0 "Eloi"
@@ -54,3 +56,4 @@ nda_ares_state_martian_terror_modifier:0 "Martian Terror"
 nda_ares_state_red_lands_modifier:0 "Red Lands"
 nda_ares_generator_defense_modifier:0 "Generator Defenses"
 nda_ares_generator_occupation_speed:0 "Generator Defenses"
+nda_ares_first_landing_modifier:0 "Mars Attacks"

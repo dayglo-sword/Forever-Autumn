@@ -79,4 +79,10 @@ nda_effect_martian_setup = {
 	add_treasury = 2000000
 
 	# add generals as shortage at start?
+
+	# add morale modifier for intial landing
+	add_modifier = {
+		name = nda_ares_first_landing_modifier
+		months = 18
+	}
 }
