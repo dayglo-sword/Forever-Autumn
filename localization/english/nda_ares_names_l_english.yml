@@ -29,13 +29,13 @@ ack_ka:0 "Ack ka"
 akka:0 "Ak-ka"
 
 # units
-combat_unit_type_nda_ares_war_machine:0 "War Machines"
-combat_unit_type_nda_ares_war_machine_desc:0 "Martian War Machines"
+combat_unit_type_nda_ares_war_machine:0 "Martian War Machines"
+combat_unit_type_nda_ares_war_machine_desc:0 "...with a ringing metallic pace, and long, flexible, glittering tentacles swinging and rattling about its strange body."
 
 mobilization_option_nda_ares_black_smoke:0 "Martian Black Smoke"
-mobilization_option_nda_ares_black_smoke_desc:0 "Martian Black Smoke"
+mobilization_option_nda_ares_black_smoke_desc:0 "''...heavy, inky vapour, coiling and pouring upward in a huge and ebony cumulus cloud, a gaseous hill that sank and spread itself slowly over the surrounding country'"
 mobilization_option_nda_ares_death_ray:0 "Martian Heat Ray"
-mobilization_option_nda_ares_death_ray_desc:0 "Martian Heat Ray"
+mobilization_option_nda_ares_death_ray_desc:0 "...its impact was marked by flashes of incandescent white, that gave place at once to a smoky dance of lurid flames."
 
 # IGs
 ig_ares_landowners:0 "Eloi"
@@ -53,6 +53,8 @@ nda_ares_dp_martian_invasion:0 "Martian Invasion"
 # modifiers
 nda_ares_ig_martian_unity_modifier:0 "Martian Unity"
 nda_ares_state_martian_terror_modifier:0 "Martian Terror"
+nda_ares_country_martian_terror_modifier:0 "Martian Terror"
+
 nda_ares_state_red_lands_modifier:0 "Red Lands"
 nda_ares_generator_defense_modifier:0 "Generator Defenses"
 nda_ares_generator_occupation_speed:0 "Generator Defenses"

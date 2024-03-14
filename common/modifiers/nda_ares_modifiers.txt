@@ -3,9 +3,15 @@
 	interest_group_approval_add = 5
 }
 
+nda_ares_country_martian_terror_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+	state_migration_pull_mult = -0.2
+	state_standard_of_living_add = -2
+}
+
 nda_ares_state_martian_terror_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
-	state_migration_pull_mult = -0.8
+	state_migration_pull_mult = -1
 	state_standard_of_living_add = -2
 }
 
@@ -18,9 +24,9 @@ nda_ares_state_red_lands_modifier= {
 
 nda_ares_generator_defense_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	unit_defense_add = 300 # are these sufficient?
+	unit_defense_add = 500 # are these sufficient?
 	unit_kill_rate_add = 2
-	unit_morale_recovery_mult = 0.2
+	unit_morale_recovery_mult = 0.4
 }
 
 nda_ares_generator_occupation_speed = {
@@ -32,8 +38,8 @@ nda_ares_first_landing_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 	unit_morale_recovery_mult = 0.8
 	unit_recovery_rate_add = 0.8
-	unit_defense_add = 100 
-	unit_offense_add = 100 
+	unit_defense_add = 300 
+	unit_offense_add = 300 
 	character_battle_condition_surprise_maneuver_mult = 1
 	character_battle_condition_lost_mult = -0.5
 	character_battle_condition_dug_in_mult = 1

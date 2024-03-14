@@ -103,6 +103,11 @@ nda_ares.10 = { # Early Landing
 		}
 
 		change_relations = { country = c:NDA_ARES value = -100 } # is this too much ?
+
+		add_modifier = {
+			name = nda_ares_country_martian_terror_modifier
+		}
+
 		# create country
 		create_country = {
 			tag = NDA_ARES
@@ -166,6 +171,9 @@ nda_ares.10 = { # Early Landing
 					}
 				}	
 				
+				# Force Migrations? - via delayed events?
+				#trigger_event = { id = nda_ares.20 days=7 }
+
 				IF = {
 					limit = {
 						exists = c:FRA
@@ -284,6 +292,69 @@ nda_ares.10 = { # Early Landing
 
 }	
 
+nda_ares.20 = { # Mass Migration if at war with Martians
+	type = country_event
+	placement = ROOT
+	title = nda_ares.20.t
+	desc = nda_ares.20.d
+	flavor =  nda_ares.20.f
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+		
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+
+	trigger = {
+		exists = c:NDA_ARES
+		has_war_with = c:NDA_ARES
+		#any_scope_state = {
+		#	has_modifier = nda_ares_state_martian_terror_modifier
+		#}
+		any_valid_mass_migration_culture = {
+			is_primary_culture_of = ROOT 
+		}
+	}
+
+	immediate = {
+		#debug_log = "Migrations : [ROOT.GetCountry.GetNameNoFormatting]" 
+		every_valid_mass_migration_culture  = {
+			limit = { is_primary_culture_of = ROOT }
+			
+			save_scope_as = nda_exileCulture
+
+			ROOT = {
+				random_state = {
+					limit = {
+						NOT = { owner = ROOT }
+						state_is_eligible_as_mass_migration_target = yes
+						#can_have_mass_migration_to_country = c:countryTraits
+						save_scope_as = nda_exileState
+					}
+
+					debug_log_scopes = yes
+
+					create_mass_migration = {  
+						origin = ROOT  
+						culture = scope:nda_exileCulture 
+					} 					
+				}
+			
+			}
+	
+		}
+ 
+	}
+
+	option = {
+		name = nda_ares.20.a
+		default_option = yes
+
+	}
+
+}
 # nda_ares.20 = { # Mars Attacks 
 # 	type = country_event
 # 	placement = ROOT

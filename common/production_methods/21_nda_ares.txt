@@ -36,8 +36,10 @@ pm_nda_ares_generator_goods = { # supernatural energy - can power advanced tech 
 			goods_output_electricity_add = 20
 			goods_output_vril_add = 60	
 			goods_output_black_lotus_add = 60	
-			goods_output_fertilizer_add = 20	
+			goods_output_fertilizer_add = 30	
 			building_laborers_mortality_mult = 0.5
+			goods_output_automobiles_add = 10
+			goods_output_radios_add = 10
 		}
 	}
 }

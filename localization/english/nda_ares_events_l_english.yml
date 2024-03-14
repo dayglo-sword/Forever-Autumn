@@ -2,24 +2,20 @@
 
 nda_ares.1.t:0 "The Chances of..."
 nda_ares.1.d:0 "...an invasion from Mars?"
-nda_ares.1.f:0 "''"
+nda_ares.1.f:0 "'No one gave a thought to the older worlds of space as sources of human danger, or thought of them only to dismiss the idea of life upon them as impossible or improbable.\n\nIt is curious to recall some of the mental habits of those departed days. At most terrestrial men fancied there might be other men upon Mars, perhaps inferior to themselves and ready to welcome a missionary enterprise.\n\nYet across the gulf of space, minds that are to our minds as ours are to those of the beasts that perish, intellects vast and cool and unsympathetic, regarded this earth with envious eyes, and slowly and surely drew their plans against us.'"
 nda_ares.1.a:0 "Inneviatable"
 nda_ares.1.b:0 "A Million to One!"
 nda_ares.1.c:0 "Just a Scare Story"
 
-nda_ares.10.t:0 "Invasion"
-nda_ares.10.d:0 ""
-nda_ares.10.f:0 "''"
+nda_ares.10.t:0 "Invasion!!!"
+nda_ares.10.d:0 "In an event that has shook the World to the core objects from the Red planet have decended to Earth and a War has begun for the worlds future."
+nda_ares.10.f:0 "'The Martians seem to have calculated their descent with amazing subtlety — their mathematical learning is evidently far in excess of ours — and to have carried out their preparations with a well-nigh perfect unanimity. Had our instruments permitted it, we might have seen the gathering trouble far back in the nineteenth century.'"
 nda_ares.10.a:0 "What were the chances!"
-nda_ares.10.b:0 "!"
-nda_ares.10.c:0 "!"
 
-nda_ares.20.t:0 ""
-nda_ares.20.d:0 ""
-nda_ares.20.f:0 "''"
-nda_ares.20.a:0 "!"
-nda_ares.20.b:0 "!"
-nda_ares.20.c:0 "!"
+nda_ares.20.t:0 "The Exodus"
+nda_ares.20.d:0 "SCOPE.sCulture('nda_exileCulture').GetName are fleeing in terror from the Martians.\n\nThey hope to seek sanctury abroad, heading to the perceived safety of [SCOPE.sState('nda_exileState').GetName]"
+nda_ares.20.f:0 "'There were fear and pain on their faces, and fear behind them. A tumult up the road, a quarrel for a place in a waggon, sent the whole host of them quickening their pace; even a man so scared and broken that his knees bent under him was galvanised for a moment into renewed activity. The heat and dust had already been at work upon this multitude. Their skins were dry, their lips black and cracked. They were all thirsty, weary, and footsore. And amid the various cries one heard disputes, reproaches, groans of weariness and fatigue; the voices of most of them were hoarse and weak. Through it all ran a refrain:\n\n'Way! Way! The Martians are coming!'"
+nda_ares.20.a:0 "The Martians are coming!"
 
 # Notification types
 nda_ares_notifications:0 "Martian Activity"
