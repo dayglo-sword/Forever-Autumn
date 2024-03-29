@@ -151,6 +151,9 @@ nda_ares_monthly_on_action = {
 				# remove generator building 
 				remove_building = "building_nda_ares_generators" 	
 
+				# add ruin as replacement
+				
+
 				remove_modifier = nda_ares_state_red_lands_modifier
 			}	
 		}
@@ -301,26 +304,23 @@ nda_ares_monthly_hostile_on_action = {
 
 					} 
 					
-					# ordered_country = {
-					# 	limit = {
-					# 		NOT = { c:NDA_ARES ?= THIS }
-					# 		has_strategic_adjacency =  c:NDA_ARES
-					# 	}
-					# 	change_relations = { country = c:NDA_ARES value = -200 } # annoy someone else
-					# }
-					random_country = {
+					# should not be liked by any one near them
+					every_country = {
 						limit = {
 							NOT = { c:NDA_ARES ?= THIS }
 							has_strategic_adjacency =  c:NDA_ARES
 						}
-						change_relations = { country = c:NDA_ARES value = -200 } # annoy someone else
+						change_relations = { country = c:NDA_ARES value = -100 } # is this too much ?	
 					}
-		
-					random_country = {
+
+					# sympathy for the victim
+					every_country = {
 						limit = {
 							NOT = { c:NDA_ARES ?= THIS }
+							NOT = { scope:nda_ares_victim ?= THIS }
+							has_strategic_adjacency = scope:nda_ares_victim
 						}
-						change_relations = { country = c:NDA_ARES value = -200 } # annoy someone else
+						change_relations = { country = scope:nda_ares_victim value = 100 } 
 					}
 
 					debug_log = "nda_ares_monthly_hostile_on_action - WAR!"
@@ -330,6 +330,20 @@ nda_ares_monthly_hostile_on_action = {
 				}				
 			}
 
+			random_country = {
+				limit = {
+					NOT = { c:NDA_ARES ?= THIS }
+					has_strategic_adjacency =  c:NDA_ARES
+				}
+				change_relations = { country = c:NDA_ARES value = -100 } # annoy someone else
+			}
+
+			random_country = {
+				limit = {
+					NOT = { c:NDA_ARES ?= THIS }
+				}
+				change_relations = { country = c:NDA_ARES value = -100 } # annoy someone else
+			}				
 	
 		}
 	}

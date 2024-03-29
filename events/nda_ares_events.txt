@@ -29,6 +29,7 @@ nda_ares.1 = { # The chances of an Invasion from Mars
 	immediate = {
 		#set_variable = nda_nameless_cults_decision # don't set immediate as causes follow on event to trigger simultaniously	
 		#debug_log = "Imprint of Nameless Cults : [THIS.GetCountry.GetNameNoFormatting]" 
+		set_global_variable = nda_ares_invasion_choice
 	}	
 
 	option = {
@@ -58,6 +59,61 @@ nda_ares.1 = { # The chances of an Invasion from Mars
 	}
 }
 
+nda_ares.2 = { # The Egg
+	type = country_event
+	placement = ROOT
+	title = nda_ares.2.t
+	desc = nda_ares.2.d
+	flavor =  nda_ares.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_christianity.bk2"		
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		OR = {
+			AND = {
+				# year before early invasion
+				has_global_variable = nda_ares_early_invasion
+				game_date >= 1841.3.1 
+				game_date < 1842.1.1			
+			}
+			AND = {
+				# year before HG Wells invasion
+				has_global_variable = nda_ares_wells_hg_invasion
+				game_date >= 1091.3.1 
+				game_date < 1902.1.1			
+			}
+			AND = {
+				# year before Orson Wells invasion
+				has_global_variable = nda_ares_wells_orson_invasion
+				game_date >= 1935.3.1 
+				game_date < 1936.1.1			
+			}
+		}
+	}
+
+	cooldown = { months = 12 }
+
+	immediate = {
+		
+		debug_log = "Ares - Early Warning"
+	}	
+	
+	option = {
+		name = nda_ares.2.a
+		default_option = yes
+	}
+
+}	
+
 nda_ares.10 = { # Early Landing
 	type = country_event
 	placement = p:x60A040 #East Anglia
@@ -78,8 +134,8 @@ nda_ares.10 = { # Early Landing
 
 	trigger = {
  		# 1842 and owner of East Anglia 
-		game_date >= 1842.3 
-		game_date < 1843
+		game_date >= 1842.3.1 
+		game_date < 1843.1.1
 		p:x60A040 = { state = { owner = ROOT } }
 		NOT = { has_global_variable = nda_ares_invasion }
 		OR = { 
@@ -330,10 +386,12 @@ nda_ares.20 = { # Mass Migration if at war with Martians
 					limit = {
 						NOT = { owner = ROOT }
 						state_is_eligible_as_mass_migration_target = yes
-						#can_have_mass_migration_to_country = c:countryTraits
-						save_scope_as = nda_exileState
+
 					}
 
+					#can_have_mass_migration_to_country = c:countryTraits
+					save_scope_as = nda_exileState
+					
 					debug_log_scopes = yes
 
 					create_mass_migration = {  

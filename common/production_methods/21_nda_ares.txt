@@ -44,6 +44,35 @@ pm_nda_ares_generator_goods = { # supernatural energy - can power advanced tech 
 	}
 }
 
+pm_nda_ares_generator_scavenger = { # Sacenging the ruins
+	texture = "gfx/interface/icons/production_method_icons/percussion_caps.dds"
+
+	#city_lights_color_index = 3	# Needs to match city_graphics_data.settings color array - does not work?
+
+	state_modifiers = {
+		workforce_scaled = {
+			state_pollution_generation_add = 20
+		}
+	}
+
+	building_modifiers = {
+
+		level_scaled = {	
+			building_employment_laborers_add = 50		
+		}
+
+		unscaled = {
+			goods_output_electricity_add = 4
+			goods_output_vril_add = 10	
+			goods_output_black_lotus_add = 10	
+			goods_output_fertilizer_add = 5	
+			building_laborers_mortality_mult = 0.5
+			goods_output_automobiles_add = 1
+			goods_output_radios_add = 1
+		}
+	}
+}
+
 pm_nda_ares_streetlights = {
 	texture = "gfx/interface/icons/production_method_icons/electric_streetlights.dds"
 
