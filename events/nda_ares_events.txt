@@ -1,6 +1,6 @@
 ﻿namespace = nda_ares # Ares
 
-nda_ares.1 = { # The chances of an Invasion from Mars
+nda_ares.1 = { # The chances of anything manlike on Mars
 	type = country_event
 	placement = ROOT
 	title = nda_ares.1.t
@@ -27,8 +27,6 @@ nda_ares.1 = { # The chances of an Invasion from Mars
 	# }
 
 	immediate = {
-		#set_variable = nda_nameless_cults_decision # don't set immediate as causes follow on event to trigger simultaniously	
-		#debug_log = "Imprint of Nameless Cults : [THIS.GetCountry.GetNameNoFormatting]" 
 		set_global_variable = nda_ares_invasion_choice
 	}	
 
@@ -59,7 +57,7 @@ nda_ares.1 = { # The chances of an Invasion from Mars
 	}
 }
 
-nda_ares.2 = { # The Egg
+nda_ares.2 = { # The Crystal Egg
 	type = country_event
 	placement = ROOT
 	title = nda_ares.2.t
@@ -88,8 +86,8 @@ nda_ares.2 = { # The Egg
 			AND = {
 				# year before HG Wells invasion
 				has_global_variable = nda_ares_wells_hg_invasion
-				game_date >= 1091.3.1 
-				game_date < 1902.1.1			
+				game_date >= 1897.3.1 
+				game_date < 1898.1.1			
 			}
 			AND = {
 				# year before Orson Wells invasion
@@ -113,6 +111,61 @@ nda_ares.2 = { # The Egg
 	}
 
 }	
+
+nda_ares.3 = { # Opposition of 1894 - August 2nd - two further oppositions (1896, 1899)
+	type = country_event
+	placement = ROOT
+	title = nda_ares.2.t
+	desc = nda_ares.2.d
+	flavor =  nda_ares.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_christianity.bk2"		
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+		OR = {
+			AND = {
+				# year before early invasion
+				has_global_variable = nda_ares_early_invasion
+				game_date >= 1841.3.1 
+				game_date < 1842.1.1			
+			}
+			AND = {
+				# year before HG Wells invasion
+				has_global_variable = nda_ares_wells_hg_invasion
+				game_date >= 1897.3.1 
+				game_date < 1898.1.1			
+			}
+			AND = {
+				# year before Orson Wells invasion
+				has_global_variable = nda_ares_wells_orson_invasion
+				game_date >= 1935.3.1 
+				game_date < 1936.1.1			
+			}
+		}
+	}
+
+	cooldown = { months = 12 }
+
+	immediate = {
+		
+		debug_log = "Ares - Early Warning"
+	}	
+	
+	option = {
+		name = nda_ares.2.a
+		default_option = yes
+	}
+
+}
 
 nda_ares.10 = { # Early Landing
 	type = country_event

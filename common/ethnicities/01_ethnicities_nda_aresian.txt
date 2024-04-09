@@ -69,6 +69,12 @@ aresian_standard = {
       
     }
 
+    gene_head_top_height = {
+
+        64 = { name = head_top_height   range = { 0.9 1.0 }      }
+      
+    }
+
     gene_forehead_height = {
 
         1 = { name = forehead_height   range = { 0.9 1.0 }      }
@@ -85,6 +91,10 @@ aresian_standard = {
 
         1 = { name = forehead_width   range = { 0.9 1.0 }      }
 
+    }
+
+    gene_mouth_height= { 
+        1 = { name = mouth_height   range = { 0.9 1.0 }      }
     }
 
     gene_chin_width = {
@@ -119,24 +129,48 @@ aresian_standard = {
     }
 
     gene_nose_nostril_width= {
-        15 = {  name = nose_nostril_width           range = { 0.9 1.0 }     }   
+        15 = {  name = nose_nostril_width   range = { 0.9 1.0 }     }   
     }
 
     gene_mouth_width={
-         15 = {  name = mouth_width           range = { 0.0 0.1 }     }  
+         15 = {  name = mouth_width   range = { 0.0 0.1 }     }  
     }
 
     gene_mouth_open = {
 	    10 = { name = mouth_open    range = { 0.05 0.15 }    }
     }
 
+    gene_neck_length = {
+
+        1 = { name = neck_length   range = { 0.9 1.0 }      }
+
+    }
+
+    gene_neck_width = {
+
+        1 = { name = neck_width   range = { 0.0 0.05 }      }
+
+    }
+
     beards = {
-        15 = { name = no_beard                      range = { 0.0 1.0 } }
+        15 = { name = no_beard    range = { 0.0 1.0 } }
 	}
 
 	mustaches = {
-        10 = { name = no_mustache       range = { 0.0 1.0 } }
+        10 = { name = no_mustache range = { 0.0 1.0 } }
 	}
+
+    eye_accessory = {
+        10 = { name = no_eyes range = { 1.0 1.0 } }
+    }
+
+    NDA_eye_accessory = {
+        10 = { name = ares_eyes       range = { 0.0 1.0 } }
+    }
+
+    NDA_gene_skin_color = {
+        10 = { name = grey_skin range = { 1.0 1.0 } }
+    }
 } 
 
 

@@ -10,16 +10,16 @@
     # Martian Eyes
     martian_eyes = {
         dna_modifiers = {
-            # accessory = {
-            #     mode = replace
-            #     gene = eye_accessory
-            #     template = no_headgear # needed for none strange clipping
-            #     range = { 0 1 } # For the randomness to work correctly
-            # }
             accessory = {
                 mode = replace
-                gene = eye_accessory 
-                template = martian_eyes
+                gene = eye_accessory
+                template = no_eyes # needed for none strange clipping
+                range = { 0 1 } # For the randomness to work correctly
+            }
+            accessory = {
+                mode = replace
+                gene = NDA_eye_accessory 
+                template = ares_eyes
                 range = { 0.0 1.0 } 
             }
         }

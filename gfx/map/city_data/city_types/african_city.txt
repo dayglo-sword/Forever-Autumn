@@ -73,4 +73,6 @@
 	building_barracks = {"african_city_barracks_01_mesh"}
 
 	building_nda_ares_generators = {"nda_ares_generator_mesh"}
+	building_nda_ares_generator_ruins = {"nda_ares_generator_ruin_mesh"}
+	
 }
