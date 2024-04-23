@@ -34,26 +34,31 @@ nda_ares.1 = { # The chances of anything manlike on Mars
 		name = nda_ares.1.a
 		default_option = yes
 		set_global_variable = nda_ares_early_invasion
+		ai_chance = { 
+			base = 50
+		}
+		custom_tooltip = nda_ares.1.a.tt
+
 	}
 
 	option = { 
 		name = nda_ares.1.b
 
 		set_global_variable = nda_ares_wells_hg_invasion
-		ai_chance = { # will -ve effect conversion rate
+		ai_chance = { 
 			base = 25
 		}
-
+		custom_tooltip = nda_ares.1.b.tt
 	}
 
 	option = { 
 		name = nda_ares.1.c
 
 		set_global_variable = nda_ares_wells_orson_invasion
-		ai_chance = { # will -ve effect conversion rate
+		ai_chance = { 
 			base = 25
 		}
-
+		custom_tooltip = nda_ares.1.c.tt
 	}
 }
 
@@ -76,6 +81,7 @@ nda_ares.2 = { # The Crystal Egg
 	icon = "gfx/interface/icons/event_icons/event_default.dds"
 
 	trigger = {
+		is_player = yes
 		OR = {
 			AND = {
 				# year before early invasion
@@ -115,9 +121,9 @@ nda_ares.2 = { # The Crystal Egg
 nda_ares.3 = { # Opposition of 1894 - August 2nd - two further oppositions (1896, 1899)
 	type = country_event
 	placement = ROOT
-	title = nda_ares.2.t
-	desc = nda_ares.2.d
-	flavor =  nda_ares.2.f
+	title = nda_ares.3.t
+	desc = nda_ares.3.d
+	flavor =  nda_ares.3.f
 
 	duration = 3
 
@@ -157,11 +163,11 @@ nda_ares.3 = { # Opposition of 1894 - August 2nd - two further oppositions (1896
 
 	immediate = {
 		
-		debug_log = "Ares - Early Warning"
+		debug_log = "Ares - Opposition of Mars flavour"
 	}	
 	
 	option = {
-		name = nda_ares.2.a
+		name = nda_ares.3.a
 		default_option = yes
 	}
 
@@ -210,8 +216,6 @@ nda_ares.10 = { # Early Landing
 		p:x60A040.state.owner = {
 			save_scope_as = nda_ares_first_victim
 		}
-
-		change_relations = { country = c:NDA_ARES value = -100 } # is this too much ?
 
 		add_modifier = {
 			name = nda_ares_country_martian_terror_modifier

@@ -164,9 +164,9 @@ aresian_standard = {
         10 = { name = no_eyes range = { 1.0 1.0 } }
     }
 
-    NDA_eye_accessory = {
-        10 = { name = ares_eyes       range = { 0.0 1.0 } }
-    }
+    # NDA_eye_accessory = {
+    #     10 = { name = ares_eyes       range = { 0.0 1.0 } }
+    # }
 
     NDA_gene_skin_color = {
         10 = { name = grey_skin range = { 1.0 1.0 } }

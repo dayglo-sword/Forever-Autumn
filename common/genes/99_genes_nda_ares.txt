@@ -88,27 +88,27 @@
 # }
 
 
-accessory_genes = {
-	NDA_eye_accessory = {
-		inheritable = no
+# accessory_genes = {
+# 	NDA_eye_accessory = {
+# 		inheritable = no
 
-		default_eyes = {
-			index = 0
-			male = { 1 = empty }
-			female = { 1 = empty }
-			boy = male
-			girl = female 
-		}
+# 		default_eyes = {
+# 			index = 0
+# 			male = { 1 = empty }
+# 			female = { 1 = empty }
+# 			boy = male
+# 			girl = female 
+# 		}
 		
-		ares_eyes = {
-			index = 1
-			male = { 1 = "nda_ares_eyes_normal" }
-			female = { 1 = "nda_ares_eyes_normal" }
-			boy = male
-			girl = female
-		}
-	}
-}	
+# 		ares_eyes = {
+# 			index = 1
+# 			male = { 1 = "nda_ares_eyes_normal" }
+# 			female = { 1 = "nda_ares_eyes_normal" }
+# 			boy = male
+# 			girl = female
+# 		}
+# 	}
+# }	
 
 morph_genes = {
 NDA_gene_skin_color = { # based on POD_splat_gene_skin_color

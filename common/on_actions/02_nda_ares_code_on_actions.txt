@@ -11,6 +11,8 @@ on_monthly_pulse_country = {
 
 nda_ares_monthly_on_action = {
 	events = {
+		nda_ares.2 # Crystal Egg
+		nda_ares.3 # In Opposition
 		nda_ares.10
 		nda_ares.20
 	}

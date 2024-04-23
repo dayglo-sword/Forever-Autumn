@@ -1,20 +1,28 @@
 ﻿l_english:
 
 nda_ares.1.t:0 "The Chances of..."
-nda_ares.1.d:0 "...an invasion from Mars?"
+nda_ares.1.d:0 "...anything manlike on Mars?"
 nda_ares.1.f:0 "'No one gave a thought to the older worlds of space as sources of human danger, or thought of them only to dismiss the idea of life upon them as impossible or improbable.\n\nIt is curious to recall some of the mental habits of those departed days. At most terrestrial men fancied there might be other men upon Mars, perhaps inferior to themselves and ready to welcome a missionary enterprise.\n\nYet across the gulf of space, minds that are to our minds as ours are to those of the beasts that perish, intellects vast and cool and unsympathetic, regarded this earth with envious eyes, and slowly and surely drew their plans against us.'"
-nda_ares.1.a:0 "Inneviatable"
+nda_ares.1.a:0 "A Certainty"
+nda_ares.1.a.tt:0 "1840's England"
 nda_ares.1.b:0 "A Million to One!"
-nda_ares.1.c:0 "Just a Scare Story"
+nda_ares.1.b.tt:0 "1900's England"
+nda_ares.1.c:0 "Just Scaremongering."
+nda_ares.1.c.tt:0 "1930's New York State"
 
 nda_ares.2.t:0 "The Crystal Egg"
 nda_ares.2.d:0 "An unusual artifact had surfaced in a shop in the capital, but has now been lost again. The owner claimed that it was possible to view what appeared to be the surface of Mars in the depths of the crystal. With the recent demise of it's owner the crystal now appears to have been sold to unknown purchasers. That is if it ever existed at all."
 nda_ares.2.f:0 "'...There was also a mass of crystal, worked into the shape of an egg and brilliantly polished... the crystal was in two worlds at once, and that, while it was carried about in one, it remained stationary in the other... ...what was seen in the interior of the one in this world was, under suitable conditions, visible to an observer in the corresponding crystal in the other world; and vice versa... The moons were never high in the sky, but vanished as they rose; that is, every time they revolved they were eclipsed because they were so near their primary planet. And all this answers quite completely to what must be the condition of things on Mars.'"
 nda_ares.2.a:0 "Just a Story"
 
+nda_ares.3.t:0 "In Opposition"
+nda_ares.3.d:0 "Astronomers look to the skies to observer Mars in all it's glory as it reaches 'opposition' - the closest approach in two years."
+nda_ares.3.f:0 "''"
+nda_ares.3.a:0 "A fine sight!"
+
 nda_ares.10.t:0 "Invasion!!!"
 nda_ares.10.d:0 "In an event that has shook the World to the core objects from the Red planet have decended to Earth and a War has begun for the worlds future."
-nda_ares.10.f:0 "'The Martians seem to have calculated their descent with amazing subtlety — their mathematical learning is evidently far in excess of ours — and to have carried out their preparations with a well-nigh perfect unanimity. Had our instruments permitted it, we might have seen the gathering trouble far back in the nineteenth century.'"
+nda_ares.10.f:0 "'The Martians seem to have calculated their descent with amazing subtlety — their mathematical learning is evidently far in excess of ours — and to have carried out their preparations with a well-nigh perfect unanimity. Had our instruments permitted it, we might have seen the gathering trouble far back...'"
 nda_ares.10.a:0 "What were the chances!"
 
 nda_ares.20.t:0 "The Exodus"
