@@ -1,39 +1,39 @@
-﻿nda_martian_eyes = {
-	usage = game
-	selection_behavior = weighted_random
-	fallback = no_martian_eyes
+﻿# nda_martian_eyes = {
+# 	usage = game
+# 	selection_behavior = weighted_random
+# 	fallback = no_martian_eyes
 
-    no_martian_eyes = {
-        # no stuff needed
-    }
+#     no_martian_eyes = {
+#         # no stuff needed
+#     }
 
-    # Martian Eyes
-    martian_eyes = {
-        dna_modifiers = {
-            accessory = {
-                mode = replace
-                gene = eye_accessory
-                template = no_eyes # needed for none strange clipping
-                range = { 0 1 } # For the randomness to work correctly
-            }
-            accessory = {
-                mode = replace
-                gene = NDA_eye_accessory 
-                template = ares_eyes
-                range = { 0.0 1.0 } 
-            }
-        }
+#     # Martian Eyes
+#     martian_eyes = {
+#         dna_modifiers = {
+#             accessory = {
+#                 mode = replace
+#                 gene = eye_accessory
+#                 template = no_eyes # needed for none strange clipping
+#                 range = { 0 1 } # For the randomness to work correctly
+#             }
+#             accessory = {
+#                 mode = replace
+#                 gene = NDA_eye_accessory 
+#                 template = ares_eyes
+#                 range = { 0.0 1.0 } 
+#             }
+#         }
 
-        weight = {
-            base = 0
-            modifier = {
-                add = 500
-                scope:character ?= {
-                    exists = c:NDA_ARES
-                    owner = c:NDA_ARES     
-                }
-            }
-        }
-    }
+#         weight = {
+#             base = 0
+#             modifier = {
+#                 add = 500
+#                 scope:character ?= {
+#                     exists = c:NDA_ARES
+#                     owner = c:NDA_ARES     
+#                 }
+#             }
+#         }
+#     }
 
-}
+# }

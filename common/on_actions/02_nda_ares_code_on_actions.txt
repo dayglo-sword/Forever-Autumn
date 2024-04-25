@@ -13,7 +13,9 @@ nda_ares_monthly_on_action = {
 	events = {
 		nda_ares.2 # Crystal Egg
 		nda_ares.3 # In Opposition
-		nda_ares.10
+		nda_ares.10 # 1842
+		#nda_ares.11 # 1901
+		#nda_ares.12 # 1936
 		nda_ares.20
 	}
 	random_events = {
@@ -408,42 +410,42 @@ on_battle_started = {
 
 nda_ares_on_battle_started = {
    effect = {
-       if = {
-			limit = {
-               scope:state ?= {
-					has_building = building_nda_ares_generators
-					c:NDA_ARES ?= owner 
-                #    OR = {
-                #        owner = scope:defender.owner
-				# 	   c:NDA_ARES ?= owner # captured/bugged genrators don't count
-                #    }
-               }
+    #    if = {
+	# 		limit = {
+    #            scope:state ?= {
+	# 				has_building = building_nda_ares_generators
+	# 				c:NDA_ARES ?= owner 
+    #             #    OR = {
+    #             #        owner = scope:defender.owner
+	# 			# 	   c:NDA_ARES ?= owner # captured/bugged genrators don't count
+    #             #    }
+    #            }
 				
-				scope:defender = {
-					NOT = {
-						has_modifier = nda_ares_generator_defense_modifier
-					}
-					c:NDA_ARES ?= owner 
-				}
-			}
+	# 			scope:defender = {
+	# 				NOT = {
+	# 					has_modifier = nda_ares_generator_defense_modifier
+	# 				}
+	# 				c:NDA_ARES ?= owner 
+	# 			}
+	# 		}
 
-			debug_log = "Generator Boost to Defenders"			
-			scope:defender = {
-				add_modifier = { name = nda_ares_generator_defense_modifier }
-			}
+	# 		debug_log = "Generator Boost to Defenders"			
+	# 		scope:defender = {
+	# 			add_modifier = { name = nda_ares_generator_defense_modifier }
+	# 		}
 
-			scope:attacker ?= {
-				if = {
-					limit = {
-						NOT = { has_modifier = nda_ares_generator_occupation_speed }
-						NOT = { c:NDA_ARES ?= owner }
-					}
-					add_modifier = {
-						name       = nda_ares_generator_occupation_speed
-					}
-				}
-			}			
-		}
+	# 		scope:attacker ?= {
+	# 			if = {
+	# 				limit = {
+	# 					NOT = { has_modifier = nda_ares_generator_occupation_speed }
+	# 					NOT = { c:NDA_ARES ?= owner }
+	# 				}
+	# 				add_modifier = {
+	# 					name       = nda_ares_generator_occupation_speed
+	# 				}
+	# 			}
+	# 		}			
+	# 	}
 	}
 }
 

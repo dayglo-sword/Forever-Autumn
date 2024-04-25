@@ -160,9 +160,9 @@ aresian_standard = {
         10 = { name = no_mustache range = { 0.0 1.0 } }
 	}
 
-    eye_accessory = {
-        10 = { name = no_eyes range = { 1.0 1.0 } }
-    }
+    # eye_accessory = {
+    #     10 = { name = no_eyes range = { 1.0 1.0 } }
+    # }
 
     # NDA_eye_accessory = {
     #     10 = { name = ares_eyes       range = { 0.0 1.0 } }

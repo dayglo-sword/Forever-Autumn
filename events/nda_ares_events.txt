@@ -405,6 +405,491 @@ nda_ares.10 = { # Early Landing
 
 }	
 
+nda_ares.11 = { # 1900's Landing - same location and logic as earlier
+	type = country_event
+	placement = p:x60A040 #East Anglia
+	title = nda_ares.10.t
+	desc = nda_ares.10.d
+	flavor =  nda_ares.10.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_christianity.bk2"		
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+ 		# 1901 and owner of East Anglia 
+		game_date >= 1901.3.1 
+		game_date < 1902.1.1
+		p:x60A040 = { state = { owner = ROOT } }
+		NOT = { has_global_variable = nda_ares_invasion }
+		OR = { 
+			has_global_variable = nda_ares_wells_hg_invasion
+			NOT = {
+				has_global_variable = nda_ares_early_invasion
+				has_global_variable = nda_ares_wells_orson_invasion
+			}
+		}
+	}
+
+	cooldown = { months = 12 }
+
+	immediate = {
+		
+		set_global_variable = nda_ares_invasion
+
+		# record target country ready to start war later
+		p:x60A040.state.owner = {
+			save_scope_as = nda_ares_first_victim
+		}
+
+		add_modifier = {
+			name = nda_ares_country_martian_terror_modifier
+		}
+
+		# create country
+		create_country = {
+			tag = NDA_ARES
+			origin = this
+
+			state = p:x60A040.state 
+			province = p:x60E0C0
+			province = p:x19CECD
+			province = p:x58D3AE
+			province = p:x800020
+			province = p:xA0A0C0
+			province = p:x60E080
+			province = p:x2482B4
+			province = p:x528DEE
+
+			on_created = {
+				nda_effect_martian_setup = yes
+
+				every_scope_state = {
+					#kill_population_percent_in_state = { percent = 0.10 }
+
+					# convert large chunk of remaining to give them a start
+					convert_population = { target = rel:atheist value = 0.95  }
+
+					every_scope_pop = {
+						limit = { religion = rel:atheist }
+						change_pop_culture = { target = cu:nda_cul_aresian value = 1 }		
+					}
+
+					# add generator building - should be landing sites then upgrade to generators?
+					create_building={
+						building = "building_nda_ares_generators" 
+					}	
+
+					state_region = {
+						add_homeland = cu:nda_cul_aresian						
+					}
+
+					add_modifier = { name = nda_ares_state_red_lands_modifier }
+
+					# reduce navy (boost barracks?)
+					# if = {
+					# 	limit = { 
+					# 		has_active_building = building_naval_base 
+					# 	}
+
+					# }
+				}
+
+				# lay claim to neighbouring states
+				every_neighbouring_state = {
+					limit = { NOT = { owner = c:NDA_ARES } }
+					state_region = {
+						add_homeland = cu:nda_cul_aresian		
+						add_claim = c:NDA_ARES
+					}
+					add_radicals_in_state = { value = 0.6 } # Panic in the streets of London...
+
+					add_modifier = {
+						name = nda_ares_state_martian_terror_modifier
+					}
+				}	
+				
+				# Force Migrations? - via delayed events?
+				#trigger_event = { id = nda_ares.20 days=7 }
+
+				IF = {
+					limit = {
+						exists = c:FRA
+					}
+					set_secret_goal = {
+						country = c:FRA
+						secret_goal = conquer
+					}			
+				}
+				IF = {
+					limit = {
+						exists = c:USA
+					}
+					set_secret_goal = {
+						country = c:USA
+						secret_goal = conquer
+					}			
+				}
+				IF = {
+					limit = {
+						exists = c:PRU
+					}
+					set_secret_goal = {
+						country = c:PRU
+						secret_goal = conquer
+					}			
+				}
+				IF = {
+					limit = {
+						exists = c:RUS
+					}
+					set_secret_goal = {
+						country = c:RUS
+						secret_goal = conquer
+					}			
+				}
+			}
+			
+		}
+
+		# should not be liked by any one
+		every_country = {
+			limit = {
+				NOT = { c:NDA_ARES ?= THIS }
+			}
+			change_relations = { country = c:NDA_ARES value = -150 } # is this too much ?
+
+			# notify the world
+
+			# panic stations
+			add_radicals = { 
+				value = 0.3 
+			}
+			add_loyalists = {
+				value = -0.2
+			}
+		}
+
+		#go to war
+		c:NDA_ARES = {
+			create_diplomatic_play = {
+				name = nda_ares_dp_martian_invasion
+			
+				target_country = scope:nda_ares_first_victim
+
+				war = yes 
+				
+				type = dp_annex_war # dp_conquer_state - can't be done ??
+
+				# add_war_goal = {
+				# 	holder = c:NDA_ARES
+				# 	type = conquer_state
+				# 	target_state = p:x7543C8.state #  London
+				# }
+			}
+			
+			# every_scope_war = {
+			# 	limit = { 
+			# 		is_war_participant =  scope:nda_ares_first_victim 
+			# 	} 
+			# 	add_war_exhaustion = { target = scope:nda_ares_first_victim value = 0.25 } 
+			# 	debug_log = "Ares Victim - War Exhaustion"
+			# }
+			
+		}
+
+		# targets allies should have increased radicalism to try and knock them out of war
+		scope:nda_ares_first_victim = {
+			every_subject_or_below = {
+				# panic stations
+				add_radicals = { 
+					value = 0.2 
+				}
+				add_loyalists = {
+					value = -0.2
+				}				
+			}
+			# every_scope_cobelligerent = {
+			# 	# panic stations
+			# 	add_radicals = { 
+			# 		value = 0.3 
+			# 	}
+			# 	add_loyalists = {
+			# 		value = -0.2
+			# 	}
+			# }
+		}
+
+		debug_log = "Ares - Start Completed"
+	}	
+	
+	option = {
+		name = nda_ares.10.a
+		default_option = yes
+	}
+
+}	
+
+nda_ares.12 = { # 1936's Landing - Upper New York
+	type = country_event
+	placement = p:xB00080 
+	title = nda_ares.10.t
+	desc = nda_ares.10.d
+	flavor =  nda_ares.10.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_christianity.bk2"		
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	trigger = {
+ 		# 1936 (post standard!) and owner of Upper New York 
+		game_date >= 1936.3.1 
+		game_date < 1937.1.1
+		p:xB00080 = { state = { owner = ROOT } }
+		NOT = { has_global_variable = nda_ares_invasion }
+		OR = { 
+			has_global_variable = nda_ares_wells_orson_invasion
+
+			NOT = {
+				has_global_variable = nda_ares_early_invasion
+				has_global_variable = nda_ares_wells_hg_invasion
+			}
+		}
+	}
+
+	cooldown = { months = 12 }
+
+	immediate = {
+		
+		set_global_variable = nda_ares_invasion
+
+		# record target country ready to start war later
+		p:xB00080.state.owner = {
+			save_scope_as = nda_ares_first_victim
+		}
+
+		add_modifier = {
+			name = nda_ares_country_martian_terror_modifier
+		}
+
+		# create country
+		create_country = {
+			tag = NDA_ARES
+			origin = this
+
+			state = p:xB00080.state # ny
+			# province = p:x9CC56A
+			# province = p:xE7BE2D
+			# province = p:xB343E6
+			# province = p:x2CA754
+			# province = p:xA6BED5
+			# province = p:xB00080
+			# province = p:x260926
+			# province = p:x42D496
+
+			# province = p:xA7B5FE
+			# province = p:xEDC7DA
+			# province = p:xFCF1BE
+			# province = p:xD534B1
+			# province = p:x70C080
+			# province = p:x4B0747
+			# province = p:xFC18F1
+			# province = p:x300080
+
+			# province = p:x99CB10
+			# province = p:xBA53D0
+			# province = p:xACC198
+			# province = p:x308080
+
+			# province = p:x38C881
+			# province = p:xAF1AEE
+			# province = p:x01D042
+			# province = p:x75F2A6
+			# province = p:xB7EDCF			
+
+			on_created = {
+				nda_effect_martian_setup = yes
+
+				every_scope_state = {
+					#kill_population_percent_in_state = { percent = 0.10 }
+
+					# convert large chunk of remaining to give them a start
+					convert_population = { target = rel:atheist value = 0.95  }
+
+					every_scope_pop = {
+						limit = { religion = rel:atheist }
+						change_pop_culture = { target = cu:nda_cul_aresian value = 1 }		
+					}
+
+					# add generator building - should be landing sites then upgrade to generators?
+					create_building={
+						building = "building_nda_ares_generators" 
+					}	
+
+					state_region = {
+						add_homeland = cu:nda_cul_aresian						
+					}
+
+					add_modifier = { name = nda_ares_state_red_lands_modifier }
+
+					# reduce navy (boost barracks?)
+					# if = {
+					# 	limit = { 
+					# 		has_active_building = building_naval_base 
+					# 	}
+
+					# }
+				}
+
+				# lay claim to neighbouring states
+				every_neighbouring_state = {
+					limit = { NOT = { owner = c:NDA_ARES } }
+					state_region = {
+						add_homeland = cu:nda_cul_aresian		
+						add_claim = c:NDA_ARES
+					}
+					add_radicals_in_state = { value = 0.6 } # Panic in the streets of London...
+
+					add_modifier = {
+						name = nda_ares_state_martian_terror_modifier
+					}
+				}	
+				
+				# Force Migrations? - via delayed events?
+				#trigger_event = { id = nda_ares.20 days=7 }
+
+				IF = {
+					limit = {
+						exists = c:FRA
+					}
+					set_secret_goal = {
+						country = c:FRA
+						secret_goal = conquer
+					}			
+				}
+				IF = {
+					limit = {
+						exists = c:GBR
+					}
+					set_secret_goal = {
+						country = c:GBR
+						secret_goal = conquer
+					}			
+				}
+				IF = {
+					limit = {
+						exists = c:PRU
+					}
+					set_secret_goal = {
+						country = c:PRU
+						secret_goal = conquer
+					}			
+				}
+				IF = {
+					limit = {
+						exists = c:RUS
+					}
+					set_secret_goal = {
+						country = c:RUS
+						secret_goal = conquer
+					}			
+				}
+			}
+			
+		}
+
+		# should not be liked by any one
+		every_country = {
+			limit = {
+				NOT = { c:NDA_ARES ?= THIS }
+			}
+			change_relations = { country = c:NDA_ARES value = -150 } # is this too much ?
+
+			# notify the world
+
+			# panic stations
+			add_radicals = { 
+				value = 0.3 
+			}
+			add_loyalists = {
+				value = -0.2
+			}
+		}
+
+		#go to war
+		c:NDA_ARES = {
+			create_diplomatic_play = {
+				name = nda_ares_dp_martian_invasion
+			
+				target_country = scope:nda_ares_first_victim
+
+				war = yes 
+				
+				type = dp_annex_war # dp_conquer_state - can't be done ??
+
+				# add_war_goal = {
+				# 	holder = c:NDA_ARES
+				# 	type = conquer_state
+				# 	target_state = p:x7543C8.state #  London
+				# }
+			}
+			
+			# every_scope_war = {
+			# 	limit = { 
+			# 		is_war_participant =  scope:nda_ares_first_victim 
+			# 	} 
+			# 	add_war_exhaustion = { target = scope:nda_ares_first_victim value = 0.25 } 
+			# 	debug_log = "Ares Victim - War Exhaustion"
+			# }
+			
+		}
+
+		# targets allies should have increased radicalism to try and knock them out of war
+		scope:nda_ares_first_victim = {
+			every_subject_or_below = {
+				# panic stations
+				add_radicals = { 
+					value = 0.2 
+				}
+				add_loyalists = {
+					value = -0.2
+				}				
+			}
+			# every_scope_cobelligerent = {
+			# 	# panic stations
+			# 	add_radicals = { 
+			# 		value = 0.3 
+			# 	}
+			# 	add_loyalists = {
+			# 		value = -0.2
+			# 	}
+			# }
+		}
+
+		debug_log = "Ares - 1936 Start Completed"
+	}	
+	
+	option = {
+		name = nda_ares.10.a
+		default_option = yes
+	}
+
+}	
+
 nda_ares.20 = { # Mass Migration if at war with Martians
 	type = country_event
 	placement = ROOT
@@ -470,47 +955,3 @@ nda_ares.20 = { # Mass Migration if at war with Martians
 	}
 
 }
-# nda_ares.20 = { # Mars Attacks 
-# 	type = country_event
-# 	placement = ROOT
-# 	title = nda_ares.20.t
-# 	desc = nda_ares.20.d
-# 	flavor =  nda_ares.20.f
-
-# 	duration = 3
-
-# 	event_image = {
-# 		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
-		
-# 	}
-
-# 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-# 	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
-
-# 	icon = "gfx/interface/icons/event_icons/tutorial_icon.dds"
-
-# 	trigger = {
-#  		exists = c:NDA_ARES
-# 		c:NDA_ARES = { is_at_war = no } # need to try and provoke
-# 	}
-	
-# 	immediate = {
-# 		#set_variable = nda_nameless_cults_decision # don't set immediate as causes follow on event to trigger simultaniously	
-# 		#debug_log = "Imprint of Nameless Cults : [THIS.GetCountry.GetNameNoFormatting]" 
-# 	}	
-	
-# 	option = {
-# 		name = nda_ares.20.a
-# 		default_option = yes
-
-# 	}
-
-# 	option = { 
-# 		name = nda_ares.20.b
-
-# 		ai_chance = { # will -ve effect conversion rate
-# 			base = 25
-# 		}
-
-# 	}
-# }

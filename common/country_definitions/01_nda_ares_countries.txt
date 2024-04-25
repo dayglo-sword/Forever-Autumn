@@ -6,5 +6,5 @@
 	tier = empire
 	
 	cultures = { nda_cul_aresian }
-	capital = STATE_HOME_COUNTIES # not really needed
+	#capital = STATE_HOME_COUNTIES # not really needed
 }
