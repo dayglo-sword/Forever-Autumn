@@ -5,9 +5,9 @@
 #									#
 #####################################
 
-nda_ares_eyes_normal = {
-	entity = { entity = "nda_ares_eyes_entity"		shared_pose_entity = head }
-}
+# nda_ares_eyes_normal = {
+# 	entity = { entity = "nda_ares_eyes_entity"		shared_pose_entity = head }
+# }
 
 
 #####################################

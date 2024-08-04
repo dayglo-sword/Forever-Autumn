@@ -1,65 +1,70 @@
 ﻿l_english:  
-NDA_ARES:0 "Martian Terra"
-NDA_ARES_ADJ:0 "Martian"
-NDA_ARES_FLAVOR_TEXT:0 "The chances of anything manlike on Mars?"
+NDA_ARES: "Martian Terra"
+NDA_ARES_ADJ: "Martian"
+NDA_ARES_FLAVOR_TEXT: "The chances of anything manlike on Mars?"
 
 # Culture
-nda_cul_aresian:0 "Martian"
+nda_cul_aresian: "Martian"
 
 # Buildings and production
-building_nda_ares_generators:0 "Martian Generator"
-building_nda_ares_generator_ruins:0 "Martian Ruins"
+building_nda_ares_generators: "Martian Generator"
+building_nda_ares_generator_ruins: "Martian Ruins"
 
-pmg_nda_ares_generator:0 "Martian Generator"
-pmg_nda_ares_generator_goods:0 "Martian Goods"
-pmg_nda_ares_generator_ruins:0 "Martian Ruins"
+pmg_nda_ares_generator: "Martian Generator"
+pmg_nda_ares_generator_goods: "Martian Goods"
+pmg_nda_ares_generator_ruins: "Martian Ruins"
 
-pm_nda_ares_generator:0 "Martian Generator"
-pm_nda_ares_generator_goods:0 "Martian Goods"
-pm_nda_ares_generator_scavenger:0 "Scavenger Goods" 
+pm_nda_ares_generator: "Martian Generator"
+pm_nda_ares_generator_goods: "Martian Goods"
+pm_nda_ares_generator_scavenger: "Scavenger Goods" 
 
-pm_nda_ares_streetlights:0 "Vril Powered Lights"
+pm_nda_ares_streetlights: "Vril Powered Lights"
 
 # character names
-ak:0 "Ak" 
-ack:0 "Ack" 
-ark:0 "Ark"
-ak_ark:0 "Ak ark" 
-ack_ak:0 "Ack ak" 
-ark_ack:0 "Ark ack"
-akak:0 "Ak-ak"
-ak_ack:0 "Ak ack" 
-ack_ka:0 "Ack ka"
-akka:0 "Ak-ka"
+ak: "Ak" 
+ack: "Ack" 
+ark: "Ark"
+ak_ark: "Ak ark" 
+ack_ak: "Ack ak" 
+ark_ack: "Ark ack"
+akak: "Ak-ak"
+ak_ack: "Ak ack" 
+ack_ka: "Ack ka"
+akka: "Ak-ka"
 
 # units
-combat_unit_type_nda_ares_war_machine:0 "Martian War Machines"
-combat_unit_type_nda_ares_war_machine_desc:0 "...with a ringing metallic pace, and long, flexible, glittering tentacles swinging and rattling about its strange body."
+combat_unit_type_nda_ares_war_machine: "Martian War Machines"
+combat_unit_type_nda_ares_war_machine_desc: "...with a ringing metallic pace, and long, flexible, glittering tentacles swinging and rattling about its strange body."
 
-mobilization_option_nda_ares_black_smoke:0 "Martian Black Smoke"
-mobilization_option_nda_ares_black_smoke_desc:0 "''...heavy, inky vapour, coiling and pouring upward in a huge and ebony cumulus cloud, a gaseous hill that sank and spread itself slowly over the surrounding country'"
-mobilization_option_nda_ares_death_ray:0 "Martian Heat Ray"
-mobilization_option_nda_ares_death_ray_desc:0 "...its impact was marked by flashes of incandescent white, that gave place at once to a smoky dance of lurid flames."
+mobilization_option_nda_ares_black_smoke: "Martian Black Smoke"
+mobilization_option_nda_ares_black_smoke_desc: "''...heavy, inky vapour, coiling and pouring upward in a huge and ebony cumulus cloud, a gaseous hill that sank and spread itself slowly over the surrounding country'"
+mobilization_option_nda_ares_death_ray: "Martian Heat Ray"
+mobilization_option_nda_ares_death_ray_desc: "...its impact was marked by flashes of incandescent white, that gave place at once to a smoky dance of lurid flames."
 
 # IGs
-ig_ares_landowners:0 "Eloi"
-ig_ares_trade_unions:0 "Morlocks"
-ig_ares_rural_folk:0 "Harvesters"
+ig_ares_landowners: "Eloi"
+ig_ares_trade_unions: "Morlocks"
+ig_ares_rural_folk: "Harvesters"
+ig_ares_intelligentsia: "The Great Minds"
+ig_ares_petty_bourgeoisie: "The Small Minds"
+ig_ares_devout: "Heretics"
+ig_ares_armed_forces: ""
+ig_ares_industrialists: ""
 
 # Strategies
-ai_strategy_nda_ares_administrative_agenda:0 "Martian Admin"
-ai_strategy_nda_ares_diplomatic_agenda:0 "Martian Diplomacy"
-ai_strategy_nda_ares_political_agenda:0 "Martian Politics"
+ai_strategy_nda_ares_administrative_agenda: "Martian Admin"
+ai_strategy_nda_ares_diplomatic_agenda: "Martian Diplomacy"
+ai_strategy_nda_ares_political_agenda: "Martian Politics"
 
 # diplomatic plays
-nda_ares_dp_martian_invasion:0 "Martian Invasion"
+nda_ares_dp_martian_invasion: "Martian Invasion"
 
 # modifiers
-nda_ares_ig_martian_unity_modifier:0 "Martian Unity"
-nda_ares_state_martian_terror_modifier:0 "Martian Terror"
-nda_ares_country_martian_terror_modifier:0 "Martian Terror"
+nda_ares_ig_martian_unity_modifier: "Martian Unity"
+nda_ares_state_martian_terror_modifier: "Martian Terror"
+nda_ares_country_martian_terror_modifier: "Martian Terror"
 
-nda_ares_state_red_lands_modifier:0 "Red Lands"
-nda_ares_generator_defense_modifier:0 "Generator Defenses"
-nda_ares_generator_occupation_speed:0 "Generator Defenses"
-nda_ares_first_landing_modifier:0 "Mars Attacks"
+nda_ares_state_red_lands_modifier: "Red Lands"
+nda_ares_generator_defense_modifier: "Generator Defenses"
+nda_ares_generator_occupation_speed: "Generator Defenses"
+nda_ares_first_landing_modifier: "Mars Attacks"

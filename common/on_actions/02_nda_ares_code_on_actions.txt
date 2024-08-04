@@ -38,12 +38,13 @@ nda_ares_monthly_on_action = {
 					culture_percent_state = {  
 						target = cu:nda_cul_aresian  
 						value >= 0.5 # at least 50% Martains  
-					  }  
+					}  
 				}
 
 				# add generator building 
 				create_building={
 					building = "building_nda_ares_generators" 
+					level=1
 				}	
 				
 				debug_log = "New Generator"

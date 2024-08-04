@@ -1,204 +1,106 @@
-﻿# accessory_genes = {
-# 	# override existing definition
-
-# 	eye_accessory = {
-# 		inheritable = no
+﻿morph_genes = {
+	NDA_gene_skin_color = { # based on POD_splat_gene_skin_color
+		#inheritable = yes
+		group = body
 		
-# 		normal_eyes = {
-# 			index = 0
-# 			male = {	1 = "male_eyes_normal"		}
-# 			female = {	1 = "female_eyes_normal"	}
-# 			boy = male
-# 			girl = female
-# 		}
+		normal_skin = { 
+			index = 0
+			male = {}
+			female = male
+			boy = male
+			girl = male
+		}
 
-# 		no_eyes = {
-# 			index = 1
-# 			male = { 1 = empty }
-# 			female = { 1 = empty }
-# 			boy = male
-# 			girl = female 
-# 		}
+		blue_skin = {
+			index = 1
+			male = {
+				skin_hsv_shift_curve = {
+					curve = {
+						#{ 0.0 	{ 0.54 0.3 0.0 } }
+						#{ 1.0   { 0.58 0.4 0.0 } }
+						{ 0.0 	{ 0.5 0.1 0.8 } }
+						{ 1.0   { 0.5 0.3 0.9 } }
+					}
+				}
+			}
+			female = male
+			boy = male
+			girl = male
+		}
 
-# 		martian_eyes = {
-# 			index = 2
-# 			male = { 1 = "nda_ares_eyes_normal" }
-# 			female = { 1 = "nda_ares_eyes_normal" }
-# 			boy = male
-# 			girl = female 
-# 		}
-# 	}
-# }
+		grey_skin = {
+			index = 2
+			male = {
+				skin_hsv_shift_curve = {
+					curve = {
+						{ 0.0 	{ 0.5 0.0 0 } }
+						{ 1.0   { 0.5 0.0 0 } }
+					}
+				}
+			}
+			female = male
+			boy = male
+			girl = male
+		}
 
-# special_genes = {
-# 	accessory_genes = {
-# 		# override existing definition
+		red_skin = {
+			index = 3
+			male = {
+				skin_hsv_shift_curve = {
+					curve = {
+						{ 0.0 	{ 0.98 0.3 0.0 } }
+						{ 1.0   { 0.99 0.4 0.0 } }
+					}
+				}
+			}
+			female = male
+			boy = male
+			girl = male
+		}
+				
+		green_skin = {
+			index = 4
+			male = {
+				skin_hsv_shift_curve = {
+					curve = {
+						{ 0.0 	{ 0.2 0.3 0.0 } }
+						{ 1.0   { 0.25 0.4 0.0 } }
+					}
+				}
+			}
+			female = male
+			boy = male
+			girl = male
+		}
 
-# 		eye_accessory = {
-# 			inheritable = no
-			
-# 			normal_eyes = {
-# 				index = 0
-# 				male = {	1 = "male_eyes_normal"		}
-# 				female = {	1 = "female_eyes_normal"	}
-# 				boy = male
-# 				girl = female
-# 			}
-
-# 			no_eyes = {
-# 				index = 1
-# 				male = { 1 = empty }
-# 				female = { 1 = empty }
-# 				boy = male
-# 				girl = female 
-# 			}
-
-# 			martian_eyes = {
-# 				index = 2
-# 				male = { 1 = "nda_ares_eyes_normal" }
-# 				female = { 1 = "nda_ares_eyes_normal" }
-# 				boy = male
-# 				girl = female 
-# 			}
-# 		}
-
-# 		# nda_ares_eyes = {
-# 		# 	inheritable = no
-
-# 		# 	default_eyes = {
-# 		# 		index = 0
-# 		# 		male = { 1 = empty }
-# 		# 		female = { 1 = empty }
-# 		# 		boy = male
-# 		# 		girl = female 
-# 		# 	}
-			
-			
-# 		# 	martian_eyes = {
-# 		# 		index = 1
-# 		# 		male = { 1 = "nda_ares_eyes_normal" }
-# 		# 		female = { 1 = "nda_ares_eyes_normal" }
-# 		# 		boy = male
-# 		# 		girl = female 
-# 		# 	}
-			
-# 		# }
-
-# 	}
-# }
-
-
-# accessory_genes = {
-# 	NDA_eye_accessory = {
-# 		inheritable = no
-
-# 		default_eyes = {
-# 			index = 0
-# 			male = { 1 = empty }
-# 			female = { 1 = empty }
-# 			boy = male
-# 			girl = female 
-# 		}
+		yellow_skin = {
+			index = 5
+			male = {
+				skin_hsv_shift_curve = {
+					curve = {
+						{ 0.0 	{ 0.10 0.3 0.0 } }
+						{ 1.0   { 0.11 0.4 0.0 } }
+					}
+				}
+			}
+			female = male
+			boy = male
+			girl = male
+		}		
 		
-# 		ares_eyes = {
-# 			index = 1
-# 			male = { 1 = "nda_ares_eyes_normal" }
-# 			female = { 1 = "nda_ares_eyes_normal" }
-# 			boy = male
-# 			girl = female
-# 		}
-# 	}
-# }	
-
-morph_genes = {
-NDA_gene_skin_color = { # based on POD_splat_gene_skin_color
-	#inheritable = yes
-	group = body
-	
-	normal_skin = { 
-		index = 0
-		male = {}
-		female = male
-		boy = male
-		girl = male
-	}
-
-	blue_skin = {
-		index = 1
-		male = {
-			skin_hsv_shift_curve = {
-				curve = {
-					#{ 0.0 	{ 0.54 0.3 0.0 } }
-					#{ 1.0   { 0.58 0.4 0.0 } }
-					{ 0.0 	{ 0.5 0.1 0.8 } }
-					{ 1.0   { 0.5 0.3 0.9 } }
+		random_skin = {
+			index = 6
+			male = {
+				skin_hsv_shift_curve = {
+					curve = {
+						{ 0.0 	{ 0.10 0.10 0.10 } }
+						{ 1.0   { 0.20 0.20 0.20 } }
+					}
 				}
 			}
+			female = male
+			boy = male
+			girl = male
 		}
-		female = male
-		boy = male
-		girl = male
 	}
-
-	grey_skin = {
-		index = 2
-		male = {
-			skin_hsv_shift_curve = {
-				curve = {
-					{ 0.0 	{ 0.5 0.0 0 } }
-					{ 1.0   { 0.5 0.0 0 } }
-				}
-			}
-		}
-		female = male
-		boy = male
-		girl = male
-	}
-
-	red_skin = {
-		index = 3
-		male = {
-			skin_hsv_shift_curve = {
-				curve = {
-					{ 0.0 	{ 0.98 0.3 0.0 } }
-					{ 1.0   { 0.99 0.4 0.0 } }
-				}
-			}
-		}
-		female = male
-		boy = male
-		girl = male
-	}
-			
-	green_skin = {
-		index = 4
-		male = {
-			skin_hsv_shift_curve = {
-				curve = {
-					{ 0.0 	{ 0.2 0.3 0.0 } }
-					{ 1.0   { 0.25 0.4 0.0 } }
-				}
-			}
-		}
-		female = male
-		boy = male
-		girl = male
-	}
-
-	yellow_skin = {
-		index = 5
-		male = {
-			skin_hsv_shift_curve = {
-				curve = {
-					{ 0.0 	{ 0.10 0.3 0.0 } }
-					{ 1.0   { 0.11 0.4 0.0 } }
-				}
-			}
-		}
-		female = male
-		boy = male
-		girl = male
-	}		
-	
-}
 }

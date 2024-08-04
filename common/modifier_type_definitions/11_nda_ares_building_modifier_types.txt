@@ -1,0 +1,32 @@
+﻿# Duplicates in part NDAs '10_nda_building_modifier_types' 
+goods_output_vril_add = {
+	decimals=1
+	color=good
+	game_data={
+		ai_value=0
+	}
+}
+
+goods_output_black_lotus_add = {
+	decimals=1
+	color=good
+	game_data={
+		ai_value=0
+	}
+}
+
+goods_input_vril_add = {
+	decimals=1
+	color=bad
+	game_data={
+		ai_value=0
+	}	
+}
+
+goods_input_black_lotus_add = {
+	decimals=1
+	color=bad
+	game_data={
+		ai_value=0
+	}
+}

@@ -33,11 +33,11 @@ nda_effect_martian_setup = {
 	set_variable = nda_anti_colonial_admin
 	
 	ig:ig_devout = {
-		set_interest_group_name = ig_devout
+		set_interest_group_name = ig_ares_devout
 	}
 	
 	ig:ig_armed_forces = {
-		set_interest_group_name = ig_armed_forces
+		set_interest_group_name = ig_armed_forces #ig_ares_armed_forces
 	}
 
 	ig:ig_rural_folk = {
@@ -45,7 +45,7 @@ nda_effect_martian_setup = {
 	}
 
 	ig:ig_intelligentsia = {
-		set_interest_group_name = ig_intelligentsia
+		set_interest_group_name = ig_ares_intelligentsia
 	}
 
 	ig:ig_landowners = {
@@ -53,13 +53,16 @@ nda_effect_martian_setup = {
 	}
 
 	ig:ig_petty_bourgeoisie = {
-		set_interest_group_name = ig_petty_bourgeoisie
+		set_interest_group_name = ig_ares_petty_bourgeoisie
 	}
 
 	ig:ig_trade_unions = {
 		set_interest_group_name = ig_ares_trade_unions
 	}
 
+	ig:ig_industrialists = {
+		set_interest_group_name = ig_industrialists #ig_ares_industrialists
+	}
 	# remove anti-slavery from intel and trade unions 
 	every_interest_group = {
 		limit = { has_ideology = ideology:ideology_anti_slavery }

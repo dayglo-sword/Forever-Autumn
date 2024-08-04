@@ -169,7 +169,7 @@ aresian_standard = {
     # }
 
     NDA_gene_skin_color = {
-        10 = { name = grey_skin range = { 1.0 1.0 } }
+        10 = { name = grey_skin range = { 0.0 1.0 } }
     }
 } 
 
