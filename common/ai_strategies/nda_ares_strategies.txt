@@ -82,15 +82,14 @@ ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_ex
 	}
 	
 	aggression = {
-		value = 3
+		value = 2
 
 		if = {
 			limit = { 
-				NOT = { is_country_type = unrecognized }
-				scope:target_country = { is_country_type = unrecognized } 
+				scope:target_country = { is_country_type = recognized }  # organised countries first
 			}
-			add = 1
-		}
+			add = 3
+		}		
 
 		# Less aggressive against countries we're just antagonistic against, rather than belligerent/domineering
 		if = {
@@ -155,7 +154,7 @@ ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_ex
 			if = {
 				limit = {
 					has_strategic_adjacency = scope:target_country
-					scope:target_country = { is_country_type = unrecognized }
+					scope:target_country = { is_country_type = recognized } # adjust so not unrecognised - go for big countries first
 				}
 				add = 200
 			}	
@@ -165,7 +164,7 @@ ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_ex
 			if = {
 				limit = {
 					has_strategic_adjacency = scope:target_country
-					scope:target_country = { is_country_type = unrecognized }
+					scope:target_country = { is_country_type = recognized } # adjust so not unrecognised - go for big countries first
 				}
 				add = 200
 			}	

@@ -1,0 +1,35 @@
+﻿# Buildings referenced in city files but only used in main NDA.
+
+building_nda_miskatonic_university = {
+	building_group = bg_technology
+	texture = "gfx/interface/icons/building_icons/building_university.dds"
+	background = "gfx/interface/icons/building_icons/backgrounds/building_panel_bg_monuments.dds"
+
+	buildable = no
+	downsizeable = no
+	unique = yes
+
+	city_type = city
+
+	levels_per_mesh = 5
+
+	unlocking_technologies = {
+		academia
+	}	
+
+	production_method_groups = {
+		pmg_base_building_university
+		# pmg_university_academia
+		# pmg_principle_freedom_of_movement_3
+		# pmg_nda_esoteric_academia
+		# # special occult one?
+	}
+
+	possible = {
+		this = {
+			state_region = s:STATE_NEW_HAMPSHIRE			
+		}
+	}
+
+	required_construction = construction_cost_medium
+}

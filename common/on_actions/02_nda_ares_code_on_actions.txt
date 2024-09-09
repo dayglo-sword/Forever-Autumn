@@ -101,6 +101,12 @@ nda_ares_monthly_on_action = {
 				make_independent = yes
 				change_relations = { country = c:NDA_ARES value = -200 }
 
+				# Diplo Catalyst - try and create anti-invasion lobbies
+				create_diplomatic_catalyst = {  
+					type = catalyst_event_negative
+					target = c:NDA_ARES
+				}
+				
 				debug_log = "Country Freedom"
 
 				save_scope_as = nda_ares_freedom
@@ -108,6 +114,7 @@ nda_ares_monthly_on_action = {
 				every_country = {
 					post_notification = nda_ares_country_freedom
 				}
+
 
 			}
 
@@ -117,6 +124,12 @@ nda_ares_monthly_on_action = {
 					has_strategic_adjacency =  c:NDA_ARES
 				}
 				change_relations = { country = c:NDA_ARES value = -200 } # annoy someone else
+
+				# Diplo Catalyst - try and create anti-invasion lobbies
+				create_diplomatic_catalyst = {  
+					type = catalyst_event_negative
+					target = c:NDA_ARES
+				}
 			}
 
 			random_country = {
@@ -124,6 +137,12 @@ nda_ares_monthly_on_action = {
 					NOT = { c:NDA_ARES ?= THIS }
 				}
 				change_relations = { country = c:NDA_ARES value = -200 } # annoy someone else
+
+				# Diplo Catalyst - try and create anti-invasion lobbies
+				create_diplomatic_catalyst = {  
+					type = catalyst_event_negative
+					target = c:NDA_ARES
+				}
 			}
 
 			# lay claim to neighbouring state
@@ -316,6 +335,12 @@ nda_ares_monthly_hostile_on_action = {
 							has_strategic_adjacency =  c:NDA_ARES
 						}
 						change_relations = { country = c:NDA_ARES value = -100 } # is this too much ?	
+
+						# Diplo Catalyst - try and create anti-invasion lobbies
+						create_diplomatic_catalyst = {  
+							type = catalyst_event_negative
+							target = c:NDA_ARES
+						}
 					}
 
 					# sympathy for the victim
@@ -341,6 +366,12 @@ nda_ares_monthly_hostile_on_action = {
 					has_strategic_adjacency =  c:NDA_ARES
 				}
 				change_relations = { country = c:NDA_ARES value = -100 } # annoy someone else
+
+				# Diplo Catalyst - try and create anti-invasion lobbies
+				create_diplomatic_catalyst = {  
+					type = catalyst_event_negative
+					target = c:NDA_ARES
+				}				
 			}
 
 			random_country = {
@@ -348,6 +379,12 @@ nda_ares_monthly_hostile_on_action = {
 					NOT = { c:NDA_ARES ?= THIS }
 				}
 				change_relations = { country = c:NDA_ARES value = -100 } # annoy someone else
+
+				# Diplo Catalyst - try and create anti-invasion lobbies
+				create_diplomatic_catalyst = {  
+					type = catalyst_event_negative
+					target = c:NDA_ARES
+				}				
 			}				
 	
 		}

@@ -1,0 +1,207 @@
+﻿# keep in synch with NDA else try and put in load order where it can be overidden.
+nda_cul_cultist={
+	color=  { 142 36 170 } # rgb{ 117 127 174 }
+	religion = atheist
+	traits = { }
+	
+	male_common_first_names={
+		
+	}
+	female_common_first_names = {
+		
+	}
+	common_last_names={
+
+	}
+
+	noble_last_names = {
+
+	}
+	
+	male_regal_first_names = {
+		# populate with names here
+	}
+	female_regal_first_names = {
+		# populate with names here
+	}
+	regal_last_names = {
+		# populate with names here
+	}	
+	
+	ethnicities = { # have a bit of a mix
+		2 = caucasian
+		2 = arab
+		2 = central_asian
+		2 = african
+		1 = dagonic_hybrid
+		1 = yigian_hybrid
+	}
+	graphics = european
+}
+
+nda_cul_yigian={
+	color= { 205 220 57 } #rgb{ 21 191 16 }
+	religion = atheist
+	traits = { }
+	
+	male_common_first_names={
+
+	}
+	female_common_first_names = {
+
+	}
+	common_last_names={
+
+	}
+
+	noble_last_names = {
+
+	}
+	
+	male_regal_first_names = {
+		# populate with names here
+	}
+	female_regal_first_names = {
+		# populate with names here
+	}
+	regal_last_names = {
+		# populate with names here
+
+	}	
+	
+	ethnicities = {
+		1 = caucasian
+		1 = arab
+		1 = central_asian
+		1 = african
+		1 = south_american
+		1 = native_american
+		#1 = yigian_hybrid
+	}
+	graphics = decentralised_americas
+}
+
+nda_cul_dagonic={
+	color= rgb { 11 84 179 }
+	religion = atheist
+	traits = { }
+	
+	male_common_first_names={
+
+	}
+	female_common_first_names = {
+
+	}
+	common_last_names={
+
+	}
+
+	noble_last_names = {
+
+	}
+	
+	male_regal_first_names = {
+		# populate with names here
+	}
+	female_regal_first_names = {
+		# populate with names here
+	}
+	regal_last_names = {
+		# populate with names here
+	}	
+	
+	ethnicities = {
+		1 = caucasian
+		1 = arab
+		1 = central_asian
+		1 = african
+		# 2 = dagonic_hybrid
+		# 2 = dagonic_main
+	}
+	graphics = european
+}
+
+# nda_cul_trueyankee={
+# 	color= rgb{ 25 196 245 } #125 196 245
+# 	religion = protestant
+# 	traits = { anglophone european_heritage }
+# 	male_common_first_names = {
+# 		Allan
+# 		Keziah 
+# 		Wilbur
+# 		Edgar_Allen
+# 		Howard_Phillips
+# 		Herbert
+# 		Richard_Upton
+# 		Clark		
+# 		Alexander Andrew Aaron Alton Atlee Asa Ambrose Abner Alvin August Abraham Abel Ansel Amos Absalom
+# 		Benjamin Bartholomew Byron Benedict Barnabas
+# 		Charles Cyrus Chester Cassius Calvin Cornelius Conrad Caleb Cephas Clarence Colcord
+# 		Daniel David Dwight
+# 		Ezekiel Enoch Edward Eugene_2 Eustace Edwin Elam Ezra Ebenezer Elijah Ephraim Erasmus Elton
+# 		Franklin Francis Frederick
+# 		Grenville George Gregory Grover Gabriel Gorham Gordon
+# 		Henry Hannibal Hugh Horatio Horace Hiram Harold Hazen Hector
+# 		Isaac Isaiah Irving Ichabod
+# 		Joshua Joseph John James Jacob Jesse Joel Jeremiah Jeffrey Judah Jonas Jedediah Jonathan Josiah
+# 		Kermit Kenner
+# 		Lysander Lawrence Lewis Lorenzo Leland Levi Leonard_2 Lucius
+# 		Micah Marcellus Mark Michael Millard Matthew Matthias Montgomery Maxwell Milton 
+# 		Nicholas Noah Nathaniel Newton Nelson
+# 		Obadiah Oswald Orson Orville Oscar Otis Oliver Orrin Owen Ormsby
+# 		Peter Paul Patrick Philip Phineas Philemon Purley Palmetus Philetus
+# 		Quentin Quincy
+# 		Rutherford Richard Robert Rufus Roger
+# 		Stephen Silas Samuel Seth Simon Sidney Sylvester Shubael
+# 		Thomas Theodore_2 Thaddeus
+# 		Ulysses Upton
+# 		Victor Valentine_2
+# 		William Walter Winfield Wesley Wilbur Wendell
+# 		Zebulon Zachary Zadok
+		
+# 	}
+# 	female_common_first_names = {
+# 		Asenath
+# 		Amanda Anna Alice Adaline Adelaide Augusta Antoinette Alida Addie Ariel Ada Agnes Agatha Almira Arlevia Azubah
+# 		Catharine Charlotte Clara Cynthia Charity Cordelia Cornelia
+# 		Delia Deborah Delima
+# 		Elizabeth Evelina Emily Esther Eliza Ellen Eunice Emma Estelle Eudora Eleanor Ella Eleura Elnora Edith Ethel Ethelinda Euphemia Eva Elida
+# 		Frances Florence Faith Florena
+# 		Gertrude Geraldine Grace Graceanna Glathia
+# 		Hannah Henriette Helen Harriette Hephzibah Huldah
+# 		Isabella Ida
+# 		Jane Julia Judith Josephine
+# 		Lucy Louisa Lavinia Lydia Lilian Lucretia Luetta Leonora
+# 		Mabel Mary Mildred Melissa Minerva Martha Matilda Marjorie Malvina Mahala
+# 		Nancy Nellie
+# 		Olive
+# 		Phoebe Pamela Puella
+# 		Roxana Ruth Rebecca Rosa Rachel
+# 		Susannah Satronia Sylvia
+# 		Ursula
+# 		Winifred
+# 		Yda
+# 		Zara Zeruviah
+# 	}
+# 	noble_last_names = {
+
+# 	}
+# 	common_last_names = {
+# 		Akeley Allan Angell Armitage Atwood Ashton_Smith Carter Corey Curwen Danforth Derby Dexter_Ward Gilman Goodenough Halsey Lovecraft Manton Mason Morgan Noyes Olney Orne Pabodie Pickman Pickman_Derby Poe Sawyer Warren Whateley Willett Wilmarth
+# 		Phillips Fowler Marsh Rice West Wilcox Wayland_Thurston
+	
+# 	}
+# 	male_regal_first_names = {
+
+# 	}
+# 	female_regal_first_names = {
+
+# 	}
+
+# 	graphics = european
+# 	ethnicities = {
+# 		10 = caucasian
+# 		1 = dagonic_hybrid
+# 	}
+# }
+

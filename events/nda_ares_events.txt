@@ -344,6 +344,13 @@ nda_ares.10 = { # Early Landing
 			add_loyalists = {
 				value = -0.2
 			}
+
+			# Diplo Catalyst - try and create anti-invasion lobbies
+			create_diplomatic_catalyst = {  
+				type = catalyst_event_negative
+				target = c:NDA_ARES
+			}
+			
 		}
 
 		#go to war

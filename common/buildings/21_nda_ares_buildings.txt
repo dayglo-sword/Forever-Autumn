@@ -1,21 +1,13 @@
 ﻿
 building_nda_ares_generators = {
 	building_group = bg_monuments
-	texture = "gfx/interface/icons/building_icons/machu_picchu.dds"
+	texture = "gfx/interface/icons/building_icons/building_nda_ares_generator.dds"
 	expandable = no
 	buildable = no
 	downsizeable = no
 	unique = yes
 	
 	city_type = city
-	# entity_not_constructed = { }
-	# entity_under_construction = { }
-	# entity_constructed = { "knyan_entity" } #wonder_chichen_itza_01_entity
-	
-	# city_gfx_interactions = {
-	# 	clear_size_area = yes
-	# 	size = 4
-	# }
 	
 	production_method_groups = {		
 		pmg_nda_ares_generator
@@ -25,21 +17,13 @@ building_nda_ares_generators = {
 
 building_nda_ares_generator_ruins = {
 	building_group = bg_monuments
-	texture = "gfx/interface/icons/building_icons/machu_picchu.dds"
+	texture = "gfx/interface/icons/building_icons/building_nda_ares_generator_ruins.dds"
 	expandable = no
 	buildable = no
 	downsizeable = no
 	unique = yes
 	
 	city_type = city
-	# entity_not_constructed = { }
-	# entity_under_construction = { }
-	# entity_constructed = { "knyan_entity" } #wonder_chichen_itza_01_entity
-	
-	# city_gfx_interactions = {
-	# 	clear_size_area = yes
-	# 	size = 4
-	# }
 	
 	production_method_groups = {		
 		pmg_nda_ares_generator_ruins

@@ -1,0 +1,245 @@
+﻿ig_nda_cult_worshippers = {
+	color = hsv{ 0.30 0.10 0.47 }
+	texture = "gfx/interface/icons/ig_icons/nda_cult.dds"
+	layer = "revolution_dynamic_armed_forces" # need custom but sound complicated
+	index = 8
+
+	ideologies = {
+		ideology_nda_cabalistic
+		ideology_reactionary
+		ideology_patriotic
+	}
+	
+	enable = {
+		always = no
+	}
+	
+	# Deprecated; use on_enable effect to assign traits instead
+	traits = {
+		ig_trait_be_fruitful_and_multiply
+		ig_trait_family_ties
+		ig_trait_pious_fiction
+	}	
+	
+	on_enable = {
+
+	}
+
+	on_disable = {}
+	on_character_ig_membership = {
+
+
+	}
+			
+	pop_potential = {
+	
+	}
+	
+	pop_weight = {
+
+		# cultists in open
+		value = 0 
+
+		add = {
+			if = {
+				limit = { 
+					owner = {
+						has_variable = nda_cultists_in_open
+					}
+				}
+				value = 400 # big weight - want as many cultist to join as possible	
+			}
+		}
+		add = {
+			desc = "POP_ARISTOCRATS"
+			if = {
+				limit = { 
+					is_pop_type = aristocrats
+				}
+				value = 100
+			}
+		}
+
+		add = {
+			desc = "POP_OFFICERS"
+			if = {
+				limit = { 
+					is_pop_type = officers
+				}
+				value = 50
+			}
+		}
+		add = {
+			desc = "POP_CLERGYMEN"
+			if = {
+				limit = { 
+					is_pop_type = clergymen
+				}
+				value = 50
+			}
+		}	
+
+		add = {
+			desc = "POP_PEASANTS"
+			if = {
+				limit = { 
+					is_pop_type = peasants
+				}
+				value = 100
+			}
+		}								
+		
+		multiply = {
+			desc = "LEADER_POPULARITY"
+			scope:interest_group = {	
+				if = { 
+					limit = { exists = leader} 			
+					leader ?= {
+						value = popularity
+						multiply = 0.0025
+						add = 1
+						max = 1.25
+						min = 0.75
+					}
+				}
+			}
+		}
+		add = {
+			if = {
+				limit = { 
+					has_global_variable = nda_ritual_cthulhu_leaves
+				}
+				value = -200 # big weight - disheartened cultists
+			}
+		}					
+	}
+	
+	monarch_weight = {
+		value = 1.0
+	}	
+	
+	agitator_weight = {
+		# Agitators more likely to come from populist IG's rather than elitist
+		value = 3.0
+		# Agitators will never be part of a marginalized IG
+		if = {
+			limit = {
+				owner.ig:ig_nda_cult_worshippers = {
+					is_marginal = yes
+				}
+			}
+			multiply = {
+				value = 0
+			}
+		}
+	}
+
+	commander_weight = {
+		value = 1.0
+	}	
+	
+	noble_chance = {
+		value = 0.5
+	}
+	
+	female_commander_chance = {	
+		value = 0.5
+	}
+	
+	female_politician_chance = {
+		value = 0.35
+
+		if = {
+			limit = {
+				owner = {
+					has_law = law_type:law_women_own_property
+				}
+				
+			}
+			add = {
+				value = 0.05
+			}
+		}
+
+		if = {
+			limit = {
+				owner = {
+					has_law = law_type:law_women_in_the_workplace
+				}
+				
+			}
+			add = {
+				value = 0.05
+			}
+		}
+
+		if = {
+			limit = {
+				owner = {
+					has_law = law_type:law_womens_suffrage
+				}
+				
+			}
+			add = {
+				value = 0.05
+			}
+		}
+	}
+
+	female_agitator_chance = {
+		value = 0.35
+
+		if = {
+			limit = {
+				owner = {
+					has_law = law_type:law_women_own_property
+				}
+				
+			}
+			add = {
+				value = 0.05
+			}
+		}
+
+		if = {
+			limit = {
+				owner = {
+					has_law = law_type:law_women_in_the_workplace
+				}
+				
+			}
+			add = {
+				value = 0.05
+			}
+		}
+
+		if = {
+			limit = {
+				owner = {
+					has_law = law_type:law_womens_suffrage
+				}
+				
+			}
+			add = {
+				value = 0.05
+			}
+		}
+	}
+
+	# The chance that a commander belonging to this IG takes over leadership when it changes
+	# scope:character is the most popular commander in the IG
+	commander_leader_chance = {
+		value = 0.25
+		if = {
+			limit = {
+				exists = scope:character
+			}
+			multiply = {
+				value = 1
+				add = scope:character.popularity
+				min = 0
+			}
+			# also mod by cult traits? or is their effect on popularity enough? - do commanders ever get these traits
+		}
+	}
+}
