@@ -43,13 +43,21 @@ mobilization_option_nda_ares_death_ray_desc: "...its impact was marked by flashe
 
 # IGs
 ig_ares_landowners: "Eloi"
+ig_ares_landowners_desc: "Eloi"
 ig_ares_trade_unions: "Morlocks"
+ig_ares_trade_unions_desc: "Morlocks"
 ig_ares_rural_folk: "Harvesters"
+ig_ares_rural_folk_desc: "Harvesters"
 ig_ares_intelligentsia: "The Great Minds"
+ig_ares_intelligentsia_desc: "The Great Minds"
 ig_ares_petty_bourgeoisie: "The Small Minds"
+ig_ares_petty_bourgeoisie_desc: "The Small Minds"
 ig_ares_devout: "Heretics"
-ig_ares_armed_forces: ""
-ig_ares_industrialists: ""
+ig_ares_devout_desc: "Heretics"
+ig_ares_armed_forces: "Warriors"
+ig_ares_armed_forces_desc: "Warriors"
+ig_ares_industrialists: "Mechanists"
+ig_ares_industrialists_desc: "Mechanists"
 
 # Strategies
 ai_strategy_nda_ares_administrative_agenda: "Martian Admin"
@@ -68,3 +76,7 @@ nda_ares_state_red_lands_modifier: "Red Lands"
 nda_ares_generator_defense_modifier: "Generator Defenses"
 nda_ares_generator_occupation_speed: "Generator Defenses"
 nda_ares_first_landing_modifier: "Mars Attacks"
+
+# NDA Localisations
+nda_investigator: "Occult Investigator"
+building_nda_miskatonic_university: "Miskatonic University"

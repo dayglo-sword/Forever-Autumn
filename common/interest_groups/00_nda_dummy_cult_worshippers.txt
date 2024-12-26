@@ -5,7 +5,7 @@
 	index = 8
 
 	ideologies = {
-		ideology_nda_cabalistic
+		ideology_pious
 		ideology_reactionary
 		ideology_patriotic
 	}

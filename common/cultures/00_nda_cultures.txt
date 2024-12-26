@@ -5,13 +5,13 @@ nda_cul_cultist={
 	traits = { }
 	
 	male_common_first_names={
-		
+		ak
 	}
 	female_common_first_names = {
-		
+		ak	
 	}
 	common_last_names={
-
+		ak
 	}
 
 	noble_last_names = {
@@ -45,13 +45,13 @@ nda_cul_yigian={
 	traits = { }
 	
 	male_common_first_names={
-
+		ak
 	}
 	female_common_first_names = {
-
+		ak
 	}
 	common_last_names={
-
+		ak
 	}
 
 	noble_last_names = {
@@ -87,13 +87,13 @@ nda_cul_dagonic={
 	traits = { }
 	
 	male_common_first_names={
-
+		ak
 	}
 	female_common_first_names = {
-
+		ak
 	}
 	common_last_names={
-
+		ak
 	}
 
 	noble_last_names = {

@@ -6,6 +6,8 @@ on_monthly_pulse_country = {
 	on_actions = {
 		nda_ares_monthly_on_action	
 		nda_ares_monthly_hostile_on_action 
+		nda_ares_monthly_ares_exiles
+
 	}
 }
 
@@ -16,6 +18,7 @@ nda_ares_monthly_on_action = {
 		nda_ares.10 # 1842
 		#nda_ares.11 # 1901
 		#nda_ares.12 # 1936
+		nda_ares.13 # 1836
 		nda_ares.20
 	}
 	random_events = {
@@ -28,29 +31,30 @@ nda_ares_monthly_on_action = {
 				c:NDA_ARES ?= THIS			
 			}
 
-			# add generator - do before 'convert state' to slow things down a bit
-			random_scope_state = {
-				limit = {
-					NOT = { has_building = building_nda_ares_generators }
-					has_modifier = 	nda_ares_state_red_lands_modifier	
-					total_urbanization > 150 # urbanised only - must be city to show generator model?
-					is_incorporated = yes
-					culture_percent_state = {  
-						target = cu:nda_cul_aresian  
-						value >= 0.5 # at least 50% Martains  
-					}  
-				}
+			# UNDO
+			# # add generator - do before 'convert state' to slow things down a bit
+			# random_scope_state = {
+			# 	limit = {
+			# 		NOT = { has_building = building_nda_ares_generators }
+			# 		has_modifier = 	nda_ares_state_red_lands_modifier	
+			# 		total_urbanization > 150 # urbanised only - must be city to show generator model?
+			# 		is_incorporated = yes
+			# 		culture_percent_state = {  
+			# 			target = cu:nda_cul_aresian  
+			# 			value >= 0.5 # at least 50% Martains  
+			# 		}  
+			# 	}
 
-				# add generator building 
-				create_building={
-					building = "building_nda_ares_generators" 
-					level=1
-				}	
+			# 	# add generator building 
+			# 	create_building={
+			# 		building = "building_nda_ares_generators" 
+			# 		level=1
+			# 	}	
 				
-				debug_log = "New Generator"
-				save_scope_as = nda_ares_generator_location
+			# 	debug_log = "New Generator"
+			# 	save_scope_as = nda_ares_generator_location
 
-			}
+			# }
 
 			if = {
 				limit = { exists = scope:nda_ares_generator_location }
@@ -184,106 +188,6 @@ nda_ares_monthly_on_action = {
 	}
 }
 
-on_monthly_pulse_state = {
-	on_actions = {
-		nda_ares_monthly_plague_on_action
-		nda_ares_monthly_state_conversion_on_action	
-		nda_ares_monthly_cull_on_action
-	}
-}
-
-nda_ares_monthly_state_conversion_on_action = {
-	# state level ongoing religious and population conversions
-	effect = {
-		if = {
-			limit = { 
-				c:NDA_ARES ?= owner				
-				#owner = c:NDA_ARES	
-			}
-			if = {
-				limit = {
-					culture_percent_state = {
-						target = cu:nda_cul_aresian
-						value < 0.5
-					  }
-				}
-				kill_population_percent_in_state = {  percent = 0.10 }	# can't fine tune it to non-martian, but conversion below should ensure Martain levels remain increasing			
-			}
-
-			if = { # very recently conquered 
-				limit = {
-					culture_percent_state = {
-						target = cu:nda_cul_aresian
-						value < 0.1
-					  }
-				}
-				kill_population_percent_in_state = {  percent = 0.50 }				
-			}
-
-			convert_population = { target = rel:atheist value = 0.10  }	
-
-			every_scope_pop = {
-				limit = {
-					NOT = { 
-						culture = cu:nda_cul_aresian
-					}
-				}
-
-				change_pop_culture = { target = cu:nda_cul_aresian value = 0.10 }			
-			}
-		}
-	}
-}
-
-nda_ares_monthly_plague_on_action = {
-	# bad things should happen to Martians if 'Spanish Flu' or NDA 'Red Death' around - in addition to the usual
-	effect = {
-		if = {
-			limit = { 
-				c:NDA_ARES ?= owner				
-				has_modifier = plague_modifier
-			}
-
-			kill_population_percent_in_state = {
-				culture = cu:nda_cul_aresian
-				percent = 0.10 	
-			}
-
-			state_region = {
-				add_devastation = 10
-			}
-		}
-	}
-}
-
-nda_ares_monthly_cull_on_action = {
-	effect = {
-		if = {
-			limit = {
-				c:NDA_ARES ?= controller
-				NOT = { c:NDA_ARES ?= owner }
-			}
-
-			kill_population_percent_in_state = {  percent = 0.20 }
-
-			state_region = {
-					add_devastation = 20
-			}
-		
-			if = {
-				limit = { devastation > 0.70 } # is a % !!
-				set_state_owner = c:NDA_ARES				
-			}
-
-		}
-	}
-}
-# on_half_yearly_pulse_country = {
-# 	on_actions = {
-# 		nda_ares_half_yearly_on_action	
-# 	}
-# }
-
 nda_ares_monthly_hostile_on_action = {
 	effect = {
 		if = {
@@ -390,6 +294,144 @@ nda_ares_monthly_hostile_on_action = {
 		}
 	}
 }
+
+nda_ares_monthly_ares_exiles = {
+	# state level ongoing religious and population conversions
+	effect = {
+		if = {
+			limit = { 
+				NOT = { c:NDA_ARES ?= owner	}
+				any_scope_pop = {
+					culture =  cu:nda_cul_aresian
+				}
+			}
+
+			owner = {
+				add_radicals = {
+					culture =  cu:nda_cul_aresian
+					value = 1
+				}					
+			}	
+		}
+	}
+}
+
+on_monthly_pulse_state = {
+	on_actions = {
+		nda_ares_monthly_plague_on_action
+		nda_ares_monthly_state_conversion_on_action	
+		nda_ares_monthly_cull_on_action
+
+	}
+}
+
+nda_ares_monthly_state_conversion_on_action = {
+	# state level ongoing religious and population conversions
+	effect = {
+		if = {
+			limit = { 
+				c:NDA_ARES ?= owner				
+				#owner = c:NDA_ARES	
+			}
+			if = {
+				limit = {
+					culture_percent_state = {
+						target = cu:nda_cul_aresian
+						value < 0.5
+					}				  
+				}
+				kill_population_percent_in_state = {  percent = 0.10 }	# can't fine tune it to non-martian, but conversion below should ensure Martain levels remain increasing			
+			}
+
+			if = { # very recently conquered 
+				limit = {
+					culture_percent_state = {
+						target = cu:nda_cul_aresian
+						value < 0.1
+					  }
+				}
+				kill_population_percent_in_state = {  percent = 0.50 }				
+			}
+
+			convert_population = { target = rel:atheist value = 0.10  }	
+
+			every_scope_pop = {
+				limit = {
+					NOT = { culture = cu:nda_cul_aresian }
+					#NOT = { is_pop_type = slaves  } # keep slaves
+				}
+
+				change_pop_culture = { target = cu:nda_cul_aresian value = 0.10 }			
+			}
+		}
+	}
+}
+
+nda_ares_monthly_plague_on_action = {
+	# bad things should happen to Martians if 'Spanish Flu' or NDA 'Red Death' around - in addition to the usual
+	effect = {
+		if = {
+			limit = { 
+				c:NDA_ARES ?= owner		
+				OR = {
+					has_modifier = plague_modifier					
+					has_modifier = nda_red_death_modifier
+				}		
+			}
+
+			kill_population_percent_in_state = {
+				culture = cu:nda_cul_aresian
+				percent = 0.10 	
+			}
+
+			state_region = {
+				add_devastation = 10
+			}
+		}
+	}
+}
+
+nda_ares_monthly_cull_on_action = {
+	effect = {
+		if = {
+			limit = {
+				c:NDA_ARES ?= controller
+				NOT = { c:NDA_ARES ?= owner }
+
+
+			}
+
+			if = {
+				limit = {
+					culture_percent_state = { # don't kill off Martians
+						target = cu:nda_cul_aresian
+						value < 0.5
+					}
+				}
+
+				kill_population_percent_in_state = {  percent = 0.20 }				
+			}
+
+			state_region = {
+					add_devastation = 20
+			}
+		
+			if = {
+				limit = { devastation > 0.70 } # is a % !!
+				set_state_owner = c:NDA_ARES				
+			}
+
+		}
+	}
+}
+
+# on_half_yearly_pulse_country = {
+# 	on_actions = {
+# 		nda_ares_half_yearly_on_action	
+# 	}
+# }
+
+
 
 on_character_creation = {
 	on_actions = {

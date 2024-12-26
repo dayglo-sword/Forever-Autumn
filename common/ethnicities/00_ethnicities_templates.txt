@@ -1010,13 +1010,13 @@ ethnicity_template = {
         10 = { name = no_mustache       range = { 0.0 1.0 } }
 	}
 
-    NDA_gene_skin_color = {
-        100 = { name = normal_skin      range = { 0.0 1.0 }}
-        # 10 = {  name = green_skin       range = { 0.0 1.0 } }
-        # 10 = {  name = red_skin       range = { 0.0 1.0 } }
-        # 10 = {  name = blue_skin       range = { 0.0 1.0 } }
-        # 30 = {  name = random_skin      range = { 0.0 1.0} }
-    }
+    # NDA_gene_skin_color = {
+    #     100 = { name = normal_skin      range = { 0.0 1.0 }}
+    #     # 10 = {  name = green_skin       range = { 0.0 1.0 } }
+    #     # 10 = {  name = red_skin       range = { 0.0 1.0 } }
+    #     # 10 = {  name = blue_skin       range = { 0.0 1.0 } }
+    #     # 30 = {  name = random_skin      range = { 0.0 1.0} }
+    # }
 
 	# coats = {
 	# 	10 = { name = prussian_coats		range = { 0.0 1.0 } }
