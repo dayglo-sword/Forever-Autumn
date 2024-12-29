@@ -62,13 +62,13 @@ nda_ares.1 = { # The chances of anything manlike on Mars
 	}
 
 	option = {
-		name = nda_ares.1.d
+		name = nda_ares.1.e
 		default_option = yes
 		set_global_variable = nda_ares_immediate_invasion
 		ai_chance = { 
 			base = 0
 		}
-		custom_tooltip = nda_ares.1.d.tt
+		custom_tooltip = nda_ares.1.e.tt
 
 	}
 }
@@ -188,6 +188,37 @@ nda_ares.3 = { # Opposition of 1894 - August 2nd - two further oppositions (1896
 	
 	option = {
 		name = nda_ares.3.a
+		default_option = yes
+	}
+
+}
+
+nda_ares.5 = { # Main Invasion Notification
+	type = country_event
+	placement = ROOT
+	title = nda_ares.5.t
+	desc = nda_ares.5.d
+	flavor =  nda_ares.5.f
+
+	duration = 3
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_christianity.bk2"		
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+
+	immediate = {
+		
+		debug_log = "Ares -Global Notification of Invasion"
+	}	
+	
+	option = {
+		name = nda_ares.5.a
 		default_option = yes
 	}
 
@@ -990,6 +1021,7 @@ nda_ares.13 = { # Immediate Landing (1836)
 					every_scope_pop = {
 						limit = { religion = rel:atheist }
 						change_pop_culture = { target = cu:nda_cul_aresian value = 1 }		
+						#change_pop_culture = { target = cu:amazonian value = 1 }		
 					}
 
 					# add generator building - should be landing sites then upgrade to generators?
@@ -1077,7 +1109,11 @@ nda_ares.13 = { # Immediate Landing (1836)
 			}
 			change_relations = { country = c:NDA_ARES value = -150 } # is this too much ?
 
-			# notify the world
+			# notify the world - use event
+			IF = { 
+				limit = { NOT = { THIS ?= scope:nda_ares_first_victim } is_player = yes} 
+				trigger_event = { id = nda_ares.5 } 
+			}
 
 			# panic stations
 			add_radicals = { 
@@ -1105,12 +1141,6 @@ nda_ares.13 = { # Immediate Landing (1836)
 				war = yes 
 				
 				type = dp_annex_war # dp_conquer_state - can't be done ??
-
-				# add_war_goal = {
-				# 	holder = c:NDA_ARES
-				# 	type = conquer_state
-				# 	target_state = p:x7543C8.state #  London
-				# }
 			}
 			
 			# every_scope_war = {
@@ -1134,6 +1164,8 @@ nda_ares.13 = { # Immediate Landing (1836)
 					value = -0.2
 				}				
 			}
+
+			set_variable = nda_ares_first_victim_var
 			# every_scope_cobelligerent = {
 			# 	# panic stations
 			# 	add_radicals = { 

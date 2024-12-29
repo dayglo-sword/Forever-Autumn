@@ -16,10 +16,10 @@ nda_ares_monthly_on_action = {
 		nda_ares.2 # Crystal Egg
 		nda_ares.3 # In Opposition
 		nda_ares.10 # 1842
-		#nda_ares.11 # 1901
-		#nda_ares.12 # 1936
+		nda_ares.11 # 1901
+		nda_ares.12 # 1936
 		nda_ares.13 # 1836
-		nda_ares.20
+		#nda_ares.20
 	}
 	random_events = {
 	
@@ -32,29 +32,34 @@ nda_ares_monthly_on_action = {
 			}
 
 			# UNDO
-			# # add generator - do before 'convert state' to slow things down a bit
-			# random_scope_state = {
-			# 	limit = {
-			# 		NOT = { has_building = building_nda_ares_generators }
-			# 		has_modifier = 	nda_ares_state_red_lands_modifier	
-			# 		total_urbanization > 150 # urbanised only - must be city to show generator model?
-			# 		is_incorporated = yes
-			# 		culture_percent_state = {  
-			# 			target = cu:nda_cul_aresian  
-			# 			value >= 0.5 # at least 50% Martains  
-			# 		}  
-			# 	}
+			# add generator - do before 'convert state' to slow things down a bit
+			random_scope_state = {
+				limit = {
+					NOT = { 
+						OR = { 
+							has_building = building_nda_ares_generator_ruins # don't rebuild if ruined???
+							has_building = building_nda_ares_generators 
+						}
+					}
+					has_modifier = 	nda_ares_state_red_lands_modifier	
+					total_urbanization > 150 # urbanised only - must be city to show generator model?
+					is_incorporated = yes
+					culture_percent_state = {  
+						target = cu:nda_cul_aresian  
+						value >= 0.5 # at least 50% Martains  
+					}  
+				}
 
-			# 	# add generator building 
-			# 	create_building={
-			# 		building = "building_nda_ares_generators" 
-			# 		level=1
-			# 	}	
+				# add generator building 
+				create_building={
+					building = "building_nda_ares_generators" 
+					level=1
+				}	
 				
-			# 	debug_log = "New Generator"
-			# 	save_scope_as = nda_ares_generator_location
+				debug_log = "New Generator"
+				save_scope_as = nda_ares_generator_location
 
-			# }
+			}
 
 			if = {
 				limit = { exists = scope:nda_ares_generator_location }
@@ -94,13 +99,16 @@ nda_ares_monthly_on_action = {
 			add_treasury = 50000
 			add_investment_pool = 10000
 
-			# release puppets or just add lots of radicals? - can be loyal due to strategy?
-			random_subject_or_below = {
+			# release puppets or just add lots of radicals? - can be loyal due to strategy? - need to do quicker
+			ordered_subject_or_below = {
 				limit = { 					
 					is_subject_of = ROOT
 					is_player = no
 					is_at_war = no
 				}
+
+				order_by =  { subtract = global_country_ranking } # bigest first
+				position = 0
 				# breakaway
 				make_independent = yes
 				change_relations = { country = c:NDA_ARES value = -200 }
@@ -180,7 +188,10 @@ nda_ares_monthly_on_action = {
 				remove_building = "building_nda_ares_generators" 	
 
 				# add ruin as replacement
-				
+				create_building={
+					building = "building_nda_ares_generator_ruins" 
+					level=1
+				}
 
 				remove_modifier = nda_ares_state_red_lands_modifier
 			}	
@@ -296,7 +307,7 @@ nda_ares_monthly_hostile_on_action = {
 }
 
 nda_ares_monthly_ares_exiles = {
-	# state level ongoing religious and population conversions
+	# state level agitation of Martian exiles - they really shouldn't like this
 	effect = {
 		if = {
 			limit = { 
@@ -306,22 +317,68 @@ nda_ares_monthly_ares_exiles = {
 				}
 			}
 
-			owner = {
-				add_radicals = {
-					culture =  cu:nda_cul_aresian
-					value = 1
-				}					
-			}	
+			if = {
+				limit = { country_has_primary_culture = cu:nda_cul_aresian }
+
+				owner = {
+					add_radicals = {
+						culture =  cu:nda_cul_aresian
+						value = 0.2
+					}					
+				}
+			}
+			else = {
+				owner = {
+					add_radicals = {
+						culture =  cu:nda_cul_aresian
+						value = 1
+					}					
+				}				
+			}
+	
 		}
+	}
+}
+
+nda_ares_monthly_first_victim_exiles = {
+	# Government in exile for firsat victim - doesn't work when 'on_wargoal_enforced'
+	effect = {
+		# if = {
+		# 	limit = { 
+		# 		NOT = { c:NDA_ARES ?= owner	}
+		# 		any_scope_pop = {
+		# 			culture =  cu:nda_cul_aresian
+		# 		}
+		# 	}
+
+		# 	if = {
+		# 		limit = { country_has_primary_culture = cu:nda_cul_aresian }
+
+		# 		owner = {
+		# 			add_radicals = {
+		# 				culture =  cu:nda_cul_aresian
+		# 				value = 0.2
+		# 			}					
+		# 		}
+		# 	}
+		# 	else = {
+		# 		owner = {
+		# 			add_radicals = {
+		# 				culture =  cu:nda_cul_aresian
+		# 				value = 1
+		# 			}					
+		# 		}				
+		# 	}
+	
+		# }
 	}
 }
 
 on_monthly_pulse_state = {
 	on_actions = {
+		nda_ares_monthly_state_conversion_on_action			
 		nda_ares_monthly_plague_on_action
-		nda_ares_monthly_state_conversion_on_action	
 		nda_ares_monthly_cull_on_action
-
 	}
 }
 
@@ -358,7 +415,7 @@ nda_ares_monthly_state_conversion_on_action = {
 			every_scope_pop = {
 				limit = {
 					NOT = { culture = cu:nda_cul_aresian }
-					#NOT = { is_pop_type = slaves  } # keep slaves
+					NOT = { is_pop_type = slaves  } # keep slaves
 				}
 
 				change_pop_culture = { target = cu:nda_cul_aresian value = 0.10 }			
@@ -375,7 +432,7 @@ nda_ares_monthly_plague_on_action = {
 				c:NDA_ARES ?= owner		
 				OR = {
 					has_modifier = plague_modifier					
-					has_modifier = nda_red_death_modifier
+					#has_modifier = nda_red_death_modifier # is now environmental effect in base game - need copy for compat
 				}		
 			}
 
@@ -451,7 +508,7 @@ nda_ares_character_creation_on_action = {
 		}
 
 		# remove as investigator if auto generated
-		remove_trait = nda_investigator # does cause 'post validate' error in logs if NDA not loaded
+		#remove_trait = nda_investigator # does cause 'post validate' error in logs if NDA not loaded
 	}
 }
 # check that characters such as those in exile have appropriate ideology - does it work on agitators and generals?? renders conversion events obsolete?
@@ -474,102 +531,186 @@ nda_ares_half_yearly_pulse_character_on_action = {
 	}	
 }
 
-# following 'defenses' based on https://github.com/1230james/vic3-forts-and-engineers/blob/master/common/on_actions/FAE_on_actions.txt
-# but vastly simplified to be non dynamic
+# on_war_end = {
+# 	on_actions = {
+# 		nda_ares_conquest_on_action	
+# 	}
+# }
 
-# Root = attacker or defender country
-# scope:battle = battle
-# scope:attacker = attacking commander
-# scope:defender = defending commander
-# scope:state = location state
-on_battle_started = {
-    on_actions = {
-        nda_ares_on_battle_started
-    }
-}
+# # Root = Diplomatic Play
+# # scope:actor = Initiator country
+# # scope:target = Target country
+# nda_ares_conquest_on_action = {
+# 	effect = {
+# 		if = {
+# 			limit = {
+# 				c:NDA_ARES ?= scope:actor # Martians have won
+# 				# goal was to annex
+# 				scope:target = { has_variable = nda_ares_first_victim_var }
+# 				ROOT = { type = play_type:dp_annex_war }
+# 			}
+			
+# 			debug_log = "Initial Invasion Ended"
 
-nda_ares_on_battle_started = {
-   effect = {
-    #    if = {
-	# 		limit = {
-    #            scope:state ?= {
-	# 				has_building = building_nda_ares_generators
-	# 				c:NDA_ARES ?= owner 
-    #             #    OR = {
-    #             #        owner = scope:defender.owner
-	# 			# 	   c:NDA_ARES ?= owner # captured/bugged genrators don't count
-    #             #    }
-    #            }
+# 			# release largest puppet if it exists and rename 'New <Country>'
+# 			# release puppets or just add lots of radicals? - can be loyal due to strategy? - need to do quicker
+# 			scope:target = { # does this still exist? - have exile event instead that triggers when negative war score.
+# 				debug_log = "Target Country : [THIS.GetCountry.GetNameNoFormatting]"
+
+# 				ruler = { save_scope_as = nda_ares_exiled_ruler }
+# 				if = { limit = { exists = heir }
+# 					heir = { save_scope_as = nda_ares_exiled_heir }
+# 				}
 				
-	# 			scope:defender = {
-	# 				NOT = {
-	# 					has_modifier = nda_ares_generator_defense_modifier
-	# 				}
-	# 				c:NDA_ARES ?= owner 
-	# 			}
-	# 		}
+# 				ordered_subject_or_below = {
+# 					limit = { 					
+# 						is_subject_of = PREV
+# 						is_player = no
+# 					}
+# 					position = 0
+# 					order_by =  { subtract = global_country_ranking }
 
-	# 		debug_log = "Generator Boost to Defenders"			
-	# 		scope:defender = {
-	# 			add_modifier = { name = nda_ares_generator_defense_modifier }
-	# 		}
+# 					debug_log = "New Home Country : [THIS.GetCountry.GetNameNoFormatting]"
+# 					# breakaway
+# 					make_independent = yes
+# 					change_relations = { country = c:NDA_ARES value = -200 }
 
-	# 		scope:attacker ?= {
-	# 			if = {
-	# 				limit = {
-	# 					NOT = { has_modifier = nda_ares_generator_occupation_speed }
-	# 					NOT = { c:NDA_ARES ?= owner }
-	# 				}
-	# 				add_modifier = {
-	# 					name       = nda_ares_generator_occupation_speed
-	# 				}
-	# 			}
-	# 		}			
-	# 	}
-	}
-}
+# 					# Diplo Catalyst - try and create anti-invasion lobbies
+# 					create_diplomatic_catalyst = {  
+# 						type = catalyst_event_negative
+# 						target = c:NDA_ARES
+# 					}
+					
+# 					set_variable = nda_ares_country_in_exile
 
-# Root = attacker or defender country
-# scope:battle = battle
-# scope:attacker = attacking commander
-# scope:defender = defending commander
-# scope:state = location state
-on_battle_ended = {
-    on_actions = {
-        nda_ares_on_battle_ended
-		delay = { days = 1 } # lets see if this works rather than event delay	
-		nda_ares_on_battle_aftermath
-    }
-}
+# 					# only do if monarcy??
 
-nda_ares_on_battle_ended = {
-    effect = {        
-        scope:defender ?= {
-            if = {
-                limit = {
-                    has_modifier = nda_ares_generator_defense_modifier
-                }
-                remove_modifier = nda_ares_generator_defense_modifier
-            }
-        }
-    }
-}
+# 					# transfer rulers and heirs
+# 					if = { 
+# 						limit = { exists = scope:nda_ares_exiled_ruler }
+# 						scope:nda_ares_exiled_ruler = {
+# 							transfer_character = PREV
+# 							set_character_as_ruler = yes							
+# 						}
+# 					}
 
-nda_ares_on_battle_aftermath = {
-    effect = {
-		scope:attacker ?= {
-            if = {
-                limit = {
-                    is_in_battle = no
-                }
+# 					if = { 
+# 						limit = { exists = scope:nda_ares_exiled_heir }
+# 						scope:nda_ares_exiled_heir = { transfer_character = PREV }
+# 						PREV = { set_heir =  scope:nda_ares_exiled_heir }
+# 					}
+
+# 					# transfer or exile government
+# 					change_tag = NEN # Have new Tag for Exile
+
+# 					# save_scope_as = nda_ares_freedom
+# 					# # send notification
+# 					# every_country = {
+# 					# 	post_notification = nda_ares_country_freedom
+# 					# }
+
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+
+# # following 'defenses' based on https://github.com/1230james/vic3-forts-and-engineers/blob/master/common/on_actions/FAE_on_actions.txt
+# # but vastly simplified to be non dynamic
+
+# # Root = attacker or defender country
+# # scope:battle = battle
+# # scope:attacker = attacking commander
+# # scope:defender = defending commander
+# # scope:state = location state
+# # on_battle_started = {
+# #     on_actions = {
+# #         nda_ares_on_battle_started
+# #     }
+# # }
+
+# nda_ares_on_battle_started = {
+#    effect = {
+#     #    if = {
+# 	# 		limit = {
+#     #            scope:state ?= {
+# 	# 				has_building = building_nda_ares_generators
+# 	# 				c:NDA_ARES ?= owner 
+#     #             #    OR = {
+#     #             #        owner = scope:defender.owner
+# 	# 			# 	   c:NDA_ARES ?= owner # captured/bugged genrators don't count
+#     #             #    }
+#     #            }
+				
+# 	# 			scope:defender = {
+# 	# 				NOT = {
+# 	# 					has_modifier = nda_ares_generator_defense_modifier
+# 	# 				}
+# 	# 				c:NDA_ARES ?= owner 
+# 	# 			}
+# 	# 		}
+
+# 	# 		debug_log = "Generator Boost to Defenders"			
+# 	# 		scope:defender = {
+# 	# 			add_modifier = { name = nda_ares_generator_defense_modifier }
+# 	# 		}
+
+# 	# 		scope:attacker ?= {
+# 	# 			if = {
+# 	# 				limit = {
+# 	# 					NOT = { has_modifier = nda_ares_generator_occupation_speed }
+# 	# 					NOT = { c:NDA_ARES ?= owner }
+# 	# 				}
+# 	# 				add_modifier = {
+# 	# 					name       = nda_ares_generator_occupation_speed
+# 	# 				}
+# 	# 			}
+# 	# 		}			
+# 	# 	}
+# 	}
+# }
+
+# # Root = attacker or defender country
+# # scope:battle = battle
+# # scope:attacker = attacking commander
+# # scope:defender = defending commander
+# # scope:state = location state
+# on_battle_ended = {
+#     on_actions = {
+#         nda_ares_on_battle_ended
+# 		delay = { days = 1 } # lets see if this works rather than event delay	
+# 		nda_ares_on_battle_aftermath
+#     }
+# }
+
+# nda_ares_on_battle_ended = {
+#     effect = {        
+#         scope:defender ?= {
+#             if = {
+#                 limit = {
+#                     has_modifier = nda_ares_generator_defense_modifier
+#                 }
+#                 remove_modifier = nda_ares_generator_defense_modifier
+#             }
+#         }
+#     }
+# }
+
+# nda_ares_on_battle_aftermath = {
+#     effect = {
+# 		scope:attacker ?= {
+#             if = {
+#                 limit = {
+#                     is_in_battle = no
+#                 }
                 
-                if = {
-                    limit = {
-                        has_modifier = nda_ares_generator_occupation_speed
-                    }
-                    remove_modifier = nda_ares_generator_occupation_speed
-                }
-            }
-        }
-    }
-}
+#                 if = {
+#                     limit = {
+#                         has_modifier = nda_ares_generator_occupation_speed
+#                     }
+#                     remove_modifier = nda_ares_generator_occupation_speed
+#                 }
+#             }
+#         }
+#     }
+# }

@@ -1,245 +1,336 @@
-﻿ig_nda_cult_worshippers = {
-	color = hsv{ 0.30 0.10 0.47 }
-	texture = "gfx/interface/icons/ig_icons/nda_cult.dds"
-	layer = "revolution_dynamic_armed_forces" # need custom but sound complicated
-	index = 8
+﻿# ig_nda_cult_worshippers = {
+# 	color = hsv{ 0.30 0.10 0.47 }
+# 	texture = "gfx/interface/icons/ig_icons/nda_cult.dds"
+# 	layer = "revolution_dynamic_armed_forces" # need custom but sound complicated
+# 	index = 8
 
-	ideologies = {
-		ideology_pious
-		ideology_reactionary
-		ideology_patriotic
-	}
+# 	ideologies = {
+# 		ideology_nda_cabalistic
+# 		ideology_reactionary
+# 		ideology_patriotic
+# 	}
 	
-	enable = {
-		always = no
-	}
+# 	enable = {
+# 		# have percentage of religion so that early 0% does not occur
+# 		OR = {
+# 			religion_percent_country = { target = rel:nda_rel_cultist value > 0.01 }
+# 			religion_percent_country = { target = rel:nda_rel_yigian value > 0.01 }			
+# 		}
+
+# 	}
 	
-	# Deprecated; use on_enable effect to assign traits instead
-	traits = {
-		ig_trait_be_fruitful_and_multiply
-		ig_trait_family_ties
-		ig_trait_pious_fiction
-	}	
-	
-	on_enable = {
+# 	on_enable = {
+# 		# add as powerbrokers ? this just makes them happy? - nothing to do with adding power - current scope is country??
+# 		debug_log = "Enable IG Cultists : [THIS.GetCountry.GetNameNoFormatting]" 
 
-	}
-
-	on_disable = {}
-	on_character_ig_membership = {
-
-
-	}
+# 		ig:ig_nda_cult_worshippers = {
 			
-	pop_potential = {
+# 			set_ig_trait = ig_trait:ig_trait_pious_fiction
+# 			set_ig_trait = ig_trait:ig_trait_family_ties
+# 			set_ig_trait = ig_trait:ig_trait_be_fruitful_and_multiply
+
+# 			IF = {
+# 				limit = { 
+# 					NOT = { has_global_variable = nda_ritual_cthulhu_leaves }	
+					
+# 					NOT = { has_modifier = nda_ig_secret_masters_modifier } 
+# 				}
+# 				add_modifier = {
+# 					name = nda_ig_secret_masters_modifier
+# 				}
+# 			}
+# 			ELSE_IF = { # Post Cthulhu Debuff
+# 				limit = { 
+# 					has_global_variable = nda_ritual_cthulhu_leaves	
+					
+# 					NOT = { has_modifier = nda_ig_cult_crisis_modifier } 
+# 				}
+# 				add_modifier = {
+# 					name = nda_ig_cult_crisis_modifier 
+# 				}
+# 			}
+# 			# set leader to have appropriate traits
+# 			leader ?= {
+# 				IF = {
+# 					limit = { 
+# 						has_any_cultist_trait = no 
+# 					}
+# 					add_trait = nda_cultist	
+# 					remove_trait = nda_investigator 
+# 				}
+
+# 				nda_effect_ensure_cult_ideology = yes			
+# 			}
+# 			# do name changes for countries
+# 			if = {
+# 				limit = {
+# 					exists = c:LEN
+# 					owner = c:LEN				
+# 				}
+# 				set_interest_group_name = ig_nda_chaugnar_faugn_cult
+# 			}
+# 			if = {
+# 				limit = {
+# 					exists = c:NEN
+# 					owner = c:NEN				
+# 				}
+# 				set_interest_group_name = ig_nda_starry_wisdom_cult
+# 			}
+# 			if = {
+# 				limit = {
+# 					exists = c:BAV
+# 					owner = c:BAV				
+# 				}
+# 				set_interest_group_name = ig_nda_illuminati_cult
+# 			}
+# 			if = {
+# 				limit = {
+# 					OR = {
+# 						c:GBR ?= owner
+# 						c:USA ?= owner
+# 						c:SCO ?= owner
+# 						c:CAN ?= owner
+# 					}			
+# 				}
+# 				set_interest_group_name = ig_nda_grand_lodges
+# 			}
+			
+# 		}
+# 	}
+
+# 	on_disable = {}
+
+# 	priority_cultures = { #Country scope
+# 		rule = {
+# 			trigger = {
+# 				has_cult_culture = yes
+# 			}
+# 			cultures = {
+# 				nda_cul_cultist nda_cul_yigian nda_cul_dagonic
+# 			}
+# 		}
+# 	}
+
+# 	on_character_ig_membership = {
+# 		#change_character_religion = scope:interest_group.owner.religion
+# 		IF = {
+# 			limit = { 
+# 				has_any_cultist_trait = no 
+# 			}
+# 			add_trait = nda_cultist	
+# 			remove_trait = nda_investigator 
+# 		}
+
+# 		nda_effect_ensure_cult_ideology = yes	
+# 	}
+			
+# 	pop_potential = {
+# 		#has_state_religion = yes
+# 		custom_tooltip = {
+# 			text = ig_nda_cult_worshippers_potential_tt
+# 			OR = {
+# 				religion = rel:nda_rel_cultist
+# 				religion = rel:nda_rel_yigian
+# 			}	
+# 		}	
+# 	}
 	
-	}
-	
-	pop_weight = {
+# 	pop_weight = {
 
-		# cultists in open
-		value = 0 
+# 		# cultists in open
+# 		value = 0 
 
-		add = {
-			if = {
-				limit = { 
-					owner = {
-						has_variable = nda_cultists_in_open
-					}
-				}
-				value = 400 # big weight - want as many cultist to join as possible	
-			}
-		}
-		add = {
-			desc = "POP_ARISTOCRATS"
-			if = {
-				limit = { 
-					is_pop_type = aristocrats
-				}
-				value = 100
-			}
-		}
+# 		add = {
+# 			if = {
+# 				limit = { 
+# 					owner = {
+# 						has_variable = nda_cultists_in_open
+# 					}
+# 				}
+# 				value = 400 # big weight - want as many cultist to join as possible	
+# 			}
+# 		}
+# 		add = {
+# 			desc = "POP_ARISTOCRATS"
+# 			if = {
+# 				limit = { 
+# 					is_pop_type = aristocrats
+# 				}
+# 				value = 100
+# 			}
+# 		}
 
-		add = {
-			desc = "POP_OFFICERS"
-			if = {
-				limit = { 
-					is_pop_type = officers
-				}
-				value = 50
-			}
-		}
-		add = {
-			desc = "POP_CLERGYMEN"
-			if = {
-				limit = { 
-					is_pop_type = clergymen
-				}
-				value = 50
-			}
-		}	
+# 		add = {
+# 			desc = "POP_OFFICERS"
+# 			if = {
+# 				limit = { 
+# 					is_pop_type = officers
+# 				}
+# 				value = 50
+# 			}
+# 		}
+# 		add = {
+# 			desc = "POP_CLERGYMEN"
+# 			if = {
+# 				limit = { 
+# 					is_pop_type = clergymen
+# 				}
+# 				value = 50
+# 			}
+# 		}	
 
-		add = {
-			desc = "POP_PEASANTS"
-			if = {
-				limit = { 
-					is_pop_type = peasants
-				}
-				value = 100
-			}
-		}								
+# 		add = {
+# 			desc = "POP_PEASANTS"
+# 			if = {
+# 				limit = { 
+# 					is_pop_type = peasants
+# 				}
+# 				value = 100
+# 			}
+# 		}								
 		
-		multiply = {
-			desc = "LEADER_POPULARITY"
-			scope:interest_group = {	
-				if = { 
-					limit = { exists = leader} 			
-					leader ?= {
-						value = popularity
-						multiply = 0.0025
-						add = 1
-						max = 1.25
-						min = 0.75
-					}
-				}
-			}
-		}
-		add = {
-			if = {
-				limit = { 
-					has_global_variable = nda_ritual_cthulhu_leaves
-				}
-				value = -200 # big weight - disheartened cultists
-			}
-		}					
-	}
+# 		multiply = {
+# 			desc = "LEADER_POPULARITY"
+# 			scope:interest_group = {	
+# 				if = { 
+# 					limit = { exists = leader} 			
+# 					leader ?= {
+# 						value = popularity
+# 						multiply = 0.0025
+# 						add = 1
+# 						max = 1.25
+# 						min = 0.75
+# 					}
+# 				}
+# 			}
+# 		}
+# 		add = {
+# 			if = {
+# 				limit = { 
+# 					has_global_variable = nda_ritual_cthulhu_leaves
+# 				}
+# 				value = -200 # big weight - disheartened cultists
+# 			}
+# 		}					
+# 	}
 	
-	monarch_weight = {
-		value = 1.0
-	}	
+# 	monarch_weight = {
+# 		value = 1.0
+# 	}	
 	
-	agitator_weight = {
-		# Agitators more likely to come from populist IG's rather than elitist
-		value = 3.0
-		# Agitators will never be part of a marginalized IG
-		if = {
-			limit = {
-				owner.ig:ig_nda_cult_worshippers = {
-					is_marginal = yes
-				}
-			}
-			multiply = {
-				value = 0
-			}
-		}
-	}
+# 	agitator_weight = {
+# 		# Agitators more likely to come from populist IG's rather than elitist
+# 		value = 3.0
+# 		# Agitators will never be part of a marginalized IG
+# 		if = {
+# 			limit = {
+# 				owner.ig:ig_nda_cult_worshippers = {
+# 					is_marginal = yes
+# 				}
+# 			}
+# 			multiply = {
+# 				value = 0
+# 			}
+# 		}
+# 	}
 
-	commander_weight = {
-		value = 1.0
-	}	
+# 	commander_weight = {
+# 		value = 1.0
+# 	}	
 	
-	noble_chance = {
-		value = 0.5
-	}
+# 	noble_chance = {
+# 		value = 0.5
+# 	}
 	
-	female_commander_chance = {	
-		value = 0.5
-	}
+# 	female_commander_chance = {	
+# 		value = 0.5
+# 	}
 	
-	female_politician_chance = {
-		value = 0.35
+# 	female_politician_chance = {
+# 		value = 0.35
 
-		if = {
-			limit = {
-				owner = {
-					has_law = law_type:law_women_own_property
-				}
+# 		if = {
+# 			limit = {
+# 				owner = {
+# 					has_law = law_type:law_women_own_property
+# 				}
 				
-			}
-			add = {
-				value = 0.05
-			}
-		}
+# 			}
+# 			add = {
+# 				value = 0.05
+# 			}
+# 		}
 
-		if = {
-			limit = {
-				owner = {
-					has_law = law_type:law_women_in_the_workplace
-				}
+# 		if = {
+# 			limit = {
+# 				owner = {
+# 					has_law = law_type:law_women_in_the_workplace
+# 				}
 				
-			}
-			add = {
-				value = 0.05
-			}
-		}
+# 			}
+# 			add = {
+# 				value = 0.05
+# 			}
+# 		}
 
-		if = {
-			limit = {
-				owner = {
-					has_law = law_type:law_womens_suffrage
-				}
+# 		if = {
+# 			limit = {
+# 				owner = {
+# 					has_law = law_type:law_womens_suffrage
+# 				}
 				
-			}
-			add = {
-				value = 0.05
-			}
-		}
-	}
+# 			}
+# 			add = {
+# 				value = 0.05
+# 			}
+# 		}
+# 	}
 
-	female_agitator_chance = {
-		value = 0.35
+# 	female_agitator_chance = {
+# 		value = 0.35
 
-		if = {
-			limit = {
-				owner = {
-					has_law = law_type:law_women_own_property
-				}
+# 		if = {
+# 			limit = {
+# 				owner = {
+# 					has_law = law_type:law_women_own_property
+# 				}
 				
-			}
-			add = {
-				value = 0.05
-			}
-		}
+# 			}
+# 			add = {
+# 				value = 0.05
+# 			}
+# 		}
 
-		if = {
-			limit = {
-				owner = {
-					has_law = law_type:law_women_in_the_workplace
-				}
+# 		if = {
+# 			limit = {
+# 				owner = {
+# 					has_law = law_type:law_women_in_the_workplace
+# 				}
 				
-			}
-			add = {
-				value = 0.05
-			}
-		}
+# 			}
+# 			add = {
+# 				value = 0.05
+# 			}
+# 		}
 
-		if = {
-			limit = {
-				owner = {
-					has_law = law_type:law_womens_suffrage
-				}
+# 		if = {
+# 			limit = {
+# 				owner = {
+# 					has_law = law_type:law_womens_suffrage
+# 				}
 				
-			}
-			add = {
-				value = 0.05
-			}
-		}
-	}
+# 			}
+# 			add = {
+# 				value = 0.05
+# 			}
+# 		}
+# 	}
 
-	# The chance that a commander belonging to this IG takes over leadership when it changes
-	# scope:character is the most popular commander in the IG
-	commander_leader_chance = {
-		value = 0.25
-		if = {
-			limit = {
-				exists = scope:character
-			}
-			multiply = {
-				value = 1
-				add = scope:character.popularity
-				min = 0
-			}
-			# also mod by cult traits? or is their effect on popularity enough? - do commanders ever get these traits
-		}
-	}
-}
+# 	# The chance that a commander belonging to this IG takes over leadership when it changes
+# 	# scope:character is the most popular commander in the IG
+# 	commander_leader_chance = {
+# 		value = 0.25
+# 		multiply = ig_commander_leader_chance_mult
+# 		# also mod by cult traits? or is their effect on popularity enough? - do commanders ever get these traits
+# 	}
+# }
