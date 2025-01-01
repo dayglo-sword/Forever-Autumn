@@ -410,15 +410,20 @@ nda_ares_monthly_state_conversion_on_action = {
 				kill_population_percent_in_state = {  percent = 0.50 }				
 			}
 
-			convert_population = { target = rel:atheist value = 0.10  }	
-
 			every_scope_pop = {
 				limit = {
 					NOT = { culture = cu:nda_cul_aresian }
 					NOT = { is_pop_type = slaves  } # keep slaves
 				}
 
-				change_pop_culture = { target = cu:nda_cul_aresian value = 0.10 }			
+				change_pop_culture = { target = cu:nda_cul_aresian value = 0.10 }							
+			}
+
+			every_scope_pop = {
+				limit = {
+					culture = cu:nda_cul_aresian
+				}
+				change_pop_religion = { target = rel:atheist value = 1 }						
 			}
 		}
 	}
@@ -431,7 +436,8 @@ nda_ares_monthly_plague_on_action = {
 			limit = { 
 				c:NDA_ARES ?= owner		
 				OR = {
-					has_modifier = plague_modifier					
+					has_modifier = plague_modifier
+					state_region = { has_harvest_condition = nda_red_death }					
 					#has_modifier = nda_red_death_modifier # is now environmental effect in base game - need copy for compat
 				}		
 			}

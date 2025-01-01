@@ -1,39 +1,42 @@
-﻿# nda_martian_eyes = {
-# 	usage = game
-# 	selection_behavior = weighted_random
-# 	fallback = no_martian_eyes
+﻿nda_martian_robe = {
+    usage = game
+	selection_behavior = weighted_random
+	fallback = no_martian_robe
 
-#     no_martian_eyes = {
-#         # no stuff needed
-#     }
+    no_martian_robe = {
+        # no stuff needed
+        weight = {
+            base = 0
+        }       
+    }
 
-#     # Martian Eyes
-#     martian_eyes = {
-#         dna_modifiers = {
-#             accessory = {
-#                 mode = replace
-#                 gene = eye_accessory
-#                 template = no_eyes # needed for none strange clipping
-#                 range = { 0 1 } # For the randomness to work correctly
-#             }
-#             accessory = {
-#                 mode = replace
-#                 gene = NDA_eye_accessory 
-#                 template = ares_eyes
-#                 range = { 0.0 1.0 } 
-#             }
-#         }
+    martian_robe= {
+        dna_modifiers = {
+            # add cult robes
+            accessory = {
+                mode = add
+                gene = nda_top_layer
+                template = martian_top_layer
+                range = { 1 1 } # For the randomness to work correctly
+            }
+            accessory = {
+                mode = replace
+                gene = outfits
+                template = peasant_outfits
+                range = { 0 1 } # For the randomness to work correctly
+            }
+        }
 
-#         weight = {
-#             base = 0
-#             modifier = {
-#                 add = 500
-#                 scope:character ?= {
-#                     exists = c:NDA_ARES
-#                     owner = c:NDA_ARES     
-#                 }
-#             }
-#         }
-#     }
-
-# }
+        weight = {
+            base = 0
+            modifier = {
+                add = 500
+                scope:character ?= {
+					has_culture = cu:nda_cul_aresian
+                    is_in_exile_pool = no # stop error spam on viewing exiles - need to clean the exile pool of coven leaders?
+                    age > 16
+                }
+            }
+        }
+    }  
+}

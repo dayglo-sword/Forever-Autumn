@@ -27,50 +27,50 @@ nda_ares.1 = { # The chances of anything manlike on Mars
 	# }
 
 	immediate = {
-		set_global_variable = nda_ares_invasion_choice
+		#set_global_variable = nda_ares_invasion_choice
 	}	
 
 	option = {
 		name = nda_ares.1.a
 		default_option = yes
-		set_global_variable = nda_ares_early_invasion
-		ai_chance = { 
-			base = 50
-		}
+		# set_global_variable = nda_ares_early_invasion
+		# ai_chance = { 
+		# 	base = 50
+		# }
 		custom_tooltip = nda_ares.1.a.tt
 
 	}
 
-	option = { 
-		name = nda_ares.1.b
+	# option = { 
+	# 	name = nda_ares.1.b
 
-		set_global_variable = nda_ares_wells_hg_invasion
-		ai_chance = { 
-			base = 25
-		}
-		custom_tooltip = nda_ares.1.b.tt
-	}
+	# 	set_global_variable = nda_ares_wells_hg_invasion
+	# 	ai_chance = { 
+	# 		base = 25
+	# 	}
+	# 	custom_tooltip = nda_ares.1.b.tt
+	# }
 
-	option = { 
-		name = nda_ares.1.c
+	# option = { 
+	# 	name = nda_ares.1.c
 
-		set_global_variable = nda_ares_wells_orson_invasion
-		ai_chance = { 
-			base = 25
-		}
-		custom_tooltip = nda_ares.1.c.tt
-	}
+	# 	set_global_variable = nda_ares_wells_orson_invasion
+	# 	ai_chance = { 
+	# 		base = 25
+	# 	}
+	# 	custom_tooltip = nda_ares.1.c.tt
+	# }
 
-	option = {
-		name = nda_ares.1.e
-		default_option = yes
-		set_global_variable = nda_ares_immediate_invasion
-		ai_chance = { 
-			base = 0
-		}
-		custom_tooltip = nda_ares.1.e.tt
+	# option = {
+	# 	name = nda_ares.1.e
+	# 	default_option = yes
+	# 	set_global_variable = nda_ares_immediate_invasion
+	# 	ai_chance = { 
+	# 		base = 0
+	# 	}
+	# 	custom_tooltip = nda_ares.1.e.tt
 
-	}
+	# }
 }
 
 nda_ares.2 = { # The Crystal Egg
@@ -248,13 +248,7 @@ nda_ares.10 = { # Early Landing
 		game_date < 1843.1.1
 		p:x60A040 = { state = { owner = ROOT } }
 		NOT = { has_global_variable = nda_ares_invasion }
-		OR = { 
-			has_global_variable = nda_ares_early_invasion
-			NOT = {
-				has_global_variable = nda_ares_wells_hg_invasion
-				has_global_variable = nda_ares_wells_orson_invasion
-			}
-		}
+		has_game_rule = early_landing
 	}
 
 	cooldown = { months = 12 }
@@ -489,13 +483,7 @@ nda_ares.11 = { # 1900's Landing - same location and logic as earlier
 		game_date < 1902.1.1
 		p:x60A040 = { state = { owner = ROOT } }
 		NOT = { has_global_variable = nda_ares_invasion }
-		OR = { 
-			has_global_variable = nda_ares_wells_hg_invasion
-			NOT = {
-				has_global_variable = nda_ares_early_invasion
-				has_global_variable = nda_ares_wells_orson_invasion
-			}
-		}
+		has_game_rule = hg_wells_landing
 	}
 
 	cooldown = { months = 12 }
@@ -722,14 +710,7 @@ nda_ares.12 = { # 1936's Landing - Upper New York
 		game_date < 1937.1.1
 		p:xB00080 = { state = { owner = ROOT } }
 		NOT = { has_global_variable = nda_ares_invasion }
-		OR = { 
-			has_global_variable = nda_ares_wells_orson_invasion
-
-			NOT = {
-				has_global_variable = nda_ares_early_invasion
-				has_global_variable = nda_ares_wells_hg_invasion
-			}
-		}
+		has_game_rule = orson_wells_landing
 	}
 
 	cooldown = { months = 12 }
@@ -974,9 +955,10 @@ nda_ares.13 = { # Immediate Landing (1836)
  		# 1836 and owner of East Anglia 
 		game_date >= 1836.6.1 
 		game_date < 1837.1.1
+		has_game_rule = immediate_landing
 		p:x60A040 = { state = { owner = ROOT } }
 		NOT = { has_global_variable = nda_ares_invasion }
-		has_global_variable = nda_ares_immediate_invasion
+		#has_global_variable = nda_ares_immediate_invasion
 	}
 
 	cooldown = { months = 12 }
