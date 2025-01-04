@@ -77,6 +77,21 @@ nda_ares_generator_defense_modifier: "Generator Defenses"
 nda_ares_generator_occupation_speed: "Generator Defenses"
 nda_ares_first_landing_modifier: "Mars Attacks"
 
+# location renames
+nda_ARES_CAPITAL_state: "Ack Ak Tak"
+nda_ARES_CAPITAL_city: "Ack Tak Ak"
+
 # NDA Localisations
 nda_investigator: "Occult Investigator"
 building_nda_miskatonic_university: "Miskatonic University"
+
+# Exiled GBR
+NDA_GBR_EXILE: "New Britannia"
+NDA_GBR_EXILE_ADJ: "Britannian"
+NDA_GBR_EXILE_TEXT: "Forced into exile by the Martians the former inhabitants of Great Britain intend to rebuild and maybe one day liberate their homeland."
+
+nda_GBR_EXILE_CAPITAL_state: "New Britain"
+nda_GBR_EXILE_CAPITAL_city: "New London"
+nda_GBR_EXILE_CAPITAL_mine: "Newydd Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"
+nda_GBR_EXILE_CAPITAL_farm: "New Trumpton"
+nda_GBR_EXILE_CAPITAL_wood: "New Royston Vasey"

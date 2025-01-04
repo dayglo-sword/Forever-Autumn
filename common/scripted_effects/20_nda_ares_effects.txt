@@ -84,42 +84,11 @@ nda_effect_martian_setup = {
 	# Initial fund boost
 	add_treasury = 2000000
 
-	# add generals as shortage at start? - no armies yet exist so disappears? Do as delayed event.
-	create_character = {
-		first_name = ark_ack
-		last_name = ack_ka
-		age = 30
-		culture = cu:nda_cul_aresian
-		religion = atheist		
-		interest_group = ig:ig_armed_forces
-		commander_rank = default
-		traits = {
-			experienced_defensive_strategist
-			innovative
-			direct
-		}
-		on_created = {
-			add_character_role = general
-		}
-	}
+	# Rename Capital state and city - or wait till after intial conquest??
+	nda_effect_map_name_ares_capital = yes
 
-	create_character = {
-		first_name = ack_ka
-		last_name = ark_ack
-		age = 30
-		culture = cu:nda_cul_aresian
-		religion = atheist		
-		interest_group = ig:ig_armed_forces
-		commander_rank = default
-		traits = {
-			experienced_offensive_planner
-			expert_defensive_strategist
-			brave
-		}
-		on_created = {
-			add_character_role = general
-		}
-	}
+	# add generals as shortage at start? - no armies yet exist so disappears? Do as delayed event.
+	trigger_event = { id = nda_ares.21 days = 2 }
 
 	# add morale modifier for intial landing
 	add_modifier = {

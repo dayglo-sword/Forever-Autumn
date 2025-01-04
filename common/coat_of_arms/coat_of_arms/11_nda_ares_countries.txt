@@ -38,3 +38,34 @@ NDA_ARES = {
 		instance = { scale = { 0.04 0.04 } position = { 0.5 0.25 } }			
 	}
 }
+
+NDA_GBR_EXILE = {
+	# the modern British flag, with red diagonals
+	pattern = "pattern_gironny_8.dds"
+	color1 = "blue"
+	color2 = "blue"
+	color3 = "white"
+	color4 = "red"
+	
+	colored_emblem = {
+		texture = "ce_saltire.dds"
+		color1 = color3
+		color2 = color3
+	}	
+	colored_emblem = {
+		texture = "ce_saltire_fimbriated.dds"
+		color1 = color3
+		color2 = color4
+		mask = { 2 }
+	}
+	colored_emblem = {
+		texture = "ce_cross_england_fimbriated.dds"
+		color1 = color3
+		color2 = color4
+	}
+	colored_emblem = {
+		texture = "ce_border_thin.dds"
+		color1 = "black"
+	}
+	
+}

@@ -20,6 +20,7 @@ nda_ares_monthly_on_action = {
 		nda_ares.12 # 1936
 		nda_ares.13 # 1836
 		#nda_ares.20
+		nda_ares.31 # Exile option
 	}
 	random_events = {
 	

@@ -9,6 +9,17 @@
 	#capital = STATE_HOME_COUNTIES # not really needed
 }
 
+NDA_GBR_EXILE = {
+	color = hsv{ 0.99  0.7  0.9 }
+
+	country_type = recognized
+
+	tier = empire	
+	
+	cultures = { british scottish welsh }
+	#capital = STATE_HOME_COUNTIES # not really needed
+}
+
 # # From Base NDA - only keep referenced countries. Don't bother with localisation as should never appear in NDA ARES
 # ELD = {
 # 	color = { 142 36 170 }

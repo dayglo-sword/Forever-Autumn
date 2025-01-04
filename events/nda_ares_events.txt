@@ -1169,7 +1169,7 @@ nda_ares.13 = { # Immediate Landing (1836)
 
 }
 
-nda_ares.20 = { # Mass Migration if at war with Martians
+nda_ares.20 = { # Mass Migration if at war with Martians - is this needed with modifiers already affecting migration?
 	type = country_event
 	placement = ROOT
 	title = nda_ares.20.t
@@ -1231,6 +1231,296 @@ nda_ares.20 = { # Mass Migration if at war with Martians
 		name = nda_ares.20.a
 		default_option = yes
 
+	}
+
+}
+
+nda_ares.21 = { # Hidden event to add generals to ARES after landing - must be done after initial invasion as can't be allocated to non-existant armies.
+	type = country_event
+	hidden = yes
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+		
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+
+	trigger = {
+	}
+
+	immediate = {
+		# add generals as shortage at start? - no armies yet exist so disappears? Do as delayed event.
+		create_character = {
+			first_name = ark_ack
+			last_name = ack_ka
+			age = 30
+			culture = cu:nda_cul_aresian
+			religion = atheist		
+			interest_group = ig:ig_armed_forces
+			commander_rank = default
+			traits = {
+				experienced_defensive_strategist
+				innovative
+				direct
+			}
+			on_created = {
+				add_character_role = general
+			}
+		}
+
+		create_character = {
+			first_name = ack_ka
+			last_name = ark_ack
+			age = 30
+			culture = cu:nda_cul_aresian
+			religion = atheist		
+			interest_group = ig:ig_armed_forces
+			commander_rank = default
+			traits = {
+				experienced_offensive_planner
+				expert_defensive_strategist
+				brave
+			}
+			on_created = {
+				add_character_role = general
+			}
+		}
+ 
+	}
+}
+
+nda_ares.30 = { # Exile government of first victim - change tag of largest subject
+	type = country_event
+	placement = ROOT
+	title = nda_ares.30.t
+	desc = nda_ares.30.d
+	flavor =  nda_ares.30.f
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+		
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+
+	# is called from nda_ares.30 so as to be popup
+	# trigger = {
+	# }
+
+	cooldown = { months = 24 } # should only ever run once
+
+	immediate = {
+		debug_log = "Make Exile Choice: [ROOT.GetCountry.GetNameNoFormatting]" 
+
+		ordered_subject_or_below = {
+			limit = { 					
+				is_subject_of = PREV
+				is_player = no
+			}
+			position = 0
+			order_by =  { subtract = global_country_ranking }
+		
+			save_scope_as = nda_ares_first_exile_loc
+		}
+
+		# optional exile location
+		ordered_subject_or_below = {
+			limit = { 					
+				is_subject_of = PREV
+				is_player = no
+			}
+			position = 1
+			max = 2
+	
+			order_by =  { subtract = global_country_ranking }
+
+			save_scope_as = nda_ares_second_exile_loc
+		}
+	}
+
+	option = { # Form Government in exile
+		name = nda_ares.30.a
+		default_option = yes
+
+		# turn into effect if it works!
+		if = { limit = { exists = heir }
+			heir = { save_scope_as = nda_ares_exiled_heir }
+		}
+				
+		ruler = { save_scope_as = nda_ares_exiled_ruler }
+
+		scope:nda_ares_first_exile_loc ?= {
+
+			debug_log = "New Home Country : [THIS.GetCountry.GetNameNoFormatting]"
+
+			# Diplo Catalyst - try and create anti-invasion lobbies
+			create_diplomatic_catalyst = {  
+				type = catalyst_event_negative
+				target = c:NDA_ARES
+			}
+			
+			set_variable = nda_ares_country_in_exile
+
+			# only do if monarcy??			
+			# change to absolute Monarchy
+			activate_law = law_type:law_monarchy
+			activate_law = law_type:law_autocracy
+
+			if = {
+				limit = { NOT = { country_has_primary_culture = cu:british } }
+				add_primary_culture = cu:british			
+			}
+
+			# transfer rulers and heirs
+			if = { 
+				limit = { exists = scope:nda_ares_exiled_ruler }
+				scope:nda_ares_exiled_ruler = {
+					transfer_character = PREV
+					set_character_as_ruler = yes							
+				}
+			}
+
+			if = { 
+				limit = { exists = scope:nda_ares_exiled_heir }
+				scope:nda_ares_exiled_heir = { transfer_character = PREV }
+				set_heir =  scope:nda_ares_exiled_heir
+			}
+
+			# transfer or exile government
+			change_tag = NDA_GBR_EXILE # Have new Tag for Exile
+
+			# breakaway
+			make_independent = yes
+			change_relations = { country = c:NDA_ARES value = -200 }
+
+			ROOT = {
+				play_as = PREV					
+			}
+
+			debug_log = "New Country : [THIS.GetCountry.GetNameNoFormatting]"
+
+			# Change Names
+			nda_effect_map_name_new_brit_capital = yes
+
+			# save_scope_as = nda_ares_freedom
+			# # send notification
+			# every_country = {
+			# 	post_notification = nda_ares_country_freedom
+			# }
+
+		}		
+
+	}
+
+	option = { # Form Government in exile - 2nd option
+	name = nda_ares.30.b
+	default_option = yes
+
+	# turn into effect if it works!
+	if = { limit = { exists = heir }
+		heir = { save_scope_as = nda_ares_exiled_heir }
+	}
+			
+	ruler = { save_scope_as = nda_ares_exiled_ruler }
+
+	scope:nda_ares_second_exile_loc ?= {
+
+		debug_log = "New Home Country : [THIS.GetCountry.GetNameNoFormatting]"
+		# breakaway
+		make_independent = yes
+		change_relations = { country = c:NDA_ARES value = -200 }
+
+		# Diplo Catalyst - try and create anti-invasion lobbies
+		create_diplomatic_catalyst = {  
+			type = catalyst_event_negative
+			target = c:NDA_ARES
+		}
+		
+		set_variable = nda_ares_country_in_exile
+
+		# only do if monarcy??
+		# change to absolute Monarchy
+		activate_law = law_type:law_monarchy
+		activate_law = law_type:law_autocracy
+
+		if = {
+			limit = { NOT = { country_has_primary_culture = cu:british } }
+			add_primary_culture = cu:british			
+		}
+
+		# transfer rulers and heirs
+		if = { 
+			limit = { exists = scope:nda_ares_exiled_ruler }
+			scope:nda_ares_exiled_ruler = {
+				transfer_character = PREV
+				set_character_as_ruler = yes							
+			}
+		}
+
+		if = { 
+			limit = { exists = scope:nda_ares_exiled_heir }
+			scope:nda_ares_exiled_heir = { transfer_character = PREV }
+			set_heir =  scope:nda_ares_exiled_heir
+		}
+
+		# transfer or exile government
+		change_tag = NDA_GBR_EXILE # Have new Tag for Exile
+
+		# breakaway
+		make_independent = yes
+		change_relations = { country = c:NDA_ARES value = -200 }
+
+		ROOT = {
+			play_as = PREV					
+		}
+
+		debug_log = "New Country : [THIS.GetCountry.GetNameNoFormatting]"
+		
+		# Change Names
+		nda_effect_map_name_new_brit_capital = yes
+
+		# save_scope_as = nda_ares_freedom
+		# # send notification
+		# every_country = {
+		# 	post_notification = nda_ares_country_freedom
+		# }
+
+	}		
+
+}
+
+	option = { # Stand our ground
+		name = nda_ares.30.c
+	}
+}
+
+nda_ares.31 = { # Offer to Exile government of first victim - use this to luanch as popup
+	type = country_event
+
+	trigger = {
+		exists = c:NDA_ARES
+		has_war_with = c:NDA_ARES
+		# is first victim
+		has_variable = nda_ares_first_victim_var
+		#scope:nda_ares_first_victim ?= ROOT
+		# war score is close to capitulation
+		any_scope_war = {
+			has_war_support = {
+				target = ROOT
+				value <= 0
+			}
+		}
+	}
+
+	cooldown = { months = 24 } # should only ever run once
+
+	immediate = {
+		debug_log = "Hidden Exile Launch: [ROOT.GetCountry.GetNameNoFormatting]" 
+
+		trigger_event = { id = nda_ares.30 popup = yes }
 	}
 
 }
