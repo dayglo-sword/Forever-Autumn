@@ -94,4 +94,7 @@ nda_GBR_EXILE_CAPITAL_state: "New Britain"
 nda_GBR_EXILE_CAPITAL_city: "New London"
 nda_GBR_EXILE_CAPITAL_mine: "Newydd Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"
 nda_GBR_EXILE_CAPITAL_farm: "New Trumpton"
-nda_GBR_EXILE_CAPITAL_wood: "New Royston Vasey"
+nda_GBR_EXILE_CAPITAL_wood: "New Midsomer"
+nda_GBR_EXILE_CAPITAL_port: "New Walmington"
+
+nda_ares_ig_exile_unity_modifier: "Together against the Red Menace"

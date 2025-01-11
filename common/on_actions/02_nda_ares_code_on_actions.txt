@@ -15,12 +15,13 @@ nda_ares_monthly_on_action = {
 	events = {
 		nda_ares.2 # Crystal Egg
 		nda_ares.3 # In Opposition
-		nda_ares.10 # 1842
-		nda_ares.11 # 1901
-		nda_ares.12 # 1936
-		nda_ares.13 # 1836
+		nda_ares.6 # Invasion event watcher
+		#nda_ares.10 # 1842
+		#nda_ares.11 # 1901
+		#nda_ares.12 # 1936
+		#nda_ares.13 # 1836
 		#nda_ares.20
-		nda_ares.31 # Exile option
+		nda_ares.31 # Exile option watcher
 	}
 	random_events = {
 	
@@ -438,7 +439,7 @@ nda_ares_monthly_plague_on_action = {
 				c:NDA_ARES ?= owner		
 				OR = {
 					has_modifier = plague_modifier
-					state_region = { has_harvest_condition = nda_red_death }					
+					state_region = { has_harvest_condition = nda_red_death } # Only available from main NDA mod					
 					#has_modifier = nda_red_death_modifier # is now environmental effect in base game - need copy for compat
 				}		
 			}

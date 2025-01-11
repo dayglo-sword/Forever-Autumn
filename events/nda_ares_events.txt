@@ -94,30 +94,34 @@ nda_ares.2 = { # The Crystal Egg
 	trigger = {
 		is_player = yes
 		has_global_variable = nda_ares_is_loaded
-		has_global_variable = nda_ares_invasion_choice
+		#has_global_variable = nda_ares_invasion_choice
 		OR = {
 			AND = {
 				# year before early invasion
-				has_global_variable = nda_ares_early_invasion
+				has_game_rule = early_landing
+				#has_global_variable = nda_ares_early_invasion
 				game_date >= 1841.3.1 
 				game_date < 1842.1.1			
 			}
 			AND = {
 				# year before HG Wells invasion
-				has_global_variable = nda_ares_wells_hg_invasion
+				has_game_rule = hg_wells_landing
+				#has_global_variable = nda_ares_wells_hg_invasion
 				game_date >= 1897.3.1 
 				game_date < 1898.1.1			
 			}
 			AND = {
 				# year before Orson Wells invasion
-				has_global_variable = nda_ares_wells_orson_invasion
+				has_game_rule = orson_wells_landing
+				#has_global_variable = nda_ares_wells_orson_invasion
 				game_date >= 1935.3.1 
 				game_date < 1936.1.1			
 			}
 			AND = {
 				# before immediate invasion
-				has_global_variable = nda_ares_immediate_invasion
-				game_date >= 1836.3.1 
+				has_game_rule = immediate_landing
+				#has_global_variable = nda_ares_immediate_invasion				
+				game_date >= 1836.2.1 
 				game_date < 1837.1.1			
 			}
 		}
@@ -160,19 +164,22 @@ nda_ares.3 = { # Opposition of 1894 - August 2nd - two further oppositions (1896
 		OR = {
 			AND = {
 				# year before early invasion
-				has_global_variable = nda_ares_early_invasion
+				has_game_rule = early_landing
+				#has_global_variable = nda_ares_early_invasion
 				game_date >= 1841.3.1 
 				game_date < 1842.1.1			
 			}
 			AND = {
 				# year before HG Wells invasion
-				has_global_variable = nda_ares_wells_hg_invasion
+				has_game_rule = hg_wells_landing
+				#has_global_variable = nda_ares_wells_hg_invasion
 				game_date >= 1897.3.1 
 				game_date < 1898.1.1			
 			}
 			AND = {
 				# year before Orson Wells invasion
-				has_global_variable = nda_ares_wells_orson_invasion
+				has_game_rule = orson_wells_landing
+				#has_global_variable = nda_ares_wells_orson_invasion
 				game_date >= 1935.3.1 
 				game_date < 1936.1.1			
 			}
@@ -224,6 +231,73 @@ nda_ares.5 = { # Main Invasion Notification
 
 }
 
+nda_ares.6 = { # Invasion watcher event - use this to launch main event as popup
+	type = country_event
+
+	trigger = {
+		OR = {
+			AND = {
+				# 1836 and owner of East Anglia 
+				game_date >= 1836.6.1 
+				game_date < 1837.1.1
+				has_game_rule = immediate_landing
+				p:x60A040 = { state = { owner = ROOT } }
+				NOT = { has_global_variable = nda_ares_invasion }
+				#has_global_variable = nda_ares_immediate_invasion
+			}
+			AND = {
+				# 1842 and owner of East Anglia 
+				game_date >= 1842.3.1 
+				game_date < 1843.1.1
+				p:x60A040 = { state = { owner = ROOT } }
+				NOT = { has_global_variable = nda_ares_invasion }
+				has_game_rule = early_landing				
+			}
+			AND = {
+				# 1901 and owner of East Anglia 
+				game_date >= 1901.3.1 
+				game_date < 1902.1.1
+				p:x60A040 = { state = { owner = ROOT } }
+				NOT = { has_global_variable = nda_ares_invasion }
+				has_game_rule = hg_wells_landing			
+			}
+			AND = {
+				# 1936 (post standard end!) and owner of Upper New York 
+				game_date >= 1936.3.1 
+				game_date < 1937.1.1
+				p:xB00080 = { state = { owner = ROOT } }
+				NOT = { has_global_variable = nda_ares_invasion }
+				has_game_rule = orson_wells_landing		
+			}
+		}
+
+	}
+
+	cooldown = { months = 24 } # should only ever run once per invasion - game rules can be adjusted during game?
+
+	immediate = {
+		debug_log = "Invasion Launch: [THIS.GetCountry.GetNameNoFormatting]" 
+
+		if = {
+			limit = { has_game_rule = immediate_landing }
+			trigger_event = { id = nda_ares.13 popup = yes }			
+		}
+		else_if = {
+			limit = { has_game_rule = early_landing }
+			trigger_event = { id = nda_ares.10 popup = yes }			
+		}
+		else_if = {
+			limit = { has_game_rule = hg_wells_landing }
+			trigger_event = { id = nda_ares.11 popup = yes }			
+		}
+		else_if = {
+			limit = { has_game_rule = orson_wells_landing }
+			trigger_event = { id = nda_ares.12 popup = yes }			
+		}
+	}
+
+}
+
 nda_ares.10 = { # Early Landing
 	type = country_event
 	placement = p:x60A040 #East Anglia
@@ -242,14 +316,14 @@ nda_ares.10 = { # Early Landing
 
 	icon = "gfx/interface/icons/event_icons/event_default.dds"
 
-	trigger = {
- 		# 1842 and owner of East Anglia 
-		game_date >= 1842.3.1 
-		game_date < 1843.1.1
-		p:x60A040 = { state = { owner = ROOT } }
-		NOT = { has_global_variable = nda_ares_invasion }
-		has_game_rule = early_landing
-	}
+	# trigger = {
+ 	# 	# 1842 and owner of East Anglia 
+	# 	game_date >= 1842.3.1 
+	# 	game_date < 1843.1.1
+	# 	p:x60A040 = { state = { owner = ROOT } }
+	# 	NOT = { has_global_variable = nda_ares_invasion }
+	# 	has_game_rule = early_landing
+	# }
 
 	cooldown = { months = 12 }
 
@@ -477,14 +551,14 @@ nda_ares.11 = { # 1900's Landing - same location and logic as earlier
 
 	icon = "gfx/interface/icons/event_icons/event_default.dds"
 
-	trigger = {
- 		# 1901 and owner of East Anglia 
-		game_date >= 1901.3.1 
-		game_date < 1902.1.1
-		p:x60A040 = { state = { owner = ROOT } }
-		NOT = { has_global_variable = nda_ares_invasion }
-		has_game_rule = hg_wells_landing
-	}
+	# trigger = {
+ 	# 	# 1901 and owner of East Anglia 
+	# 	game_date >= 1901.3.1 
+	# 	game_date < 1902.1.1
+	# 	p:x60A040 = { state = { owner = ROOT } }
+	# 	NOT = { has_global_variable = nda_ares_invasion }
+	# 	has_game_rule = hg_wells_landing
+	# }
 
 	cooldown = { months = 12 }
 
@@ -704,14 +778,14 @@ nda_ares.12 = { # 1936's Landing - Upper New York
 
 	icon = "gfx/interface/icons/event_icons/event_default.dds"
 
-	trigger = {
- 		# 1936 (post standard!) and owner of Upper New York 
-		game_date >= 1936.3.1 
-		game_date < 1937.1.1
-		p:xB00080 = { state = { owner = ROOT } }
-		NOT = { has_global_variable = nda_ares_invasion }
-		has_game_rule = orson_wells_landing
-	}
+	# trigger = {
+ 	# 	# 1936 (post standard!) and owner of Upper New York 
+	# 	game_date >= 1936.3.1 
+	# 	game_date < 1937.1.1
+	# 	p:xB00080 = { state = { owner = ROOT } }
+	# 	NOT = { has_global_variable = nda_ares_invasion }
+	# 	has_game_rule = orson_wells_landing
+	# }
 
 	cooldown = { months = 12 }
 
@@ -951,15 +1025,15 @@ nda_ares.13 = { # Immediate Landing (1836)
 
 	icon = "gfx/interface/icons/event_icons/event_default.dds"
 
-	trigger = {
- 		# 1836 and owner of East Anglia 
-		game_date >= 1836.6.1 
-		game_date < 1837.1.1
-		has_game_rule = immediate_landing
-		p:x60A040 = { state = { owner = ROOT } }
-		NOT = { has_global_variable = nda_ares_invasion }
-		#has_global_variable = nda_ares_immediate_invasion
-	}
+	# trigger = {
+ 	# 	# 1836 and owner of East Anglia 
+	# 	game_date >= 1836.6.1 
+	# 	game_date < 1837.1.1
+	# 	has_game_rule = immediate_landing
+	# 	p:x60A040 = { state = { owner = ROOT } }
+	# 	NOT = { has_global_variable = nda_ares_invasion }
+	# 	#has_global_variable = nda_ares_immediate_invasion
+	# }
 
 	cooldown = { months = 12 }
 
@@ -1313,7 +1387,7 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 	cooldown = { months = 24 } # should only ever run once
 
 	immediate = {
-		debug_log = "Make Exile Choice: [ROOT.GetCountry.GetNameNoFormatting]" 
+		debug_log = "Make Exile Choice: [THIS.GetCountry.GetNameNoFormatting]" 
 
 		ordered_subject_or_below = {
 			limit = { 					
@@ -1333,17 +1407,30 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 				is_player = no
 			}
 			position = 1
-			max = 2
+			#max = 2
 	
 			order_by =  { subtract = global_country_ranking }
 
 			save_scope_as = nda_ares_second_exile_loc
 		}
+
+		# optional exile location
+		ordered_subject_or_below = {
+			limit = { 					
+				is_subject_of = PREV
+				is_player = no
+			}
+			position = 2
+			#max = 2
+	
+			order_by =  { subtract = global_country_ranking }
+
+			save_scope_as = nda_ares_third_exile_loc
+		}
 	}
 
 	option = { # Form Government in exile
 		name = nda_ares.30.a
-		default_option = yes
 
 		# turn into effect if it works!
 		if = { limit = { exists = heir }
@@ -1354,69 +1441,33 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 
 		scope:nda_ares_first_exile_loc ?= {
 
-			debug_log = "New Home Country : [THIS.GetCountry.GetNameNoFormatting]"
-
-			# Diplo Catalyst - try and create anti-invasion lobbies
-			create_diplomatic_catalyst = {  
-				type = catalyst_event_negative
-				target = c:NDA_ARES
-			}
-			
-			set_variable = nda_ares_country_in_exile
-
-			# only do if monarcy??			
-			# change to absolute Monarchy
-			activate_law = law_type:law_monarchy
-			activate_law = law_type:law_autocracy
-
-			if = {
-				limit = { NOT = { country_has_primary_culture = cu:british } }
-				add_primary_culture = cu:british			
-			}
-
-			# transfer rulers and heirs
-			if = { 
-				limit = { exists = scope:nda_ares_exiled_ruler }
-				scope:nda_ares_exiled_ruler = {
-					transfer_character = PREV
-					set_character_as_ruler = yes							
-				}
-			}
-
-			if = { 
-				limit = { exists = scope:nda_ares_exiled_heir }
-				scope:nda_ares_exiled_heir = { transfer_character = PREV }
-				set_heir =  scope:nda_ares_exiled_heir
-			}
-
-			# transfer or exile government
-			change_tag = NDA_GBR_EXILE # Have new Tag for Exile
-
-			# breakaway
-			make_independent = yes
-			change_relations = { country = c:NDA_ARES value = -200 }
-
-			ROOT = {
-				play_as = PREV					
-			}
-
-			debug_log = "New Country : [THIS.GetCountry.GetNameNoFormatting]"
-
-			# Change Names
-			nda_effect_map_name_new_brit_capital = yes
-
-			# save_scope_as = nda_ares_freedom
-			# # send notification
-			# every_country = {
-			# 	post_notification = nda_ares_country_freedom
-			# }
+			nda_effect_british_exile_setup = yes
 
 		}		
 
 	}
 
 	option = { # Form Government in exile - 2nd option
-	name = nda_ares.30.b
+		name = nda_ares.30.b
+		default_option = yes
+
+		# turn into effect if it works!
+		if = { limit = { exists = heir }
+			heir = { save_scope_as = nda_ares_exiled_heir }
+		}
+				
+		ruler = { save_scope_as = nda_ares_exiled_ruler }
+
+		scope:nda_ares_second_exile_loc ?= {
+
+			nda_effect_british_exile_setup = yes
+
+		}		
+
+	}
+
+	option = { # Form Government in exile - 2nd option
+	name = nda_ares.30.c
 	default_option = yes
 
 	# turn into effect if it works!
@@ -1426,74 +1477,16 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 			
 	ruler = { save_scope_as = nda_ares_exiled_ruler }
 
-	scope:nda_ares_second_exile_loc ?= {
+	scope:nda_ares_third_exile_loc ?= {
 
-		debug_log = "New Home Country : [THIS.GetCountry.GetNameNoFormatting]"
-		# breakaway
-		make_independent = yes
-		change_relations = { country = c:NDA_ARES value = -200 }
-
-		# Diplo Catalyst - try and create anti-invasion lobbies
-		create_diplomatic_catalyst = {  
-			type = catalyst_event_negative
-			target = c:NDA_ARES
-		}
-		
-		set_variable = nda_ares_country_in_exile
-
-		# only do if monarcy??
-		# change to absolute Monarchy
-		activate_law = law_type:law_monarchy
-		activate_law = law_type:law_autocracy
-
-		if = {
-			limit = { NOT = { country_has_primary_culture = cu:british } }
-			add_primary_culture = cu:british			
-		}
-
-		# transfer rulers and heirs
-		if = { 
-			limit = { exists = scope:nda_ares_exiled_ruler }
-			scope:nda_ares_exiled_ruler = {
-				transfer_character = PREV
-				set_character_as_ruler = yes							
-			}
-		}
-
-		if = { 
-			limit = { exists = scope:nda_ares_exiled_heir }
-			scope:nda_ares_exiled_heir = { transfer_character = PREV }
-			set_heir =  scope:nda_ares_exiled_heir
-		}
-
-		# transfer or exile government
-		change_tag = NDA_GBR_EXILE # Have new Tag for Exile
-
-		# breakaway
-		make_independent = yes
-		change_relations = { country = c:NDA_ARES value = -200 }
-
-		ROOT = {
-			play_as = PREV					
-		}
-
-		debug_log = "New Country : [THIS.GetCountry.GetNameNoFormatting]"
-		
-		# Change Names
-		nda_effect_map_name_new_brit_capital = yes
-
-		# save_scope_as = nda_ares_freedom
-		# # send notification
-		# every_country = {
-		# 	post_notification = nda_ares_country_freedom
-		# }
+		nda_effect_british_exile_setup = yes
 
 	}		
 
 }
 
 	option = { # Stand our ground
-		name = nda_ares.30.c
+		name = nda_ares.30.d
 	}
 }
 
@@ -1518,7 +1511,7 @@ nda_ares.31 = { # Offer to Exile government of first victim - use this to luanch
 	cooldown = { months = 24 } # should only ever run once
 
 	immediate = {
-		debug_log = "Hidden Exile Launch: [ROOT.GetCountry.GetNameNoFormatting]" 
+		debug_log = "Hidden Exile Launch: [THIS.GetCountry.GetNameNoFormatting]" 
 
 		trigger_event = { id = nda_ares.30 popup = yes }
 	}

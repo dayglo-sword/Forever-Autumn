@@ -42,7 +42,8 @@ nda_ares.30.d: ""
 nda_ares.30.f: "'There were fear and pain on their faces, and fear behind them. A tumult up the road, a quarrel for a place in a waggon, sent the whole host of them quickening their pace; even a man so scared and broken that his knees bent under him was galvanised for a moment into renewed activity. The heat and dust had already been at work upon this multitude. Their skins were dry, their lips black and cracked. They were all thirsty, weary, and footsore. And amid the various cries one heard disputes, reproaches, groans of weariness and fatigue; the voices of most of them were hoarse and weak. Through it all ran a refrain:\n\n'Way! Way! The Martians are coming!'"
 nda_ares.30.a: "Depart for [SCOPE.sC('nda_ares_first_exile_loc').GetName]"
 nda_ares.30.b: "[SCOPE.sC('nda_ares_second_exile_loc').GetName] might be better!"
-nda_ares.30.c: "Stand our ground!"
+nda_ares.30.c: "but [SCOPE.sC('nda_ares_second_exile_loc').GetName] is a possibility!"
+nda_ares.30.d: "We should stand our ground!"
 
 # Notification types
 nda_ares_notifications: "Martian Activity"

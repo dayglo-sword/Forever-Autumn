@@ -51,3 +51,8 @@ nda_ares_first_landing_modifier = {
 	character_battle_condition_exhausted_mult = -0.5
 
 }
+
+nda_ares_ig_exile_unity_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	interest_group_approval_add = 5
+}

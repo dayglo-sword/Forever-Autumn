@@ -24,6 +24,8 @@ nda_effect_map_name_new_brit_capital = { # Rename for New britannia
 			set_hub_name = { type = farm name = nda_GBR_EXILE_CAPITAL_farm }
 
 			set_hub_name = { type = wood name = nda_GBR_EXILE_CAPITAL_wood }
+
+			set_hub_name = { type = port name = nda_GBR_EXILE_CAPITAL_port }
 		}	
 	}
 }
