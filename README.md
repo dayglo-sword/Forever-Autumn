@@ -5,8 +5,9 @@ IN DEVELOPMENT - but 1840's start has been tested.
 
 A spin off from 'A New Dark Age'. Can run as a stand alone, but was intend to be run with NDA for added chaos.
 
-Three choices as to where and when they initially land.
+Four choices as to where and when they initially land. - Selected by Game Rule.
 
+1836 England (6 months in)<br>
 1840's England (Early)<br>
 1900's England (H G Wells)<br>
 1930's Upper New York (Orson Wells)<br>
