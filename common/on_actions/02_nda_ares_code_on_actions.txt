@@ -184,6 +184,7 @@ nda_ares_monthly_on_action = {
 			random_scope_state = {
 				limit = {
 					has_building = building_nda_ares_generators
+					NOT = { owner = { country_has_primary_culture = cu:nda_cul_aresian } } # Splinter Martian Countries can keep Generators but not build
 				}
 
 				# remove generator building 
@@ -320,7 +321,7 @@ nda_ares_monthly_ares_exiles = {
 			}
 
 			if = {
-				limit = { country_has_primary_culture = cu:nda_cul_aresian }
+				limit = { country_has_primary_culture = cu:nda_cul_aresian } # Other Martian based countries should have chance to survive??
 
 				owner = {
 					add_radicals = {
@@ -390,7 +391,7 @@ nda_ares_monthly_state_conversion_on_action = {
 		if = {
 			limit = { 
 				c:NDA_ARES ?= owner				
-				#owner = c:NDA_ARES	
+				c:NDA_ARES ?= controller # must be controller as well - allows conversion to stall if immediately reconquered - does not effect eventual control.
 			}
 			if = {
 				limit = {

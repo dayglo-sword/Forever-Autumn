@@ -96,6 +96,31 @@ nda_effect_martian_setup = {
 		name = nda_ares_first_landing_modifier
 		months = 18
 	}
+
+	# Initial Pop setup / conversion
+	every_scope_state = {
+
+		# convert large chunk of remaining to give them a start
+		convert_population = { target = rel:atheist value = 0.95  }
+
+		every_scope_pop = {
+			 limit = { religion = rel:atheist }
+			 change_pop_culture = { target = cu:nda_cul_aresian value = 1 }		
+		}
+
+		# add generator building - should be landing sites then upgrade to generators?
+		create_building={
+			 building = "building_nda_ares_generators" 
+			 level=1
+		}	
+
+		state_region = {
+			add_homeland = cu:nda_cul_aresian						
+		}
+
+		add_modifier = { name = nda_ares_state_red_lands_modifier }
+
+	}
 }
 
 # Country Level
