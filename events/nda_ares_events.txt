@@ -15,7 +15,7 @@ nda_ares.1 = { # The chances of anything manlike on Mars
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/london_center"
 
 	icon = "gfx/interface/icons/event_icons/tutorial_icon.dds"
 
@@ -83,11 +83,11 @@ nda_ares.2 = { # The Crystal Egg
 	duration = 3
 
 	event_image = {
-		video = "gfx/event_pictures/southamerica_christianity.bk2"		
+		video = "gfx/event_pictures/europenorthamerica_london_center.bk2"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/london_center"
 
 	icon = "gfx/interface/icons/event_icons/event_default.dds"
 
@@ -210,7 +210,7 @@ nda_ares.5 = { # Main Invasion Notification
 	duration = 3
 
 	event_image = {
-		video = "gfx/event_pictures/southamerica_christianity.bk2"		
+		video = "gfx/event_pictures/southamerica_war_civilians.bk2"	
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -233,6 +233,7 @@ nda_ares.5 = { # Main Invasion Notification
 
 nda_ares.6 = { # Invasion watcher event - use this to launch main event as popup
 	type = country_event
+	hidden = yes
 
 	trigger = {
 		OR = {
@@ -308,7 +309,7 @@ nda_ares.10 = { # Early Landing
 	duration = 3
 
 	event_image = {
-		video = "gfx/event_pictures/southamerica_christianity.bk2"		
+		video = "gfx/event_pictures/southamerica_war_civilians.bk2"	
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -510,7 +511,7 @@ nda_ares.11 = { # 1900's Landing - same location and logic as earlier
 	duration = 3
 
 	event_image = {
-		video = "gfx/event_pictures/southamerica_christianity.bk2"		
+		video = "gfx/event_pictures/southamerica_war_civilians.bk2"	
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -705,7 +706,7 @@ nda_ares.12 = { # 1936's Landing - Upper New York
 	duration = 3
 
 	event_image = {
-		video = "gfx/event_pictures/southamerica_christianity.bk2"		
+		video = "gfx/event_pictures/southamerica_war_civilians.bk2"	
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -920,23 +921,13 @@ nda_ares.13 = { # Immediate Landing (1836)
 	duration = 3
 
 	event_image = {
-		video = "gfx/event_pictures/southamerica_christianity.bk2"		
+		video = "gfx/event_pictures/southamerica_war_civilians.bk2"	
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
 
 	icon = "gfx/interface/icons/event_icons/event_default.dds"
-
-	# trigger = {
- 	# 	# 1836 and owner of East Anglia 
-	# 	game_date >= 1836.6.1 
-	# 	game_date < 1837.1.1
-	# 	has_game_rule = immediate_landing
-	# 	p:x60A040 = { state = { owner = ROOT } }
-	# 	NOT = { has_global_variable = nda_ares_invasion }
-	# 	#has_global_variable = nda_ares_immediate_invasion
-	# }
 
 	cooldown = { months = 12 }
 
@@ -1235,7 +1226,7 @@ nda_ares.21 = { # Hidden event to add generals to ARES after landing - must be d
 	}
 }
 
-nda_ares.30 = { # Exile government of first victim - change tag of largest subject
+nda_ares.30 = { # Exile government of first victim - change tag of largest subject. Is British specific - need version for late game America
 	type = country_event
 	placement = ROOT
 	title = nda_ares.30.t
@@ -1248,9 +1239,9 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/war_civilians"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/london_center"
 
-	# is called from nda_ares.30 so as to be popup
+	# is called from nda_ares.31 so as to be popup
 	# trigger = {
 	# }
 
@@ -1356,13 +1347,13 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 	}
 
 	option = { # Stand our ground
-		name = nda_ares.30.d
+		name = nda_ares.30.dd
 	}
 }
 
 nda_ares.31 = { # Offer to Exile government of first victim - use this to luanch as popup
 	type = country_event
-
+	hidden = yes
 	trigger = {
 		exists = c:NDA_ARES
 		has_war_with = c:NDA_ARES

@@ -94,7 +94,8 @@ nda_ares_monthly_on_action = {
 
 			# reduce infamy as can balloon - always pariah so wars can never be for territory
 			change_infamy = -10
-			add_radicals = { value = -0.4 } # dampen radicals
+
+			add_radicals = { value = -0.4 } # dampen radicals - should be for Martians only??
 			add_loyalists = { value = 0.2 }
 
 			# money problems? 
@@ -102,15 +103,14 @@ nda_ares_monthly_on_action = {
 			add_investment_pool = 10000
 
 			# release puppets or just add lots of radicals? - can be loyal due to strategy? - need to do quicker
-			ordered_subject_or_below = {
+			every_subject_or_below = {
 				limit = { 					
 					is_subject_of = ROOT
 					is_player = no
 					is_at_war = no
-				}
+					NOT = { country_has_primary_culture = cu:nda_cul_aresian }
+				}	
 
-				order_by =  { subtract = global_country_ranking } # bigest first
-				position = 0
 				# breakaway
 				make_independent = yes
 				change_relations = { country = c:NDA_ARES value = -200 }
@@ -123,14 +123,43 @@ nda_ares_monthly_on_action = {
 				
 				debug_log = "Country Freedom"
 
-				save_scope_as = nda_ares_freedom
-				# send notification
-				every_country = {
-					post_notification = nda_ares_country_freedom
-				}
-
-
+				# save_scope_as = nda_ares_freedom
+				# # send notification
+				# every_country = {
+				# 	post_notification = nda_ares_country_freedom
+				# }
+				
 			}
+
+			# ordered_subject_or_below = {
+			# 	limit = { 					
+			# 		is_subject_of = ROOT
+			# 		is_player = no
+			# 		is_at_war = no
+			# 	}
+
+			# 	order_by =  { subtract = global_country_ranking } # bigest first
+			# 	position = 0
+			# 	# breakaway
+			# 	make_independent = yes
+			# 	change_relations = { country = c:NDA_ARES value = -200 }
+
+			# 	# Diplo Catalyst - try and create anti-invasion lobbies
+			# 	create_diplomatic_catalyst = {  
+			# 		type = catalyst_event_negative
+			# 		target = c:NDA_ARES
+			# 	}
+				
+			# 	debug_log = "Country Freedom"
+
+			# 	save_scope_as = nda_ares_freedom
+			# 	# send notification
+			# 	every_country = {
+			# 		post_notification = nda_ares_country_freedom
+			# 	}
+
+
+			# }
 
 			random_country = {
 				limit = {
@@ -419,7 +448,9 @@ nda_ares_monthly_state_conversion_on_action = {
 					NOT = { is_pop_type = slaves  } # keep slaves
 				}
 
-				change_pop_culture = { target = cu:nda_cul_aresian value = 0.10 }							
+				change_pop_culture = { target = cu:nda_cul_aresian value = 0.10 }	
+				
+
 			}
 
 			every_scope_pop = {
@@ -428,6 +459,21 @@ nda_ares_monthly_state_conversion_on_action = {
 				}
 				change_pop_religion = { target = rel:atheist value = 1 }						
 			}
+
+			# # add radicals for non-Martian Homeland Cultures
+			# every_scope_culture = {
+			# 	limit = {  
+			# 		NOT = { THIS = cu:nda_cul_aresian }					
+			# 		ROOT = { state_region = { is_homeland = PREVPREV } }
+			# 	}
+			# 	ROOT = {
+			# 		add_radicals_in_state = {
+			# 			culture = PREV
+			# 			value = 0.8
+			# 		}					
+			# 	}
+			# }
+
 		}
 	}
 }
