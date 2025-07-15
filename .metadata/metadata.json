@@ -1,8 +1,8 @@
 {
   "name" : "Forever Autumn",
   "id" : "NDAFA",
-  "version" : "1.8.7",
-  "supported_game_version" : "1.8.*",
+  "version" : "1.9.6",
+  "supported_game_version" : "1.9.*",
   "picture": "thumbnail.png",
   "short_description" : "Forever Autumn - A Martian Invasion Mod",
   "tags" : ["Events","Alternative History","New Nations"],

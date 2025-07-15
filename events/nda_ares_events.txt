@@ -374,7 +374,7 @@ nda_ares.10 = { # Early Landing
 				}	
 				
 				# Force Migrations? - via delayed events?
-				#trigger_event = { id = nda_ares.20 days=7 }
+				trigger_event = { id = nda_ares.20 days=7 }
 
 				IF = {
 					limit = {
@@ -576,7 +576,7 @@ nda_ares.11 = { # 1900's Landing - same location and logic as earlier
 				}	
 				
 				# Force Migrations? - via delayed events?
-				#trigger_event = { id = nda_ares.20 days=7 }
+				trigger_event = { id = nda_ares.20 days=7 }
 
 				IF = {
 					limit = {
@@ -791,7 +791,7 @@ nda_ares.12 = { # 1936's Landing - Upper New York
 				}	
 				
 				# Force Migrations? - via delayed events?
-				#trigger_event = { id = nda_ares.20 days=7 }
+				trigger_event = { id = nda_ares.20 days=7 }
 
 				IF = {
 					limit = {
@@ -977,7 +977,7 @@ nda_ares.13 = { # Immediate Landing (1836)
 				}	
 				
 				# Force Migrations? - via delayed events?
-				#trigger_event = { id = nda_ares.20 days=7 }
+				trigger_event = { id = nda_ares.20 days=7 }
 
 				IF = {
 					limit = {
@@ -1132,9 +1132,7 @@ nda_ares.20 = { # Mass Migration if at war with Martians - is this needed with m
 
 	immediate = {
 		#debug_log = "Migrations : [ROOT.GetCountry.GetNameNoFormatting]" 
-		every_valid_mass_migration_culture  = {
-			limit = { is_primary_culture_of = ROOT }
-			
+		every_primary_culture = {
 			save_scope_as = nda_exileCulture
 
 			ROOT = {
@@ -1154,12 +1152,10 @@ nda_ares.20 = { # Mass Migration if at war with Martians - is this needed with m
 						origin = ROOT  
 						culture = scope:nda_exileCulture 
 					} 					
-				}
-			
-			}
-	
+				}			
+			}		
 		}
- 
+		
 	}
 
 	option = {

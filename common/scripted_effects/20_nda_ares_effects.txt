@@ -125,112 +125,115 @@ nda_effect_martian_setup = {
 
 # Country Level
 nda_effect_british_exile_setup = {
-		debug_log = "New Home Country : [THIS.GetCountry.GetNameNoFormatting]"
+	debug_log = "New Home Country : [THIS.GetCountry.GetNameNoFormatting]"
 
-		# Diplo Catalyst - try and create anti-invasion lobbies
-		create_diplomatic_catalyst = {  
-			type = catalyst_event_negative
-			target = c:NDA_ARES
-		}
+	# Diplo Catalyst - try and create anti-invasion lobbies
+	create_diplomatic_catalyst = {  
+		type = catalyst_event_negative
+		target = c:NDA_ARES
+	}
 		
-		set_variable = nda_ares_country_in_exile
+	set_variable = nda_ares_country_in_exile
 
-		# only do if monarcy??			
-		# change to absolute Monarchy
-		activate_law = law_type:law_monarchy
-		activate_law = law_type:law_autocracy
+	# only do if monarchy??			
+	# change to absolute Monarchy
+	activate_law = law_type:law_monarchy
+	activate_law = law_type:law_autocracy
 
-		if = {
-			limit = { NOT = { country_has_primary_culture = cu:british } }
-			add_primary_culture = cu:british			
+	if = {
+		limit = { NOT = { country_has_primary_culture = cu:british } }
+		add_primary_culture = cu:british			
+	}
+
+	# transfer rulers and heirs
+	if = { 
+		limit = { exists = scope:nda_ares_exiled_ruler }
+		scope:nda_ares_exiled_ruler = {
+			transfer_character = PREV
+			set_character_as_ruler = yes							
 		}
+	}
 
-		# transfer rulers and heirs
+	if = { 
+		limit = { exists = scope:nda_ares_exiled_heir }
+		scope:nda_ares_exiled_heir = { transfer_character = PREV }
+		set_heir =  scope:nda_ares_exiled_heir
+	}
+
+	# transfer or exile government
+	change_tag = NDA_GBR_EXILE # Have new Tag for Exile
+
+	# breakaway
+	if = { 
+		limit = { is_subject = yes }
+		make_independent = yes # only if actual	
+	}
+
+	change_relations = { country = c:NDA_ARES value = -200 }
+
+	ROOT = {
 		if = { 
-			limit = { exists = scope:nda_ares_exiled_ruler }
-			scope:nda_ares_exiled_ruler = {
-				transfer_character = PREV
-				set_character_as_ruler = yes							
-			}
-		}
+			limit = { is_player = yes }
+			play_as = PREV		
+		}		
+	}
 
-		if = { 
-			limit = { exists = scope:nda_ares_exiled_heir }
-			scope:nda_ares_exiled_heir = { transfer_character = PREV }
-			set_heir =  scope:nda_ares_exiled_heir
-		}
+	debug_log = "New Country : [THIS.GetCountry.GetNameNoFormatting]"
 
-		# transfer or exile government
-		change_tag = NDA_GBR_EXILE # Have new Tag for Exile
+	# Change Names
+	nda_effect_map_name_new_brit_capital = yes
 
-		# breakaway
-		if = { 
-			limit = { is_subject = yes }
-			make_independent = yes # only if actual	
-		}
- 
-		change_relations = { country = c:NDA_ARES value = -200 }
+	# Add temp IG boost as could already be chaos (in EIC)
+	every_interest_group = {
+		add_modifier = { name = nda_ares_ig_exile_unity_modifier months = 12 is_decaying = yes } 
+	}
 
-		ROOT = {
-			play_as = PREV					
-		}
+	# Add British pops ?? just create as the martians will 'balance out' the source ones.
+	create_pop = {
+		culture = british
+		pop_type = aristocrats
+		size = 1000
+	}
 
-		debug_log = "New Country : [THIS.GetCountry.GetNameNoFormatting]"
+	create_pop = {
+		culture = scottish
+		pop_type = aristocrats
+		size = 100
+	}
 
-		# Change Names
-		nda_effect_map_name_new_brit_capital = yes
+	create_pop = {
+		culture = british
+		pop_type = bureaucrats
+		size = 2000
+	}
 
-		# Add temp IG boost as could already be chaos (in EIC)
-		every_interest_group = {
-			add_modifier = { name = nda_ares_ig_exile_unity_modifier months = 12 is_decaying = yes } 
-		}
+	create_pop = {
+		culture = scottish
+		pop_type = bureaucrats
+		size = 200
+	}
 
-		# Add British pops ?? just create as the martians will 'balance out' the source ones.
-		create_pop = {
-			culture = british
-			pop_type = aristocrats
-			size = 1000
-		}
+	create_pop = {
+		culture = british
+		pop_type = soldiers
+		size = 3000
+	}
 
-		create_pop = {
-			culture = scottish
-			pop_type = aristocrats
-			size = 100
-		}
+	create_pop = {
+		culture = scottish
+		pop_type = soldiers
+		size = 1000
+	}
 
-		create_pop = {
-			culture = british
-			pop_type = bureaucrats
-			size = 2000
-		}
+	# every_subject_or_below = {
+	# 	# loyalty boost to stop immediate breakaways
 
-		create_pop = {
-			culture = scottish
-			pop_type = bureaucrats
-			size = 200
-		}
+	# }
 
-		create_pop = {
-			culture = british
-			pop_type = soldiers
-			size = 3000
-		}
-
-		create_pop = {
-			culture = scottish
-			pop_type = soldiers
-			size = 1000
-		}
-
-		# every_subject_or_below = {
-		# 	# loyalty boost to stop immediate breakaways
-
-		# }
-
-		# save_scope_as = nda_ares_freedom
-		# # send notification
-		# every_country = {
-		# 	post_notification = nda_ares_country_freedom
-		# }
+	# save_scope_as = nda_ares_freedom
+	# # send notification
+	# every_country = {
+	# 	post_notification = nda_ares_country_freedom
+	# }
 
 }

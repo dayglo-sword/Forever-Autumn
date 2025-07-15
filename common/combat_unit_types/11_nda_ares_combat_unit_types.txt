@@ -9,6 +9,7 @@
 
 combat_unit_type_nda_ares_war_machine = {
 	group = combat_unit_group_infantry
+	max_manpower = 1000
 
 	battle_modifier = {
         unit_offense_add = 700
@@ -41,14 +42,14 @@ combat_unit_type_nda_ares_war_machine = {
 
     # scope = country
     can_build = {
-
         c:NDA_ARES ?= THIS
-
     }
 
-    can_build_conscript = {
-        always = yes
-    }    
+    conscript_peasant_levies = yes
+
+    # can_build_conscript = {
+    #     always = yes
+    # }    
 
     combat_unit_image = {
 		# fallback

@@ -1,7 +1,7 @@
 ﻿ai_strategy_nda_ares_administrative_agenda = { # based on ai_strategy_resource_expansion
 	icon = "gfx/interface/icons/ai_strategy_icons/resource_expansion.dds"
-		
-	type = administrative	
+
+	type = administrative
 
 	building_group_weights = {
 		bg_rubber = 1.5
@@ -16,12 +16,12 @@
 	}
 
 	goods_stances = {
-		explosives = { 
-			stance = wants_high_supply 
+		explosives = {
+			stance = wants_high_supply
 			trigger = {
 				has_technology_researched = nitroglycerin
-			}			
-		}	
+			}
+		}
 		tools = { stance = wants_high_supply }
 		coal = { stance = wants_export }
 		iron = { stance = wants_export }
@@ -29,8 +29,9 @@
 		lead = { stance = wants_export }
 		wood = { stance = wants_export }
 		hardwood = { stance = wants_export }
-		sulfur = { stance = wants_export }			
+		sulfur = { stance = wants_export }
 	}
+
 
 	possible = {
 		c:NDA_ARES ?= THIS
@@ -44,7 +45,7 @@
 
 ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_expansion 
 	icon = "gfx/interface/icons/ai_strategy_icons/territorial_expansion.dds"
-		
+
 	type = diplomatic
 
 	will_form_power_bloc = {
@@ -65,7 +66,7 @@ ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_ex
 
 	wargoal_maneuvers_fraction = {
 		value = 0.15
-	}		
+	}
 
 	diplomatic_play_neutrality = {
 		value = -25
@@ -95,7 +96,7 @@ ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_ex
 				has_attitude = {
 					who = scope:target_country
 					attitude = antagonistic
-				}					
+				}
 			}
 			multiply = 0.5
 		}	
@@ -107,7 +108,7 @@ ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_ex
 			add = 1
 			max = 4.0
 			min = 0.5
-		}			
+		}
 	}
 
 	building_group_weights = {
@@ -135,16 +136,6 @@ ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_ex
 	}
 
 	secret_goal_scores = {
-		dominate = {		
-			if = {
-				limit = {
-					has_strategic_adjacency = scope:target_country
-					scope:target_country = { is_country_type = recognized } # adjust so not unrecognised - go for big countries first
-				}
-				add = 200
-			}	
-		}	
-
 		conquer = {
 			if = {
 				limit = {
@@ -161,7 +152,7 @@ ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_ex
 		return_state = 2.5
 		make_dominion = 0.5
 	}
-		
+
 	possible = {
 		c:NDA_ARES ?= THIS
 	}
@@ -174,7 +165,7 @@ ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_ex
 
 ai_strategy_nda_ares_political_agenda = { # based on conservative agenda
 	icon = "gfx/interface/icons/ai_strategy_icons/conservative_agenda.dds"
-		
+
 	type = political
 
 	revolution_aversion = {
@@ -193,25 +184,21 @@ ai_strategy_nda_ares_political_agenda = { # based on conservative agenda
 		value = 50
 	}
 
-	change_law_chance = { 
+	change_law_chance = {
 		value = 2.5
-		
+
 		if = {
 			limit = { any_interest_group = { is_insurrectionary = yes } }
 			add = 7.5
 		}
 
 		if = {
-			limit = { 
-				OR = {
-					has_journal_entry = je_government_petition  
-					has_journal_entry = je_law_imposition
-					has_journal_entry = je_british_dictate_law
-				}
+			limit = {
+				has_enactment_je_or_law_commitment = yes
 			}
 			add = 25
-		}			
-	}		
+		}
+	}
 
 	pro_interest_groups = {
 		ig_rural_folk
@@ -223,8 +210,8 @@ ai_strategy_nda_ares_political_agenda = { # based on conservative agenda
 
 	anti_interest_groups = {
 		ig_trade_unions
-	}	
-		
+	}
+
 	pro_movements = {
 		movement_royalist_constitutional
 		movement_royalist_absolutist
@@ -248,27 +235,27 @@ ai_strategy_nda_ares_political_agenda = { # based on conservative agenda
 	}
 
 	institution_scores = {
-		institution_colonial_affairs = {	
-			value = 150			
-		}				
-		institution_social_security = {	
-			value = 50			
+		institution_colonial_affairs = {
+			value = 150
 		}
-		institution_workplace_safety = {	
-			value = 50			
-		}		
-		institution_schools = {	
-			value = 100			
-		}		
-		institution_police = {	
-			value = 150			
-		}		
-		institution_health_system = {	
-			value = 100		
-		}		
-		institution_home_affairs = {	
-			value = 150		
-		}				
+		institution_social_security = {
+			value = 50
+		}
+		institution_workplace_safety = {
+			value = 50
+		}
+		institution_schools = {
+			value = 100
+		}
+		institution_police = {
+			value = 150
+		}
+		institution_health_system = {
+			value = 100
+		}
+		institution_home_affairs = {
+			value = 150
+		}
 	}
 
 	possible = {
