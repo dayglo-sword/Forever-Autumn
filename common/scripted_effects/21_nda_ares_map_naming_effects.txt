@@ -11,21 +11,19 @@
 }
 
 nda_effect_map_name_new_brit_capital = { # Rename for New britannia
-	c:NDA_GBR_EXILE = {
-		random_scope_state = {
-			limit = { is_capital = yes }
+	random_scope_state = {
+		limit = { is_capital = yes }
 
-			set_state_name = nda_GBR_EXILE_CAPITAL_state
+		set_state_name = nda_GBR_EXILE_CAPITAL_state
 
-			set_hub_name = { type = city name = nda_GBR_EXILE_CAPITAL_city }
-			
-			set_hub_name = { type = mine name = nda_GBR_EXILE_CAPITAL_mine }
+		set_hub_name = { type = city name = nda_GBR_EXILE_CAPITAL_city }
+		
+		set_hub_name = { type = mine name = nda_GBR_EXILE_CAPITAL_mine }
 
-			set_hub_name = { type = farm name = nda_GBR_EXILE_CAPITAL_farm }
+		set_hub_name = { type = farm name = nda_GBR_EXILE_CAPITAL_farm }
 
-			set_hub_name = { type = wood name = nda_GBR_EXILE_CAPITAL_wood }
+		set_hub_name = { type = wood name = nda_GBR_EXILE_CAPITAL_wood }
 
-			set_hub_name = { type = port name = nda_GBR_EXILE_CAPITAL_port }
-		}	
-	}
+		set_hub_name = { type = port name = nda_GBR_EXILE_CAPITAL_port }
+	}	
 }

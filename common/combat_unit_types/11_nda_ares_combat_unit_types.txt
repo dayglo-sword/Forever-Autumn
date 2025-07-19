@@ -9,11 +9,11 @@
 
 combat_unit_type_nda_ares_war_machine = {
 	group = combat_unit_group_infantry
-	max_manpower = 1000
+	max_manpower = 100
 
 	battle_modifier = {
-        unit_offense_add = 700
-        unit_defense_add = 700
+        unit_offense_add = 750
+        unit_defense_add = 750
 		#unit_morale_loss_add = 0.5
         unit_devastation_mult = 4
         unit_morale_damage_mult = 10   
@@ -22,6 +22,7 @@ combat_unit_type_nda_ares_war_machine = {
 
         #unit_recovery_rate_add = 0.5
         #unit_morale_loss_mult = -0.5
+        battle_combat_width_mult = -0.5 # 10
 	}
 
     # unit_modifier = {
@@ -37,7 +38,7 @@ combat_unit_type_nda_ares_war_machine = {
 
     upkeep_modifier = {
     	goods_input_small_arms_add = 0.3
-        goods_input_vril_add = 2.5
+        goods_input_vril_add = 2.0
     }
 
     # scope = country

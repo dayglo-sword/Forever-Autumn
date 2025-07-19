@@ -1237,9 +1237,7 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/london_center"
 
-	# is called from nda_ares.31 so as to be popup
-	# trigger = {
-	# }
+	duration = 3
 
 	cooldown = { months = 24 } # should only ever run once
 
@@ -1296,6 +1294,8 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 				
 		ruler = { save_scope_as = nda_ares_exiled_ruler }
 
+		debug_log_scopes = yes
+
 		scope:nda_ares_first_exile_loc ?= {
 
 			nda_effect_british_exile_setup = yes
@@ -1314,6 +1314,8 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 		}
 				
 		ruler = { save_scope_as = nda_ares_exiled_ruler }
+
+		debug_log_scopes = yes
 
 		scope:nda_ares_second_exile_loc ?= {
 
@@ -1334,6 +1336,8 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 				
 		ruler = { save_scope_as = nda_ares_exiled_ruler }
 
+		debug_log_scopes = yes
+
 		scope:nda_ares_third_exile_loc ?= {
 
 			nda_effect_british_exile_setup = yes
@@ -1347,7 +1351,7 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 	}
 }
 
-nda_ares.31 = { # Offer to Exile government of first victim - use this to luanch as popup
+nda_ares.31 = { # Offer to Exile government of first victim - use this to launch as popup
 	type = country_event
 	hidden = yes
 	trigger = {
@@ -1360,7 +1364,7 @@ nda_ares.31 = { # Offer to Exile government of first victim - use this to luanch
 		any_scope_war = {
 			has_war_support = {
 				target = ROOT
-				value <= 0
+				value < 0 # less than 0
 			}
 		}
 	}
@@ -1373,4 +1377,49 @@ nda_ares.31 = { # Offer to Exile government of first victim - use this to luanch
 		trigger_event = { id = nda_ares.30 popup = yes }
 	}
 
+}
+
+nda_ares.32 = { # Exile government renames to New Britannia!
+	type = country_event
+	placement = ROOT
+	title = nda_ares.32.t
+	desc = nda_ares.32.d
+	flavor =  nda_ares.32.f
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_politicians_arguing.bk2"
+		
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/london_center"
+
+	duration = 3
+	
+	cooldown = { months = 24 } # should only ever run once
+
+	immediate = {
+		debug_log = "Make Exile Choice: [THIS.GetCountry.GetNameNoFormatting]" 
+
+	}
+
+	option = { # Rename
+		name = nda_ares.32.a
+
+		debug_log_scopes = yes
+
+		THIS = {
+			# Change Names
+			nda_effect_map_name_new_brit_capital = yes			
+		}
+
+		change_tag = NDA_GBR_EXILE # Have new Tag for Exile	
+		
+	}
+
+	# option = { # Leave as is
+	# 	name = nda_ares.32.b
+	
+
+	# }
 }

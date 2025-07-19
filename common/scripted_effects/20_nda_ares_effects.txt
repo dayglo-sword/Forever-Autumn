@@ -94,7 +94,7 @@ nda_effect_martian_setup = {
 	# add morale modifier for intial landing
 	add_modifier = {
 		name = nda_ares_first_landing_modifier
-		months = 18
+		months = 24
 	}
 
 	# Initial Pop setup / conversion
@@ -126,6 +126,7 @@ nda_effect_martian_setup = {
 # Country Level
 nda_effect_british_exile_setup = {
 	debug_log = "New Home Country : [THIS.GetCountry.GetNameNoFormatting]"
+	debug_log_scopes = yes
 
 	# Diplo Catalyst - try and create anti-invasion lobbies
 	create_diplomatic_catalyst = {  
@@ -145,6 +146,12 @@ nda_effect_british_exile_setup = {
 		add_primary_culture = cu:british			
 	}
 
+	# breakaway
+	if = { 
+		limit = { is_subject = yes }
+		make_independent = yes # only if actual	
+	}
+
 	# transfer rulers and heirs
 	if = { 
 		limit = { exists = scope:nda_ares_exiled_ruler }
@@ -160,15 +167,6 @@ nda_effect_british_exile_setup = {
 		set_heir =  scope:nda_ares_exiled_heir
 	}
 
-	# transfer or exile government
-	change_tag = NDA_GBR_EXILE # Have new Tag for Exile
-
-	# breakaway
-	if = { 
-		limit = { is_subject = yes }
-		make_independent = yes # only if actual	
-	}
-
 	change_relations = { country = c:NDA_ARES value = -200 }
 
 	ROOT = {
@@ -180,50 +178,66 @@ nda_effect_british_exile_setup = {
 
 	debug_log = "New Country : [THIS.GetCountry.GetNameNoFormatting]"
 
-	# Change Names
-	nda_effect_map_name_new_brit_capital = yes
+	# # Change Names
+	# nda_effect_map_name_new_brit_capital = yes
 
 	# Add temp IG boost as could already be chaos (in EIC)
-	every_interest_group = {
-		add_modifier = { name = nda_ares_ig_exile_unity_modifier months = 12 is_decaying = yes } 
+	custom_tooltip = {
+		text = nda_ares_ig_exile_unity_tt
+		every_interest_group = {
+			add_modifier = { name = nda_ares_ig_exile_unity_modifier months = 12 is_decaying = yes } 
+		}		
 	}
 
-	# Add British pops ?? just create as the martians will 'balance out' the source ones.
-	create_pop = {
-		culture = british
-		pop_type = aristocrats
-		size = 1000
+
+	random_scope_state = {
+		limit = { is_capital = yes }
+
+		custom_tooltip = {
+			text = nda_ares_ig_exiles_arrive_tt
+			# Add British pops ?? just create as the martians will 'balance out' the source ones.
+			create_pop = {
+				culture = british
+				pop_type = aristocrats
+				size = 1000
+			}
+
+			create_pop = {
+				culture = scottish
+				pop_type = aristocrats
+				size = 100
+			}
+
+			create_pop = {
+				culture = british
+				pop_type = bureaucrats
+				size = 2000
+			}
+
+			create_pop = {
+				culture = scottish
+				pop_type = bureaucrats
+				size = 200
+			}
+
+			create_pop = {
+				culture = british
+				pop_type = soldiers
+				size = 3000
+			}
+
+			create_pop = {
+				culture = scottish
+				pop_type = soldiers
+				size = 1000
+			}
+
+		}
 	}
 
-	create_pop = {
-		culture = scottish
-		pop_type = aristocrats
-		size = 100
-	}
 
-	create_pop = {
-		culture = british
-		pop_type = bureaucrats
-		size = 2000
-	}
 
-	create_pop = {
-		culture = scottish
-		pop_type = bureaucrats
-		size = 200
-	}
-
-	create_pop = {
-		culture = british
-		pop_type = soldiers
-		size = 3000
-	}
-
-	create_pop = {
-		culture = scottish
-		pop_type = soldiers
-		size = 1000
-	}
+	trigger_event = { id = nda_ares.32 days = 2 popup = yes }
 
 	# every_subject_or_below = {
 	# 	# loyalty boost to stop immediate breakaways
@@ -235,5 +249,9 @@ nda_effect_british_exile_setup = {
 	# every_country = {
 	# 	post_notification = nda_ares_country_freedom
 	# }
+
+	# # do after all effects
+	# # transfer or exile government
+	# change_tag = NDA_GBR_EXILE # Have new Tag for Exile
 
 }

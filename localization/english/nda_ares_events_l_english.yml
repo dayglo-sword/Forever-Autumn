@@ -45,15 +45,22 @@ nda_ares.30.b: "[SCOPE.sC('nda_ares_second_exile_loc').GetName] might be better!
 nda_ares.30.c: "but [SCOPE.sC('nda_ares_third_exile_loc').GetName] is a possibility!"
 nda_ares.30.dd: "We should stand our ground!"
 
+nda_ares.32.t: "A New Brittania?"
+nda_ares.32.d: "With our exile to this place maybe we can make a new start of it, and rename this place to something more fitting for our government in Exile!\n\nEventually we can build our strength and make plans to strike back at the Martians!"
+nda_ares.32.f: "''"
+nda_ares.32.a: "A New Start! A New Brittania!"
+nda_ares.32.b: "We will adapt."
+
+
 # Notification types
 nda_ares_notifications: "Martian Activity"
 
 # Notifications
- notification_nda_ares_country_freedom_tooltip: "#header $notification_nda_ares_country_freedom_name$#!\n$TOOLTIP_DELIMITER$\n$notification_nda_ares_country_freedom_desc$"
- notification_nda_ares_country_freedom_name: "Freedom for [SCOPE.sC('nda_ares_freedom').GetName ]"
- notification_nda_ares_country_freedom_desc: "They have declared independance from their Martian Overlords!"
+notification_nda_ares_country_freedom_tooltip: "#header $notification_nda_ares_country_freedom_name$#!\n$TOOLTIP_DELIMITER$\n$notification_nda_ares_country_freedom_desc$"
+notification_nda_ares_country_freedom_name: "Freedom for [SCOPE.sC('nda_ares_freedom').GetName ]"
+notification_nda_ares_country_freedom_desc: "They have declared independance from their Martian Overlords!"
 
- notification_nda_ares_generator_built_tooltip: "#header $notification_nda_ares_generator_built_name$#!\n$TOOLTIP_DELIMITER$\n$notification_nda_ares_generator_built_desc$"
- notification_nda_ares_generator_built_name: "Generator Constructed in [SCOPE.sState('nda_ares_generator_location').GetName]"
- notification_nda_ares_generator_built_desc: "The Martians have completed construction of another Generator Complex."
+notification_nda_ares_generator_built_tooltip: "#header $notification_nda_ares_generator_built_name$#!\n$TOOLTIP_DELIMITER$\n$notification_nda_ares_generator_built_desc$"
+notification_nda_ares_generator_built_name: "Generator Constructed in [SCOPE.sState('nda_ares_generator_location').GetName]"
+notification_nda_ares_generator_built_desc: "The Martians have completed construction of another Generator Complex."
 

@@ -240,7 +240,7 @@ nda_ares_monthly_on_action = {
 			}
 		}
 		else = {
-			random_scope_state = {
+			every_scope_state = {
 				limit = {
 					has_building = building_nda_ares_generators
 					NOT = { owner = { country_has_primary_culture = cu:nda_cul_aresian } } # Splinter Martian Countries can keep Generators but not build

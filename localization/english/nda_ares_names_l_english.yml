@@ -98,3 +98,5 @@ nda_GBR_EXILE_CAPITAL_wood: "New Midsomer"
 nda_GBR_EXILE_CAPITAL_port: "New Walmington"
 
 nda_ares_ig_exile_unity_modifier: "Together against the Red Menace"
+nda_ares_ig_exile_unity_tt: "IG's Unity against the Red Menace"
+nda_ares_ig_exiles_arrive_tt: "Exiles arrive in [SCOPE.sState('nda_ares_generator_location').GetName]"

@@ -1,4 +1,38 @@
-﻿nda_martian_robe = {
+﻿nda_martian = {
+    usage = game
+    selection_behavior = weighted_random
+
+    nda_martian_skin = {
+        dna_modifiers = {
+
+            ### Skin Color ###
+            morph = {
+                mode = add
+                gene = NDA_gene_skin_color
+                template = grey_skin
+                range = { 0 1 } # For the randomness to work correctly
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = 1000
+
+                OR = {
+                    scope:character ?= {
+                        has_culture = cu:nda_cul_aresian
+                    }
+                    scope:pop ?= {
+                        has_pop_culture = nda_cul_aresian
+                    }
+                }
+            }
+        }
+    }
+}
+
+nda_martian_robe = {
     usage = game
 	selection_behavior = weighted_random
 	fallback = no_martian_robe

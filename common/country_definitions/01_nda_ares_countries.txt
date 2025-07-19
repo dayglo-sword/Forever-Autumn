@@ -7,6 +7,10 @@
 	
 	cultures = { nda_cul_aresian }
 	#capital = STATE_HOME_COUNTIES # not really needed
+
+	primary_unit_color = { 252 106 240 }
+	secondary_unit_color  = { 232 86 220 }
+	tertiary_unit_color = { 212 66 200 }
 }
 
 NDA_GBR_EXILE = {
