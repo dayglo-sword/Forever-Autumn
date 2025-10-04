@@ -5,6 +5,10 @@ NDA_ARES_FLAVOR_TEXT: "The chances of anything manlike on Mars?"
 
 # Culture
 nda_cul_aresian: "Martian"
+heritage_group_nda_aresian: "Martian"
+language_group_nda_aresian: "Martian"
+heritage_nda_aresian: "Martian"
+language_nda_aresian: "Martian"
 
 # Buildings and production
 building_nda_ares_generators: "Martian Generator"

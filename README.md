@@ -2,6 +2,7 @@
 ## The Invasion from Mars - A New Dark Age Mod
 A 'War of the Worlds' mod - with shades of 'Mars Attacks'<br> 
 IN DEVELOPMENT - but 1840's start has been tested.
+Now updated for v1.10
 
 A spin off from 'A New Dark Age'. Can run as a stand alone, but was intend to be run with NDA for added chaos.
 

@@ -7,27 +7,27 @@ state_nda_cul_aresian_standard_of_living_add={
 	}
 }
 
-# Compatability
-state_nda_cul_cultist_standard_of_living_add={
-	decimals=1
-	color=good
-	game_data={
-		ai_value=0
-	}
-}
+# # Compatability
+# state_nda_cul_cultist_standard_of_living_add={
+# 	decimals=1
+# 	color=good
+# 	game_data={
+# 		ai_value=0
+# 	}
+# }
 
-state_nda_cul_yigian_standard_of_living_add={
-	decimals=1
-	color=good
-	game_data={
-		ai_value=0
-	}
-}
+# state_nda_cul_yigian_standard_of_living_add={
+# 	decimals=1
+# 	color=good
+# 	game_data={
+# 		ai_value=0
+# 	}
+# }
 
-state_nda_cul_dagonic_standard_of_living_add={
-	decimals=1
-	color=good
-	game_data={
-		ai_value=0
-	}
-}
+# state_nda_cul_dagonic_standard_of_living_add={
+# 	decimals=1
+# 	color=good
+# 	game_data={
+# 		ai_value=0
+# 	}
+# }
