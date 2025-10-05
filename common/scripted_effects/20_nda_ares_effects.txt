@@ -152,6 +152,15 @@ nda_effect_british_exile_setup = {
 		make_independent = yes # only if actual	
 	}
 
+	change_relations = { country = c:NDA_ARES value = -200 }
+
+	ROOT = {
+		if = { 
+			limit = { is_player = yes }
+			play_as = PREV		
+		}		
+	}
+	
 	# transfer rulers and heirs
 	if = { 
 		limit = { exists = scope:nda_ares_exiled_ruler }
@@ -165,15 +174,6 @@ nda_effect_british_exile_setup = {
 		limit = { exists = scope:nda_ares_exiled_heir }
 		scope:nda_ares_exiled_heir = { transfer_character = PREV }
 		set_heir =  scope:nda_ares_exiled_heir
-	}
-
-	change_relations = { country = c:NDA_ARES value = -200 }
-
-	ROOT = {
-		if = { 
-			limit = { is_player = yes }
-			play_as = PREV		
-		}		
 	}
 
 	debug_log = "New Country : [THIS.GetCountry.GetNameNoFormatting]"
@@ -235,7 +235,15 @@ nda_effect_british_exile_setup = {
 		}
 	}
 
-
+	# transfer overseas territories - state is state region	
+	save_scope_as = nda_taker	
+	transfer_state = { STATE = s:STATE_NEWFOUNDLAND GIVER = c:GBR TAKER = scope:nda_taker }
+	transfer_state = { STATE = s:STATE_GUAYANA GIVER = c:GBR TAKER = scope:nda_taker }
+	transfer_state = { STATE = s:STATE_WEST_INDIES GIVER = c:GBR TAKER = scope:nda_taker }
+	transfer_state = { STATE = s:STATE_JAMAICA GIVER = c:GBR TAKER = scope:nda_taker }
+	transfer_state = { STATE = s:STATE_BAHAMAS GIVER = c:GBR TAKER = scope:nda_taker }
+	transfer_state = { STATE = s:STATE_BERMUDA GIVER = c:GBR TAKER = scope:nda_taker }
+	transfer_state = { STATE = s:STATE_GUATEMALA GIVER = c:GBR TAKER = scope:nda_taker }
 
 	trigger_event = { id = nda_ares.32 days = 2 popup = yes }
 

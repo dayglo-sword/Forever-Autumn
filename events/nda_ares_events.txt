@@ -1348,6 +1348,9 @@ nda_ares.30 = { # Exile government of first victim - change tag of largest subje
 
 	option = { # Stand our ground
 		name = nda_ares.30.dd
+		debug_log = "Make Exile Choice: Stand our ground!" 
+
+		# need option for release of territories - or just accept Martian control will happen?
 	}
 }
 
@@ -1374,6 +1377,39 @@ nda_ares.31 = { # Offer to Exile government of first victim - use this to launch
 	immediate = {
 		debug_log = "Hidden Exile Launch: [THIS.GetCountry.GetNameNoFormatting]" 
 
+		# need to sort out EIC and HBC - company controlled lands transfer to Martians on conquest.
+		# raj.7 is template
+
+		# Remove the East India Company's ownership of the BIC country and then disband the company - will removal still allow for option of gov exile to it?
+		c:BIC ?= {
+			owning_company ?= {
+				if = {
+					limit = {
+						is_company_type = company_type:company_east_india_company
+					}
+					remove_owned_country = c:BIC
+					owner ?= {
+						remove_company = prev.type
+					}
+				}
+			}
+		}
+
+		# Same for Hudson's Bay Co
+		c:HBC ?= {
+			owning_company ?= {
+				if = {
+					limit = {
+						is_company_type = company_type:company_hbc
+					}
+					remove_owned_country = c:HBC
+					owner ?= {
+						remove_company = prev.type
+					}
+				}
+			}
+		}
+
 		trigger_event = { id = nda_ares.30 popup = yes }
 	}
 
@@ -1399,7 +1435,7 @@ nda_ares.32 = { # Exile government renames to New Britannia!
 	cooldown = { months = 24 } # should only ever run once
 
 	immediate = {
-		debug_log = "Make Exile Choice: [THIS.GetCountry.GetNameNoFormatting]" 
+		debug_log = "Exile Choice: [THIS.GetCountry.GetNameNoFormatting]" 
 
 	}
 

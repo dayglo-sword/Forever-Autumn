@@ -1,7 +1,7 @@
 ﻿l_english:
 
 nda_ares.1.t: "The Chances of..."
-nda_ares.1.d: "...anything manlike on Mars?\n\n'No one gave a thought to the older worlds of space as sources of human danger, or thought of them only to dismiss the idea of life upon them as impossible or improbable.'\n\nWelcome to something that's nearly the #yellow 'War of the Worlds'#!, but with a bit of #yellow 'Mars Attacks'#! thrown in.\n\nWe recommend not playing the initial victims of the landings as it's quite easy to 'cheese' victory while the Martains are gaining their initial footings.\n\nThe four options for landing dates can be set via the Game Rules."
+nda_ares.1.d: "...anything manlike on Mars?\n\n'No one gave a thought to the older worlds of space as sources of human danger, or thought of them only to dismiss the idea of life upon them as impossible or improbable.'\n\nWelcome to something that's nearly the #yellow 'War of the Worlds'#!, but with a bit of #yellow 'Mars Attacks'#! thrown in.\n\nWe recommend not playing the initial victims of the landings as it's quite easy to 'cheese' victory while the Martians are gaining their initial footings.\n\nThe four options for landing dates can be set via the Game Rules."
 nda_ares.1.f: "'It is curious to recall some of the mental habits of those departed days. At most terrestrial men fancied there might be other men upon Mars, perhaps inferior to themselves and ready to welcome a missionary enterprise.\n\nYet across the gulf of space, minds that are to our minds as ours are to those of the beasts that perish, intellects vast and cool and unsympathetic, regarded this earth with envious eyes, and slowly and surely drew their plans against us.'"
 nda_ares.1.a: "A Certainty"
 nda_ares.1.a.tt: "On the date selected via the Games Rule"
@@ -23,12 +23,12 @@ nda_ares.3.f: "'The first opposition of Mars in the twentieth century occured on
 nda_ares.3.a: "A fine sight!"
 
 nda_ares.5.t: "Invasion!!!"
-nda_ares.5.d: "In an event that has shook the World to the core, objects from the Red planet have decended to Earth and a War has begun for the worlds future.\n\nIt appears that [SCOPE.sC('nda_ares_first_victim').GetName ] are to be their first victims!"
+nda_ares.5.d: "In an event that has shaken the World to the core, objects from the Red planet have descended to Earth and a War has begun for the world's future.\n\nIt appears that [SCOPE.sC('nda_ares_first_victim').GetName ] are to be their first victims!"
 nda_ares.5.f: "'The Martians seem to have calculated their descent with amazing subtlety — their mathematical learning is evidently far in excess of ours — and to have carried out their preparations with a well-nigh perfect unanimity.\n\nHad our instruments permitted it, we might have seen the gathering trouble far back...'"
 nda_ares.5.a: "What were the chances!"
 
 nda_ares.10.t: "Invasion!!!"
-nda_ares.10.d: "In an event that has shook the World to the core, objects from the Red planet have decended to Earth and a War has begun for the worlds future.\n\nIt appears that we are their first victims!"
+nda_ares.10.d: "In an event that has shaken the World to the core, objects from the Red planet have descended to Earth and a War has begun for the world's future.\n\nIt appears that we are their first victims!"
 nda_ares.10.f: "'The Martians seem to have calculated their descent with amazing subtlety — their mathematical learning is evidently far in excess of ours — and to have carried out their preparations with a well-nigh perfect unanimity.\n\nHad our instruments permitted it, we might have seen the gathering trouble far back...'"
 nda_ares.10.a: "What were the chances!"
 

@@ -78,7 +78,7 @@ nda_ares_monthly_on_action = {
 					is_incorporated = yes
 					culture_percent_state = {  
 						target = cu:nda_cul_aresian  
-						value >= 0.5 # at least 50% Martains  
+						value >= 0.5 # at least 50% Martians  
 					}  
 				}
 
