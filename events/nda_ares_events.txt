@@ -1437,6 +1437,14 @@ nda_ares.32 = { # Exile government renames to New Britannia!
 	immediate = {
 		debug_log = "Exile Choice: [THIS.GetCountry.GetNameNoFormatting]" 
 
+		change_tag = NDA_GBR_EXILE # Have new Tag for Exile	
+		
+		nda_effect_remove_colony_status_for_exile = yes
+
+		if = { # Old habits - Start the explotation
+			limit = { has_law_or_variant = law_type:law_no_colonial_affairs}
+			activate_law = law_type:law_colonial_exploitation
+		}
 	}
 
 	option = { # Rename
@@ -1445,12 +1453,11 @@ nda_ares.32 = { # Exile government renames to New Britannia!
 		debug_log_scopes = yes
 
 		THIS = {
+			debug_log = "Rename Capital: [THIS.GetCountry.GetNameNoFormatting]" 
 			# Change Names
 			nda_effect_map_name_new_brit_capital = yes			
 		}
 
-		change_tag = NDA_GBR_EXILE # Have new Tag for Exile	
-		
 	}
 
 	# option = { # Leave as is

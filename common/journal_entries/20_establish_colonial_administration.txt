@@ -1,10 +1,11 @@
-﻿je_colonial_administration = {
+﻿REPLACE_OR_CREATE:je_colonial_administration = {
 	icon = "gfx/interface/icons/invention_icons/colonization.dds"
-	
+
 	group = je_group_foreign_affairs
 
 	is_shown_when_inactive = {
-		country_is_in_africa = no
+		NOT = { is_country_type = unrecognized }
+		is_not_in_geographic_region = geographic_region_africa
 		OR = {
 			has_interest_marker_in_region = sr:region_senegal
 			has_interest_marker_in_region = sr:region_niger
@@ -13,17 +14,17 @@
 			has_interest_marker_in_region = sr:region_southern_africa
 			has_interest_marker_in_region = sr:region_congo
 		}
-		# don't include for cultists and martians
+		# don't include for cultists
 		NOT = {
-			#c:NDA_ARES ?= THIS	
-			#is_full_cult_country = { COUNTRY="ROOT" }	# need better way that would work for both Mods
 			has_variable = nda_anti_colonial_admin
 		}
 	}
 
 	possible = {
+		NOT = { is_country_type = unrecognized }
+		is_subject = no
 		any_scope_state = {
-			state_is_in_africa = yes
+			is_in_geographic_region = geographic_region_africa
 		}
 		has_technology_researched = civilizing_mission
 	}
@@ -70,8 +71,6 @@
     invalid = {
 		# needs to close if country converts to full cult country - re-enable after CTH leaves - invalid stops it repeating??
 		has_variable = nda_anti_colonial_admin
-		#is_full_cult_country = { COUNTRY="ROOT" }	
-
 	}
 	
 	# Establish Colonial Administration

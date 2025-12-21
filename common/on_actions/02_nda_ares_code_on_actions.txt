@@ -462,12 +462,13 @@ nda_ares_monthly_state_conversion_on_action = {
 				kill_population_percent_in_state = {  percent = 0.10 }	# can't fine tune it to non-martian, but conversion below should ensure Martain levels remain increasing			
 			}
 
-			if = { # very recently conquered 
+			if = { # very recently conquered, or Martians are in decline - use timer so only works for limited period??
 				limit = {
 					culture_percent_state = {
 						target = cu:nda_cul_aresian
 						value < 0.1
 					  }
+					  NOT = { has_variable =  nda_martian_supremacy } # state was formally Martian stronghold
 				}
 				kill_population_percent_in_state = {  percent = 0.50 }				
 			}
@@ -475,35 +476,37 @@ nda_ares_monthly_state_conversion_on_action = {
 			every_scope_pop = {
 				limit = {
 					NOT = { culture = cu:nda_cul_aresian }
+					NOT = { culture = cu:promethean }
 					NOT = { is_pop_type = slaves  } # keep slaves
 				}
 
 				change_pop_culture = { target = cu:nda_cul_aresian value = 0.10 }	
 				
-
+				# do everywhere or just at 'generator' sites?
+				change_pop_culture = { target = cu:promethean value = 0.02 } # increase value to .02 as still importing large quanties of slaves
 			}
 
 			every_scope_pop = {
 				limit = {
-					culture = cu:nda_cul_aresian
+					OR = {
+						culture = cu:nda_cul_aresian	
+						culture = cu:promethean					
+					}
+
 				}
 				change_pop_religion = { target = rel:atheist value = 1 }						
 			}
 
-			# # add radicals for non-Martian Homeland Cultures
-			# every_scope_culture = {
-			# 	limit = {  
-			# 		NOT = { THIS = cu:nda_cul_aresian }					
-			# 		ROOT = { state_region = { is_homeland = PREVPREV } }
-			# 	}
-			# 	ROOT = {
-			# 		add_radicals_in_state = {
-			# 			culture = PREV
-			# 			value = 0.8
-			# 		}					
-			# 	}
-			# }
-
+			if = { # Need to flag it now properly Martian so we can tell if decline is happening.
+				limit = {
+					culture_percent_state = {
+						target = cu:nda_cul_aresian
+						value > 0.5
+					  }
+					   NOT = { has_variable =  nda_martian_supremacy }
+				}
+				set_variable = nda_martian_supremacy			
+			}
 		}
 	}
 }

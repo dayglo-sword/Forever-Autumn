@@ -11,8 +11,8 @@
 	}
 
 	subsidies = {
-		building_tooling_workshops = wants_to_have
-		building_chemical_plants = wants_to_have
+		building_tooling_workshop = nice_to_have
+		building_explosives_factory = nice_to_have
 	}
 
 	goods_stances = {
@@ -115,6 +115,17 @@ ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_ex
 		bg_army = 1.5
 	}
 
+	secret_goal_weights = {
+		protect = 0.5
+		conquer = 1.5
+	}
+
+	wargoal_weights = {
+		conquer_state = 3.5
+		return_state = 2.5
+		make_dominion = 0.5
+	}
+	
 	# based on italian unification
 	wargoal_scores = {
 		conquer_state = {
@@ -147,11 +158,6 @@ ai_strategy_nda_ares_diplomatic_agenda = { # based on ai_strategy_territorial_ex
 		}
 	}
 	
-	wargoal_weights = {
-		conquer_state = 3.5
-		return_state = 2.5
-		make_dominion = 0.5
-	}
 
 	possible = {
 		c:NDA_ARES ?= THIS
@@ -232,6 +238,9 @@ ai_strategy_nda_ares_political_agenda = { # based on conservative agenda
 		movement_nihilist
 		movement_feminist
 		movement_radical
+		movement_german_national
+		movement_italian_national
+		movement_yugoslav_national
 	}
 
 	institution_scores = {

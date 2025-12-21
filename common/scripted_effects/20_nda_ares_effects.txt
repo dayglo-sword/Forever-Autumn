@@ -140,10 +140,15 @@ nda_effect_british_exile_setup = {
 	# change to absolute Monarchy
 	activate_law = law_type:law_monarchy
 	activate_law = law_type:law_autocracy
+	activate_law = law_type:law_colonial_exploitation
 
 	if = {
 		limit = { NOT = { country_has_primary_culture = cu:british } }
-		add_primary_culture = cu:british			
+		add_primary_culture = cu:british					
+	}
+	if = {
+		limit = { NOT = { country_has_primary_culture = cu:scottish } }
+		add_primary_culture = cu:scottish					
 	}
 
 	# breakaway
@@ -259,7 +264,17 @@ nda_effect_british_exile_setup = {
 	# }
 
 	# # do after all effects
-	# # transfer or exile government
-	# change_tag = NDA_GBR_EXILE # Have new Tag for Exile
+	# transfer or exile government
+	change_tag = NDA_GBR_EXILE # Have new Tag for Exile
 
+}
+
+nda_effect_remove_colony_status_for_exile = {
+	if = {
+		limit = { 
+			has_variable = nda_ares_country_in_exile
+			has_modifier = colony_alone_modifier 
+		}
+		remove_modifier = colony_alone_modifier
+	}
 }
